@@ -8,19 +8,31 @@ namespace Loops
     {
         static void Main(string[] args)
         {
+
+            var counter = 0;
+
+            while (counter < 10)
+            {
+                Console.WriteLine("Doing something");
+
+                counter++;
+            }
+
+
+
             Console.WriteLine("Before the loop");
 
             // Start the counter at 0
             //      |
-            //      |        Keep going as long as counter is less than 10
-            //      |               |
-            //      |               |        Increment counter after each loop is done
-            //      |               |             |
-            //      |               |             |
-            //      V               V             V
-            for (var counter = 0; counter < 10; counter = counter + 1)
+            //      |                         Keep going as long as counter is less than 10
+            //      |                                |
+            //      |                                |                          Increment counter after each loop is done
+            //      |                                |                               |
+            //      |                                |                               |
+            //      V                                V                               V
+            for (var counterWithForLoop = 0; counterWithForLoop < 10; counterWithForLoop++)
             {
-                Console.WriteLine($"Doing something while counter is {counter}");
+                Console.WriteLine($"Doing something while counter is {counterWithForLoop}");
             }
 
             Console.WriteLine("We are done with the loop");
@@ -38,6 +50,16 @@ namespace Loops
             {
                 // Gets the "index"-th element of the list
                 var currentName = names[index];
+
+                // Print it.
+                Console.WriteLine(currentName);
+            }
+
+            // We want to print the names in the list, but in reverse order
+            for (var reverseIndex = names.Count() - 1; reverseIndex >= 0; reverseIndex--)
+            {
+                // Gets the "index"-th element of the list
+                var currentName = names[reverseIndex];
 
                 // Print it.
                 Console.WriteLine(currentName);
