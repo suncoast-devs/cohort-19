@@ -33,6 +33,20 @@ namespace AboutMethods
             return userInput;
         }
 
+        static int PromptForInteger(string prompt)
+        {
+            // First work to do is to print the prompt
+            Console.Write(prompt);
+
+            // Get the user input
+            var userInput = Console.ReadLine();
+            var userInputAsInteger = int.Parse(userInput);
+
+            // The return keyword means whatever follows
+            // is the OUTPUT of our method
+            return userInputAsInteger;
+        }
+
         static void Main(string[] args)
         {
             DisplayGreeting();
@@ -41,14 +55,16 @@ namespace AboutMethods
             // var name = Console.ReadLine();
             var name = PromptForString("What is your name? ");
 
-            Console.Write("What is your department number? ");
-            // Read in a string from the user
-            var departmentString = Console.ReadLine();
-            // But store the department number as an "int"
-            var department = int.Parse(departmentString);
+            // Console.Write("What is your department number? ");
+            // // Read in a string from the user
+            // var departmentString = Console.ReadLine();
+            // // But store the department number as an "int"
+            // var department = int.Parse(departmentString);
+            var department = PromptForInteger("What is your department number? ");
 
-            Console.Write("What is your yearly salary (in dollars)? ");
-            var salary = int.Parse(Console.ReadLine());
+            // Console.Write("What is your yearly salary (in dollars)? ");
+            // var salary = int.Parse(Console.ReadLine());
+            var salary = PromptForInteger("What is your yearly salary (in dollars? ");
 
             var salaryPerMonth = salary / 12;
             Console.WriteLine($"Hello, {name} you make {salaryPerMonth} a month.");
