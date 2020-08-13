@@ -9,7 +9,16 @@ namespace AboutMethods
         public string Name { get; set; }
         public int Department { get; set; }
         public int Salary { get; set; }
-        public int MonthlySalary { get; set; }
+        // public int MonthlySalary { get; set; }
+
+        // Add a behavior to our class to give
+        // the monthly salary based on the salary itself.
+        //
+        // This means making a METHOD!
+        public int MonthlySalary()
+        {
+            return Salary / 12;
+        }
     }
 
     class Program
@@ -96,20 +105,18 @@ namespace AboutMethods
                 // var salary = int.Parse(Console.ReadLine());
                 var salary = PromptForInteger("What is your yearly salary (in dollars)? ");
 
-                var salaryPerMonth = salary / 12;
-
                 var ourEmployee = new Employee()
                 {
                     Name = name,
                     Department = department,
                     Salary = salary,
-                    MonthlySalary = salaryPerMonth
                 };
 
                 // Similar to list of strings, we can add
                 // an employee to a List<Employee>
                 // names.Add("George");
                 employees.Add(ourEmployee);
+                Console.WriteLine($"{ourEmployee.Name} you make {ourEmployee.MonthlySalary()} per month");
 
                 // And we can count our employees
                 var employeeCount = employees.Count();
