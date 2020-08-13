@@ -2,6 +2,14 @@
 
 namespace AboutMethods
 {
+    class Employee
+    {
+        public string Name { get; set; }
+        public int Department { get; set; }
+        public int Salary { get; set; }
+        public int MonthlySalary { get; set; }
+    }
+
     class Program
     {
         static void DisplayGreeting()
@@ -60,24 +68,51 @@ namespace AboutMethods
         {
             DisplayGreeting();
 
-            // Console.Write("What is your name? ");
-            // var name = Console.ReadLine();
-            var name = PromptForString("What is your name? ");
+            // A boolean variable that determines if we
+            // want to keep adding employees 
+            var keepAddingEmployees = true;
 
-            // Console.Write("What is your department number? ");
-            // // Read in a string from the user
-            // var departmentString = Console.ReadLine();
-            // // But store the department number as an "int"
-            // var department = int.Parse(departmentString);
-            var department = PromptForInteger("What is your department number? ");
+            while (keepAddingEmployees == true)
+            {
+                // Console.Write("What is your name? ");
+                // var name = Console.ReadLine();
+                var name = PromptForString("What is your name? ");
 
-            // Console.Write("What is your yearly salary (in dollars)? ");
-            // var salary = int.Parse(Console.ReadLine());
-            var salary = PromptForInteger("What is your yearly salary (in dollars)? ");
+                // Console.Write("What is your department number? ");
+                // // Read in a string from the user
+                // var departmentString = Console.ReadLine();
+                // // But store the department number as an "int"
+                // var department = int.Parse(departmentString);
+                var department = PromptForInteger("What is your department number? ");
 
-            var salaryPerMonth = salary / 12;
-            Console.WriteLine($"Hello, {name} you make {salaryPerMonth} a month.");
+                // Console.Write("What is your yearly salary (in dollars)? ");
+                // var salary = int.Parse(Console.ReadLine());
+                var salary = PromptForInteger("What is your yearly salary (in dollars)? ");
 
+                var salaryPerMonth = salary / 12;
+
+                var ourEmployee = new Employee()
+                {
+                    Name = name,
+                    Department = department,
+                    Salary = salary,
+                    MonthlySalary = salaryPerMonth
+                };
+
+
+                Console.WriteLine($"Hello, {ourEmployee.Name} you make {ourEmployee.MonthlySalary} a month.");
+
+                var answer = PromptForString("Keep going? ");
+
+                if (answer == "yes")
+                {
+                    keepAddingEmployees = true;
+                }
+                else
+                {
+                    keepAddingEmployees = false;
+                }
+            }
         }
     }
 }
