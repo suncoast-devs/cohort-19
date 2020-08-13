@@ -6,9 +6,9 @@ namespace AboutMethods
     {
         static void DisplayGreeting()
         {
-            Console.WriteLine("--------------------------------");
             Console.WriteLine("Welcome to Our Employee Database");
-            Console.WriteLine("--------------------------------");
+            Console.WriteLine();
+            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
         }
