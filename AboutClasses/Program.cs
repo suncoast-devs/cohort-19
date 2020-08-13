@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AboutMethods
 {
@@ -68,6 +70,11 @@ namespace AboutMethods
         {
             DisplayGreeting();
 
+            // Our collection (list) of all the employees.
+            // Each employee (object) knows its own Name
+            // and Department, and Salary, and MonthlySalary
+            var employees = new List<Employee>();
+
             // A boolean variable that determines if we
             // want to keep adding employees 
             var keepAddingEmployees = true;
@@ -99,19 +106,39 @@ namespace AboutMethods
                     MonthlySalary = salaryPerMonth
                 };
 
+                // Similar to list of strings, we can add
+                // an employee to a List<Employee>
+                // names.Add("George");
+                employees.Add(ourEmployee);
 
-                Console.WriteLine($"Hello, {ourEmployee.Name} you make {ourEmployee.MonthlySalary} a month.");
+                // And we can count our employees
+                var employeeCount = employees.Count();
 
-                var answer = PromptForString("Keep going? ");
-
-                if (answer == "yes")
+                // Figure out the total salaries of all employees I currently know about
+                //
+                // Start a totalSalary at 0
+                var totalSalary = 0;
+                // For each employee we know about do the following
+                foreach (var employee in employees)
                 {
-                    keepAddingEmployees = true;
+                    // - Get their salary
+                    // - Add it to the totalSalary
+                    totalSalary = totalSalary + employee.Salary;
                 }
-                else
-                {
-                    keepAddingEmployees = false;
-                }
+                // When done, totalSalary will be the answer
+
+                var answer = PromptForString($"You have {employeeCount} employees with a total salary of {totalSalary}. Keep going? ");
+
+                // if (answer == "yes")
+                // {
+                //     keepAddingEmployees = true;
+                // }
+                // else
+                // {
+                //     keepAddingEmployees = false;
+                // }
+                // This is the same as the 7 lines above    
+                keepAddingEmployees = (answer == "yes");
             }
         }
     }
