@@ -40,11 +40,20 @@ namespace AboutMethods
 
             // Get the user input
             var userInput = Console.ReadLine();
-            var userInputAsInteger = int.Parse(userInput);
 
-            // The return keyword means whatever follows
-            // is the OUTPUT of our method
-            return userInputAsInteger;
+            int userInputAsInteger;
+            var isThisGoodInput = int.TryParse(userInput, out userInputAsInteger);
+
+            if (isThisGoodInput == true)
+            {
+                return userInputAsInteger;
+            }
+            else
+            {
+                Console.WriteLine($"Sorry, {userInput} isn't a number. I'm going to use 0 instead.");
+
+                return 0;
+            }
         }
 
         static void Main(string[] args)
@@ -64,7 +73,7 @@ namespace AboutMethods
 
             // Console.Write("What is your yearly salary (in dollars)? ");
             // var salary = int.Parse(Console.ReadLine());
-            var salary = PromptForInteger("What is your yearly salary (in dollars? ");
+            var salary = PromptForInteger("What is your yearly salary (in dollars)? ");
 
             var salaryPerMonth = salary / 12;
             Console.WriteLine($"Hello, {name} you make {salaryPerMonth} a month.");
