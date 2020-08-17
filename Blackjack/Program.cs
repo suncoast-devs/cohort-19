@@ -371,8 +371,7 @@ namespace Blackjack
                 if (choice == "HIT")
                 {
                     //     - Ask the deck for a card and place it in the player hand, repeat step 10
-                    var additionalCard = deck.DealCard();
-                    player.AddCardToHand(additionalCard);
+                    player.AddCardToHand(deck.DealCard());
                 }
                 // 13. If STAND continue on
             }
@@ -384,8 +383,7 @@ namespace Blackjack
             while (!player.Busted() && dealer.TotalValue() < 17)
             {
                 //     - Add a card to the dealer hand and go back to 14
-                var additionalCard = deck.DealCard();
-                dealer.AddCardToHand(additionalCard);
+                dealer.AddCardToHand(deck.DealCard());
             }
 
             Console.WriteLine("------- DEALER ------");
