@@ -4,12 +4,12 @@
 
 - x Building a deck with for loops
 
-- How to make a card have a value
+- x How to make a card have a value
   - x Creating a list a property of a class
   - x Implementing a list in a class
   - x Hand class -- list of cards
-- How to handle logic of busting / dealer stopping at 17
+x How to handle logic of busting / dealer stopping at 17
+x How to shuffle / reset the game each time
 - Object reference errors
-- How to shuffle / reset the game each time
-- Organizing code, moving classes into multiple files0
+- Organizing code, moving classes into multiple files
 - Debugger
