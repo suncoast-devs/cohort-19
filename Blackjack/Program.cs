@@ -116,7 +116,7 @@ namespace Blackjack
             // 10. If they have BUSTED, then goto step 15
             // 11. Ask the player if they want to HIT or STAND
             // 12. If HIT
-            //     - Ask the deck for a card and place it in the player hand, repeat step 11
+            //     - Ask the deck for a card and place it in the player hand, repeat step 10
             // 13. If STAND continue on
             // 14. If the dealer has busted then goto step 17
             // 15. If the dealer has less than 17
