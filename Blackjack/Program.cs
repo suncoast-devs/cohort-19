@@ -373,10 +373,38 @@ namespace Blackjack
             Console.WriteLine($"The dealer total is: {dealer.TotalValue()}");
 
             // 17. If the player busted show "DEALER WINS"
-            // 18. If the dealer busted show "PLAYER WINS"
-            // 19. If the dealer's hand is more than the player's hand then show "DEALER WINS", else show "PLAYER WINS"
-            // 20. If the value of the hands are even, show "DEALER WINS"
-
+            if (player.TotalValue() > 21)
+            {
+                Console.WriteLine("Dealer wins!");
+            }
+            else
+            {
+                // 18. If the dealer busted show "PLAYER WINS"
+                if (dealer.TotalValue() > 21)
+                {
+                    Console.WriteLine("Player wins");
+                }
+                else
+                {
+                    // 19. If the dealer's hand is more than the player's hand then show "DEALER WINS", else show "PLAYER WINS"
+                    if (dealer.TotalValue() > player.TotalValue())
+                    {
+                        Console.WriteLine("Dealer Wins!");
+                    }
+                    else
+                    {
+                        if (player.TotalValue() > dealer.TotalValue())
+                        {
+                            Console.WriteLine("Player wins");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Tie goes to the dealer");
+                            // 20. If the value of the hands are even, show "DEALER WINS"
+                        }
+                    }
+                }
+            }
         }
     }
 }
