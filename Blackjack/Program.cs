@@ -155,9 +155,31 @@ namespace Blackjack
             }
 
 
-
-
             // 2. Ask the deck to make a new shuffled 52 cards
+
+            // make n = number of cards in our deck
+            var n = deck.Count();
+
+
+            // for rightIndex from n - 1 down to 1 do:
+            for (var rightIndex = n - 1; rightIndex >= 1; rightIndex--)
+            {
+                var randomNumberGenerator = new Random();
+
+                //   leftIndex = random integer that is greater than or equal to 0 and LESS than rightIndex
+                var leftIndex = randomNumberGenerator.Next(rightIndex);
+
+                //   Now swap the values at rightIndex and leftIndex by doing this:
+                //     leftCard = the value from deck[rightIndex]
+                var leftCard = deck[rightIndex];
+                //     rightCard = the value from deck[leftIndex]
+                var rightCard = deck[leftIndex];
+                //     deck[rightIndex] = rightCard
+                deck[rightIndex] = rightCard;
+                //     deck[leftIndex] = leftCard
+                deck[leftIndex] = leftCard;
+            }
+
             // 3. Create a player hand
             // 4. Create a dealer hand
             // 5. Ask the deck for a card and place it in the player hand
