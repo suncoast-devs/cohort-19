@@ -354,8 +354,8 @@ namespace Blackjack
             //    Print the total
             Console.WriteLine($"The player's total is: {player.TotalValue()}");
 
-            // While the dealer has less than 17
-            while (dealer.TotalValue() < 17)
+            // While the player isn't busted AND dealer has less than 17
+            while (player.TotalValue() <= 21 && dealer.TotalValue() < 17)
             {
                 //     - Add a card to the dealer hand and go back to 14
                 var additionalCard = deck[0];
