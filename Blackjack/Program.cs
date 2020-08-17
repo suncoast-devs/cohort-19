@@ -235,14 +235,45 @@ namespace Blackjack
             // deck.RemoveAt(0);
             deck.Remove(firstCardForPlayer);
 
-
             //   - Add it to the hand
             player.AddCardToHand(firstCardForPlayer);
 
             // 6. Ask the deck for a card and place it in the player hand
+            var secondCardForPlayer = deck[0];
+            deck.Remove(secondCardForPlayer);
+            player.AddCardToHand(secondCardForPlayer);
+
             // 7. Ask the deck for a card and place it in the dealer hand
+            var firstCardForDealer = deck[0];
+            deck.Remove(firstCardForDealer);
+            dealer.AddCardToHand(firstCardForDealer);
+
             // 8. Ask the deck for a card and place it in the dealer hand
+            var secondCardForDealer = deck[0];
+            deck.Remove(secondCardForDealer);
+            dealer.AddCardToHand(secondCardForDealer);
+
             // 9. Show the player the cards in their hand and the TotalValue of their Hand
+            // PEDAC
+            // Problem: Need to loop through all the cards in a Hand and print each one. Then print a total
+            // Examples:   Hand has Ace of Hearts and the 3 of Diamonds.
+            //             Ace of Hearts
+            //             3 of Diamonds
+            //             Total: 14
+            // Data: We have enough, the Cards list has what we need.
+            // Algorithm:
+            //    Start a total at 0
+            //    Loop through all the cards
+            foreach (var card in player.Cards)
+            {
+                //       print that card
+                Console.WriteLine($"The {card.Face} of {card.Suit}");
+
+                //       Add that card's value to total
+            }
+            //    Print the total
+
+
             // 10. If they have BUSTED, then goto step 15
             // 11. Ask the player if they want to HIT or STAND
             // 12. If HIT
