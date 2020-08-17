@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Blackjack
 {
@@ -110,21 +111,27 @@ namespace Blackjack
             //   Algorithm for making a list of 52 cards
 
             //   Make a blank list of cards
+
             //   Suits is a list of "Club", "Diamond", "Heart", or "Spade"
+            var suits = new List<string>() { "Club", "Diamond", "Heart", "Spade" };
+
             //   Faces is a list of 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, or Ace
+            var faces = new List<string>() { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
+
             //   Go through all of the suits one at a time and in order
-            //   {
+            foreach (var suit in suits)
             //       Get the current suit
-            //       Go through all of the faces one a time and in order
-            //       {
-            //          Get the current face
-            //
-            //          With the current suit and the current face, make a new card
-            //          Add that card to the list of cards
-            //       Go to the card and loop again
-            //       }
-            //   Go to the next suit and loop again
-            //   }
+            {
+                //       Go through all of the faces one a time and in order
+                foreach (var face in faces)
+                //          Get the current face
+                {
+                    Console.WriteLine($"Working with {suit} and {face}"); k
+                    //
+                    //          With the current suit and the current face, make a new card
+                    //          Add that card to the list of cards
+                }
+            }
 
 
 
