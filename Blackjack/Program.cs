@@ -4,6 +4,17 @@ using System.Linq;
 
 namespace Blackjack
 {
+    class Hand
+    {
+        // name
+        // input type
+        // work
+        // output type
+        public void AddCardToHand(Card cardToAdd)
+        {
+        }
+    }
+
     class Card
     {
         // PROPERTY     Face
@@ -180,9 +191,33 @@ namespace Blackjack
                 deck[leftIndex] = leftCard;
             }
 
+            // Print out all the cards from the deck in order
+            // foreach (var card in deck)
+            // {
+            //     Console.WriteLine($"The card on the deck is the {card.Face} of {card.Suit}");
+            // }
+
             // 3. Create a player hand
+            var player = new Hand();
+
             // 4. Create a dealer hand
+            var dealer = new Hand();
+
             // 5. Ask the deck for a card and place it in the player hand
+            //   PEDAC
+            //   - Deck
+            //   - Get the first from the deck
+            var firstCardForPlayer = deck[0];
+
+            //   - Remove that card from the deck so its not dealt again
+            // This line is effectively the same as below
+            // deck.RemoveAt(0);
+            deck.Remove(firstCardForPlayer);
+
+
+            //   - Add it to the hand
+            player.AddCardToHand(firstCardForPlayer);
+
             // 6. Ask the deck for a card and place it in the player hand
             // 7. Ask the deck for a card and place it in the dealer hand
             // 8. Ask the deck for a card and place it in the dealer hand
