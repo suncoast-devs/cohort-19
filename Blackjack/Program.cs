@@ -26,6 +26,35 @@ namespace Blackjack
             return total;
         }
 
+        // name    - Busted
+        // input   - no
+        // work    - compare TotalValue() to 21
+        // output  - bool  (true if the total value is > 21, false otherwise)
+        public bool Busted()
+        {
+            if (TotalValue() > 21)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // name      Display
+        // input     no
+        // work
+        // output    no
+        public void Display()
+        {
+            foreach (var card in Cards)
+            {
+                Console.WriteLine($"The {card.Face} of {card.Suit}");
+            }
+            Console.WriteLine($"The total is: {TotalValue()}");
+            Console.WriteLine();
+        }
 
         // name
         // input type
@@ -321,18 +350,13 @@ namespace Blackjack
 
             // 10. If they have BUSTED, then goto step 15
             var choice = "";
-            while (choice != "STAND" && player.TotalValue() <= 21)
+            while (choice != "STAND" && !player.Busted())
             {
-                //    Loop through all the cards
-                foreach (var card in player.Cards)
-                {
-                    //       print that card
-                    Console.WriteLine($"The {card.Face} of {card.Suit}");
-                }
-                //    Print the total
-                Console.WriteLine($"The total is: {player.TotalValue()}");
+                Console.WriteLine("------- PLAYER ------");
+                player.Display();
 
                 // 11. Ask the player if they want to HIT or STAND
+                Console.WriteLine();
                 Console.Write("HIT or STAND? ");
                 choice = Console.ReadLine();
                 // 12. If HIT
@@ -345,42 +369,31 @@ namespace Blackjack
                 }
                 // 13. If STAND continue on
             }
-            //    Loop through all the cards
-            foreach (var card in player.Cards)
-            {
-                //       print that card
-                Console.WriteLine($"The {card.Face} of {card.Suit}");
-            }
-            //    Print the total
-            Console.WriteLine($"The player's total is: {player.TotalValue()}");
+
+            Console.WriteLine("------- PLAYER ------");
+            player.Display();
 
             // While the player isn't busted AND dealer has less than 17
-            while (player.TotalValue() <= 21 && dealer.TotalValue() < 17)
+            while (!player.Busted() && dealer.TotalValue() < 17)
             {
                 //     - Add a card to the dealer hand and go back to 14
                 var additionalCard = deck[0];
                 deck.Remove(additionalCard);
                 dealer.AddCardToHand(additionalCard);
             }
-            // 16. Show the dealer's hand and the TotalValue
-            //    Loop through all the cards
-            foreach (var card in dealer.Cards)
-            {
-                //       print that card
-                Console.WriteLine($"The {card.Face} of {card.Suit}");
-            }
-            //    Print the total
-            Console.WriteLine($"The dealer total is: {dealer.TotalValue()}");
+
+            Console.WriteLine("------- DEALER ------");
+            dealer.Display();
 
             // 17. If the player busted show "DEALER WINS"
-            if (player.TotalValue() > 21)
+            if (player.Busted())
             {
                 Console.WriteLine("Dealer wins!");
             }
             else
             {
                 // 18. If the dealer busted show "PLAYER WINS"
-                if (dealer.TotalValue() > 21)
+                if (dealer.Busted())
                 {
                     Console.WriteLine("Player wins");
                 }
