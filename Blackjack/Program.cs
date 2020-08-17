@@ -6,12 +6,33 @@ namespace Blackjack
 {
     class Hand
     {
+        // Cards is a property that is a list of Card objects
+        public List<Card> Cards = new List<Card>();
+
         // name
         // input type
         // work
         // output type
         public void AddCardToHand(Card cardToAdd)
         {
+            // PEDAC
+            // Problem:
+            // -- Take a card as given in the input and keep track of it
+
+            // Examples
+            // -- Example:
+            //     AddCardToHand( .. A of Hearts ..)
+            //     AddCardToHand( .. 3 of Diamonds .. )
+            //
+            //     -- hand should have two cards in it
+            //
+            // Data
+            // -- What kind of variable might help here?
+            // -- List is helpful
+            //
+            // Algorithm for this
+            // -- Take the card given in input and add it to our list
+            Cards.Add(cardToAdd);
         }
     }
 
