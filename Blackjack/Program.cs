@@ -43,6 +43,97 @@ namespace Blackjack
 
         // PROPERTY     Suit
         public string Suit { get; set; }
+
+        // Name    -- Value
+        // Input   -- no
+        // Work    -- Algorithm
+        // Output  -- int
+        public int Value()
+        {
+            var answer = 0;
+
+            // | Face  | Value |
+            // | ----- | ----- |
+            // | 2     | 2     |
+            if (Face == "2")
+            {
+                answer = 2;
+            }
+
+            // | 3     | 3     |
+            if (Face == "3")
+            {
+                answer = 3;
+            }
+
+            // | 4     | 4     |
+            if (Face == "4")
+            {
+                answer = 4;
+            }
+
+            // | 5     | 5     |
+            if (Face == "5")
+            {
+                answer = 5;
+            }
+
+            // | 6     | 6     |
+            if (Face == "6")
+            {
+                answer = 6;
+            }
+
+            // | 7     | 7     |
+            if (Face == "7")
+            {
+                answer = 7;
+            }
+
+            // | 8     | 8     |
+            if (Face == "8")
+            {
+                answer = 8;
+            }
+
+            // | 9     | 9     |
+            if (Face == "9")
+            {
+                answer = 9;
+            }
+
+            // | 10    | 10    |
+            if (Face == "10")
+            {
+                answer = 10;
+            }
+
+            // | Jack  | 10    |
+            if (Face == "J")
+            {
+                answer = 10;
+            }
+
+            // | Queen | 10    |
+            if (Face == "Q")
+            {
+                answer = 10;
+            }
+
+            // | King  | 10    |
+            if (Face == "K")
+            {
+                answer = 10;
+            }
+
+            // | Ace   | 11    |
+            if (Face == "A")
+            {
+                answer = 11;
+            }
+
+            return answer;
+        }
     }
 
     class Program
@@ -263,6 +354,7 @@ namespace Blackjack
             // Data: We have enough, the Cards list has what we need.
             // Algorithm:
             //    Start a total at 0
+            var total = 0;
             //    Loop through all the cards
             foreach (var card in player.Cards)
             {
@@ -270,8 +362,10 @@ namespace Blackjack
                 Console.WriteLine($"The {card.Face} of {card.Suit}");
 
                 //       Add that card's value to total
+                total = total + card.Value();
             }
             //    Print the total
+            Console.WriteLine($"The total is: {total}");
 
 
             // 10. If they have BUSTED, then goto step 15
