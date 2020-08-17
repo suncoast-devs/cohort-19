@@ -1,8 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Blackjack
 {
+    class Card
+    {
+        // PROPERTY     Face
+        public string Face { get; set; }
+
+        // PROPERTY     Suit
+        public string Suit { get; set; }
+    }
+
     class Program
     {
         static void Main(string[] args)
@@ -111,6 +121,7 @@ namespace Blackjack
             //   Algorithm for making a list of 52 cards
 
             //   Make a blank list of cards
+            var deck = new List<Card>();
 
             //   Suits is a list of "Club", "Diamond", "Heart", or "Spade"
             var suits = new List<string>() { "Club", "Diamond", "Heart", "Spade" };
@@ -119,17 +130,27 @@ namespace Blackjack
             var faces = new List<string>() { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
 
             //   Go through all of the suits one at a time and in order
-            foreach (var suit in suits)
             //       Get the current suit
+            foreach (var suit in suits)
             {
+                // Alternative
+                // for (var suitIndex = 0; suitIndex < suits.Count(); suitIndex++)
+                // {
+                //     var suit = suits[suitIndex];
+
                 //       Go through all of the faces one a time and in order
                 foreach (var face in faces)
                 //          Get the current face
                 {
-                    Console.WriteLine($"Working with {suit} and {face}"); k
-                    //
                     //          With the current suit and the current face, make a new card
+                    var ourCard = new Card()
+                    {
+                        Face = face,
+                        Suit = suit,
+                    };
+
                     //          Add that card to the list of cards
+                    deck.Add(ourCard);
                 }
             }
 
