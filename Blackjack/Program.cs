@@ -334,21 +334,11 @@ namespace Blackjack
             //   PEDAC
             //   - Deck
             //   - Get the first from the deck
-            var firstCardForPlayer = deck.DealCard();
-            //   - Add it to the hand
-            player.AddCardToHand(firstCardForPlayer);
+            player.AddCardToHand(deck.DealCard());
+            player.AddCardToHand(deck.DealCard());
 
-            // 6. Ask the deck for a card and place it in the player hand
-            var secondCardForPlayer = deck.DealCard();
-            player.AddCardToHand(secondCardForPlayer);
-
-            // 7. Ask the deck for a card and place it in the dealer hand
-            var firstCardForDealer = deck.DealCard();
-            dealer.AddCardToHand(firstCardForDealer);
-
-            // 8. Ask the deck for a card and place it in the dealer hand
-            var secondCardForDealer = deck.DealCard();
-            dealer.AddCardToHand(secondCardForDealer);
+            dealer.AddCardToHand(deck.DealCard());
+            dealer.AddCardToHand(deck.DealCard());
 
             // 9. Show the player the cards in their hand and the TotalValue of their Hand
             // PEDAC
