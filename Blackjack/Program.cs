@@ -9,6 +9,24 @@ namespace Blackjack
         // Cards is a property that is a list of Card objects
         public List<Card> Cards = new List<Card>();
 
+
+        // name - TotalValue
+        // input - no
+        // work - add up the value of all cards
+        // output - total value of all the cards (int)
+        public int TotalValue()
+        {
+            var total = 0;
+
+            foreach (var card in Cards)
+            {
+                total = total + card.Value();
+            }
+
+            return total;
+        }
+
+
         // name
         // input type
         // work
@@ -303,7 +321,7 @@ namespace Blackjack
 
             // 10. If they have BUSTED, then goto step 15
             var choice = "";
-            while (choice != "STAND")
+            while (choice != "STAND" && player.TotalValue() <= 21)
             {
                 var total = 0;
                 //    Loop through all the cards
