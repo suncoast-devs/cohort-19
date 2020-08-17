@@ -323,18 +323,14 @@ namespace Blackjack
             var choice = "";
             while (choice != "STAND" && player.TotalValue() <= 21)
             {
-                var total = 0;
                 //    Loop through all the cards
                 foreach (var card in player.Cards)
                 {
                     //       print that card
                     Console.WriteLine($"The {card.Face} of {card.Suit}");
-
-                    //       Add that card's value to total
-                    total = total + card.Value();
                 }
                 //    Print the total
-                Console.WriteLine($"The total is: {total}");
+                Console.WriteLine($"The total is: {player.TotalValue()}");
 
                 // 11. Ask the player if they want to HIT or STAND
                 Console.Write("HIT or STAND? ");
