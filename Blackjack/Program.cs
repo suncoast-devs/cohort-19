@@ -299,25 +299,38 @@ namespace Blackjack
             // Data: We have enough, the Cards list has what we need.
             // Algorithm:
             //    Start a total at 0
-            var total = 0;
-            //    Loop through all the cards
-            foreach (var card in player.Cards)
-            {
-                //       print that card
-                Console.WriteLine($"The {card.Face} of {card.Suit}");
-
-                //       Add that card's value to total
-                total = total + card.Value();
-            }
-            //    Print the total
-            Console.WriteLine($"The total is: {total}");
 
 
             // 10. If they have BUSTED, then goto step 15
-            // 11. Ask the player if they want to HIT or STAND
-            // 12. If HIT
-            //     - Ask the deck for a card and place it in the player hand, repeat step 10
-            // 13. If STAND continue on
+            var choice = "";
+            while (choice != "STAND")
+            {
+                var total = 0;
+                //    Loop through all the cards
+                foreach (var card in player.Cards)
+                {
+                    //       print that card
+                    Console.WriteLine($"The {card.Face} of {card.Suit}");
+
+                    //       Add that card's value to total
+                    total = total + card.Value();
+                }
+                //    Print the total
+                Console.WriteLine($"The total is: {total}");
+
+                // 11. Ask the player if they want to HIT or STAND
+                Console.Write("HIT or STAND? ");
+                choice = Console.ReadLine();
+                // 12. If HIT
+                if (choice == "HIT")
+                {
+                    //     - Ask the deck for a card and place it in the player hand, repeat step 10
+                    var additionalCard = deck[0];
+                    deck.Remove(additionalCard);
+                    player.AddCardToHand(additionalCard);
+                }
+                // 13. If STAND continue on
+            }
             // 14. If the dealer has busted then goto step 17
             // 15. If the dealer has less than 17
             //     - Add a card to the dealer hand and go back to 14
