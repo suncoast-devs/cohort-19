@@ -105,6 +105,30 @@ namespace Blackjack
             // # Algorithm
 
             // 1. Create a new deck
+            // PEDAC ^^^^ 
+            //   - Properties: A list of 52 cards
+            //   Algorithm for making a list of 52 cards
+
+            //   Make a blank list of cards
+            //   Suits is a list of "Club", "Diamond", "Heart", or "Spade"
+            //   Faces is a list of 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, or Ace
+            //   Go through all of the suits one at a time and in order
+            //   {
+            //       Get the current suit
+            //       Go through all of the faces one a time and in order
+            //       {
+            //          Get the current face
+            //
+            //          With the current suit and the current face, make a new card
+            //          Add that card to the list of cards
+            //       Go to the card and loop again
+            //       }
+            //   Go to the next suit and loop again
+            //   }
+
+
+
+
             // 2. Ask the deck to make a new shuffled 52 cards
             // 3. Create a player hand
             // 4. Create a dealer hand
