@@ -316,6 +316,49 @@ namespace LINQ
                 },
             };
 
+            var movieNames = movies.Select(movie => movie.Name);
+            var movieScreenings = movies.Select(movie => movie.Screenings);
+
+            var popularMovies = movies.Where(movie => movie.Screenings >= 100);
+
+            //  List
+            //  |
+            //  |            LINQ method
+            //  |                    |
+            //  |                    |          Stariting value for currentTotal
+            //  |                    |          |
+            var totalRevenue = movies.Aggregate(0.0,
+
+            // Expression to do for each element of movies
+            //
+            // currentValue
+            // |
+            // |           current Element of the list
+            // |           |
+            // |           |         Transformation to get the NEXT value for currentTotal
+            // |           |         |
+            (currentTotal, movie) => currentTotal + movie.TotalRevenue);
+
+            // List of all the revenues from each movie!
+            var allRevenues = movies.Select(movie => movie.TotalRevenue);
+            var totalRevenueSum = allRevenues.Sum();
+
+            var areAllOldMovies = movies.All(movie => movie.ReleasedDate.Year < 1965);
+
+            var areAnyOldMovies = movies.Any(movie => movie.ReleasedDate.Year < 1990);
+
+            // Count the movies older than 1990 in two steps
+            var eightiesMovies = movies.Where(movie => movie.ReleasedDate.Year < 1990);
+            var howManyEightiesMovie = eightiesMovies.Count();
+
+            // Like the above, but in one step and we don't keep the list around, just the resulting count
+            var howManyEightiesMoviesOneStep = movies.Where(movie => movie.ReleasedDate.Year < 1990).Count();
+
+            var howManyEightesMoviesOneStepSimpler = movies.Count(movie => movie.ReleasedDate.Year < 1990);
+
+            var jawsMovie = movies.FirstOrDefault(movie => movie.Name == "Jaws");
+
+            var nullMovie = movies.FirstOrDefault(movie => movie.Name == "Not a Movie");
         }
     }
 }
