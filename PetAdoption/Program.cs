@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PetAdoption
 {
@@ -152,6 +153,39 @@ namespace PetAdoption
 
                     // Add it to the list
                     pets.Add(pet);
+                }
+
+                if (choice == "ADOPT")
+                {
+                    // PEDAC
+                    //
+                    // Algorithm
+                    //
+                    // We need to know the name of the pet
+                    Console.Write("Name: ");
+                    var nameOfPetToSearchFor = Console.ReadLine();
+
+                    // We need to find that pet by name from the list
+                    var foundPet = pets.FirstOrDefault(pet => pet.Name == nameOfPetToSearchFor);
+
+                    // If there is a pet with that name, then do the rest
+                    if (foundPet != null)
+                    {
+                        //
+                        //       Probably want to show the details of this pet to confirm
+                        //
+                        //       Ask the user YES OR NO
+                        //
+                        //       If yes, remove the pet
+                        //
+                        //       If no, do nothing
+                    }
+                    else
+                    {
+                        Console.WriteLine($"There is no pet named {nameOfPetToSearchFor}");
+                    }
+                    //
+                    // done
                 }
             }
 
