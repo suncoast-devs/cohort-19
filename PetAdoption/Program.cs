@@ -31,8 +31,17 @@ namespace PetAdoption
                 Console.WriteLine(" QUIT - Quit the program");
                 Console.WriteLine();
                 Console.Write("Choice: ");
-                Console.ReadLine();
+                var choice = Console.ReadLine();
+
+                // Implement quit
+                // if the user typed in QUIT, then set hasQuitTheApplication to true
+                if (choice == "QUIT")
+                {
+                    hasQuitTheApplication = true;
+                }
             }
+
+            Console.WriteLine("... goodbye ...");
         }
     }
 }
