@@ -102,9 +102,11 @@ namespace PetAdoption
                     // Data: Same
                     // Algorithm:
                     //    for each pet in our list
-                    //    {
-                    //      print the name, age, species, gender, color and size
-                    //    }
+                    foreach (var pet in pets)
+                    {
+                        //      print the name, age, species, gender, color and size
+                        Console.WriteLine($"{pet.Name} is a {pet.Species} that is {pet.Age} years old and is {pet.Color}, {pet.Size}");
+                    }
                 }
             }
 
