@@ -175,12 +175,15 @@ namespace PetAdoption
                         //      print the name, age, species, gender, color and size
                         Console.WriteLine($"{foundPet.Name} is a {foundPet.Species} that is {foundPet.Age} years old and is {foundPet.Color}, {foundPet.Size}");
 
-                        //
                         //       Ask the user YES OR NO
-                        //
-                        //       If yes, remove the pet
-                        //
-                        //       If no, do nothing
+                        Console.Write("Are you sure, YES or NO: ");
+                        var answer = Console.ReadLine();
+
+                        if (answer == "YES")
+                        {
+                            // If yes, remove the pet
+                            pets.Remove(foundPet);
+                        }
                     }
                     else
                     {
