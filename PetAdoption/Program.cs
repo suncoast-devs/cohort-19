@@ -121,11 +121,15 @@ namespace PetAdoption
 
                     // Prompt for the age
                     Console.Write("Age: ");
-                    var age = Console.ReadLine();
+                    var ageString = Console.ReadLine();
+                    var age = int.Parse(ageString);
 
                     // Prompt for the species
                     Console.Write("Species: ");
                     var species = Console.ReadLine();
+
+                    Console.Write("Gender: ");
+                    var gender = Console.ReadLine();
 
                     // Prompt for the color
                     Console.Write("Color: ");
@@ -135,9 +139,19 @@ namespace PetAdoption
                     Console.Write("Size: ");
                     var size = Console.ReadLine();
 
-                    //
                     // Make a new Pet
+                    var pet = new Pet()
+                    {
+                        Name = name,
+                        Species = species,
+                        Gender = gender,
+                        Color = color,
+                        Size = size,
+                        Age = age,
+                    };
+
                     // Add it to the list
+                    pets.Add(pet);
                 }
             }
 
