@@ -18,10 +18,38 @@ namespace PetAdoption
         public string Color { get; set; }
         // - Size - string
         public string Size { get; set; }
+
+        // Name         Description
+        // input        nothing
+        // work         building a string that describes the pet
+        // output       that string
+
+        public string Description()
+        {
+            var description = $"{Name} is a {Species} that is {Age} years old and is {Color}, {Size}";
+
+            return description;
+        }
     }
 
     class Program
     {
+        // name        PromptAndFindPet
+        // input       list of pets
+        // work        prompt for the name, search for the pet
+        // output      the pet or null
+
+        static Pet PromptAndFindPet(List<Pet> petsToSearchWithin)
+        {
+            Console.Write("Name: ");
+            var nameOfPetToSearchFor = Console.ReadLine();
+
+            // We need to find that pet by name from the list
+            var foundPet = petsToSearchWithin.FirstOrDefault(pet => pet.Name == nameOfPetToSearchFor);
+
+            return foundPet;
+        }
+
         static void Main(string[] args)
         {
             var scores = new List<int>() { 42, 100, 12, 44, 55 };
@@ -106,7 +134,7 @@ namespace PetAdoption
                     foreach (var pet in pets)
                     {
                         //      print the name, age, species, gender, color and size
-                        Console.WriteLine($"{pet.Name} is a {pet.Species} that is {pet.Age} years old and is {pet.Color}, {pet.Size}");
+                        Console.WriteLine(pet.Description());
                     }
                 }
 
@@ -161,19 +189,14 @@ namespace PetAdoption
                     //
                     // Algorithm
                     //
-                    // We need to know the name of the pet
-                    Console.Write("Name: ");
-                    var nameOfPetToSearchFor = Console.ReadLine();
-
-                    // We need to find that pet by name from the list
-                    var foundPet = pets.FirstOrDefault(pet => pet.Name == nameOfPetToSearchFor);
+                    var foundPet = PromptAndFindPet(pets);
 
                     // If there is a pet with that name, then do the rest
                     if (foundPet != null)
                     {
                         //       Probably want to show the details of this pet to confirm
                         //      print the name, age, species, gender, color and size
-                        Console.WriteLine($"{foundPet.Name} is a {foundPet.Species} that is {foundPet.Age} years old and is {foundPet.Color}, {foundPet.Size}");
+                        Console.WriteLine(foundPet.Description());
 
                         //       Ask the user YES OR NO
                         Console.Write("Are you sure, YES or NO: ");
@@ -187,7 +210,7 @@ namespace PetAdoption
                     }
                     else
                     {
-                        Console.WriteLine($"There is no pet named {nameOfPetToSearchFor}");
+                        Console.WriteLine($"There is no pet found");
                     }
                     //
                     // done
@@ -200,12 +223,7 @@ namespace PetAdoption
                     // Algorithm
                     //
                     // Prompt for the name of a pet
-                    Console.Write("Name: ");
-                    var nameOfPetToSearchFor = Console.ReadLine();
-
-                    // Find that pet in the list
-                    // We need to find that pet by name from the list
-                    var foundPet = pets.FirstOrDefault(pet => pet.Name == nameOfPetToSearchFor);
+                    var foundPet = PromptAndFindPet(pets);
 
                     // If we a found a pet
                     if (foundPet != null)
@@ -213,7 +231,7 @@ namespace PetAdoption
                         // Prompt if this is the right pet
                         //       Probably want to show the details of this pet to confirm
                         //      print the name, age, species, gender, color and size
-                        Console.WriteLine($"{foundPet.Name} is a {foundPet.Species} that is {foundPet.Age} years old and is {foundPet.Color}, {foundPet.Size}");
+                        Console.WriteLine(foundPet.Description());
 
                         //       Ask the user YES OR NO
                         Console.Write("Are you sure, YES or NO: ");
