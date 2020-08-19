@@ -171,8 +171,10 @@ namespace PetAdoption
                     // If there is a pet with that name, then do the rest
                     if (foundPet != null)
                     {
-                        //
                         //       Probably want to show the details of this pet to confirm
+                        //      print the name, age, species, gender, color and size
+                        Console.WriteLine($"{foundPet.Name} is a {foundPet.Species} that is {foundPet.Age} years old and is {foundPet.Color}, {foundPet.Size}");
+
                         //
                         //       Ask the user YES OR NO
                         //
