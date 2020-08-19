@@ -1,0 +1,49 @@
+P - Problem
+
+Make an application that allows us to keep track of pets at a pet adoption agency.
+
+Create an application that allows us to:
+
+CRUD
+- Create: Add (create) a new pet that is available for adoption
+- Read: Get lists of pets that are available for adoption - perhaps by different attributes.
+- Update: Update information about a pet that is available for adoption
+- Delete: Remove a pet upon adoption
+
+E - Examples:
+
+- Species (Cat, Dog, Bird) - string
+- Gender - string
+- Age - int
+- Name - string
+- Color - string
+- Size - string
+
+| Species | Gender | Age | Name    | Color  | Size   |
+| ------- | ------ | --- | ------- | ------ | ------ |
+| Dog     | Female | 1   | Sadie   | Blonde | Medium |
+| Cat     | Male   | 3   | Russell | Black  | Small  |
+| Dog     | Male   | 3   | Kodak   | White  | Large  |
+
+D - Data
+
+Clearly, we have a `Pet` -- likely a class!
+
+Also, we will have a `List` of `Pet`
+
+
+
+A - Algorithm
+
+Welcome the user to the application
+
+While the user hasn't quit the application
+
+Show them a menu of options they can do
+
+- Add a new pet
+- See all the pets up for adoption
+- Input a name of a pet that has been adopted to remove them from the list
+- Input a name of a pet and update their size
+- Quit the application
+
