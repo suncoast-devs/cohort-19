@@ -108,6 +108,37 @@ namespace PetAdoption
                         Console.WriteLine($"{pet.Name} is a {pet.Species} that is {pet.Age} years old and is {pet.Color}, {pet.Size}");
                     }
                 }
+
+                if (choice == "ADD")
+                {
+                    // PEDAC
+                    //
+                    // Algorithm:
+                    //
+                    // Prompt for the name
+                    Console.Write("Name: ");
+                    var name = Console.ReadLine();
+
+                    // Prompt for the age
+                    Console.Write("Age: ");
+                    var age = Console.ReadLine();
+
+                    // Prompt for the species
+                    Console.Write("Species: ");
+                    var species = Console.ReadLine();
+
+                    // Prompt for the color
+                    Console.Write("Color: ");
+                    var color = Console.ReadLine();
+
+                    // Prompt for the size
+                    Console.Write("Size: ");
+                    var size = Console.ReadLine();
+
+                    //
+                    // Make a new Pet
+                    // Add it to the list
+                }
             }
 
             Console.WriteLine("... goodbye ...");
