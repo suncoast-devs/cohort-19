@@ -192,6 +192,45 @@ namespace PetAdoption
                     //
                     // done
                 }
+
+                if (choice == "UPDATE")
+                {
+                    // PEDAC
+                    //
+                    // Algorithm
+                    //
+                    // Prompt for the name of a pet
+                    Console.Write("Name: ");
+                    var nameOfPetToSearchFor = Console.ReadLine();
+
+                    // Find that pet in the list
+                    // We need to find that pet by name from the list
+                    var foundPet = pets.FirstOrDefault(pet => pet.Name == nameOfPetToSearchFor);
+
+                    // If we a found a pet
+                    if (foundPet != null)
+                    {
+                        // Prompt if this is the right pet
+                        //       Probably want to show the details of this pet to confirm
+                        //      print the name, age, species, gender, color and size
+                        Console.WriteLine($"{foundPet.Name} is a {foundPet.Species} that is {foundPet.Age} years old and is {foundPet.Color}, {foundPet.Size}");
+
+                        //       Ask the user YES OR NO
+                        Console.Write("Are you sure, YES or NO: ");
+                        var answer = Console.ReadLine();
+
+                        if (answer == "YES")
+                        {
+                            //    Prompt for a new size
+                            Console.Write("New size: ");
+                            var newPetSize = Console.ReadLine();
+
+                            //    Change that pet's size
+                            foundPet.Size = newPetSize;
+                        }
+                    }
+
+                }
             }
 
             Console.WriteLine("... goodbye ...");
