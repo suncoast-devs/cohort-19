@@ -13,8 +13,20 @@ namespace NumberTracker
         {
             Console.WriteLine("Welcome to Number Tracker");
 
+            var fileReader = new StreamReader("numbers.csv");
+
+            var csvReader = new CsvReader(fileReader, CultureInfo.InvariantCulture);
+            // Lets tell csvReader not to look at the first row as a header, but as data
+            csvReader.Configuration.HasHeaderRecord = false;
+
+            // Create a list of numbers by READING them from the CSV reader
+            var numbers = csvReader.GetRecords<int>().ToList();
+
+            fileReader.Close();
+
+
             // Creates a list of numbers we will be tracking
-            var numbers = new List<int>();
+            // var numbers = new List<int>();
 
             // Controls if we are still running our loop asking for more numbers
             var isRunning = true;
