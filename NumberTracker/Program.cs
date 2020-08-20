@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using CsvHelper;
 
 namespace NumberTracker
 {
@@ -16,7 +19,7 @@ namespace NumberTracker
             // Controls if we are still running our loop asking for more numbers
             var isRunning = true;
 
-            // While we are running
+            // While we are running  isRunning
             while (isRunning)
             {
                 // Show the list of numbers
@@ -43,7 +46,19 @@ namespace NumberTracker
                     var number = int.Parse(input);
                     numbers.Add(number);
                 }
+
+                // If I put the code here it would write the list of numbers
+                // after each one is input
             }
+
+            // Code here to save the list of numbers to a file
+            var fileWriter = new StreamWriter("numbers.csv");
+
+            var csvWriter = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
+
+            csvWriter.WriteRecords(numbers);
+
+            fileWriter.Close();
         }
     }
 }
