@@ -13,30 +13,26 @@ namespace NumberTracker
         {
             Console.WriteLine("Welcome to Number Tracker");
 
-            TextReader reader;
+            // Make a new list of empty numbers
+            var numbers = new List<int>();
 
             if (File.Exists("numbers.csv"))
             {
                 // If the file exists
                 var fileName = "numbers.csv";
-                reader = new StreamReader(fileName);
+                var reader = new StreamReader(fileName);
+
+                // Read the file
+                var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
+
+                // Lets tell csvReader not to look at the first row as a header, but as data
+                csvReader.Configuration.HasHeaderRecord = false;
+
+                // REPLACE the list of numbers by READING them from the CSV reader
+                numbers = csvReader.GetRecords<int>().ToList();
+
+                reader.Close();
             }
-            else
-            {
-                // The file does NOT exist
-                // Read the data from an empty string instead
-                var emptyInputDataString = "";
-                reader = new StringReader(emptyInputDataString);
-            }
-
-            var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
-            // Lets tell csvReader not to look at the first row as a header, but as data
-            csvReader.Configuration.HasHeaderRecord = false;
-
-            // Create a list of numbers by READING them from the CSV reader
-            var numbers = csvReader.GetRecords<int>().ToList();
-
-            reader.Close();
 
 
             // Creates a list of numbers we will be tracking
