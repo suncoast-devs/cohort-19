@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using CsvHelper;
 
 namespace PetAdoption
 {
@@ -250,6 +253,12 @@ namespace PetAdoption
 
                 }
             }
+
+            var fileWriter = new StreamWriter("pets.csv");
+            var csvWriter = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
+            csvWriter.WriteRecords(pets);
+
+            fileWriter.Close();
 
             Console.WriteLine("... goodbye ...");
         }
