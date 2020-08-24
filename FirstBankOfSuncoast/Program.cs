@@ -46,32 +46,37 @@ namespace FirstBankOfSuncoast
             return sumOfDepositAmounts - sumOfWithdrawAmounts;
         }
 
+        static void SaveTransactions(List<Transaction> transactions)
+        {
+            // the stream for writing the data to a file named transactions.csv
+            var fileWriter = new StreamWriter("transactions.csv");
+
+            // the stream that converts our transactions into CSV and gives them
+            // to the filewrite to put into the file
+            var csvWriter = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
+
+            csvWriter.WriteRecords(transactions);
+
+            fileWriter.Close();
+        }
+
         static void Main(string[] args)
         {
-            var transactions = new List<Transaction>()
+            var transactions = new List<Transaction>();
+
+            if (File.Exists("transactions.csv"))
             {
-                // if a user deposits 10 to their savings,
-                new Transaction()
-                {
-                    Amount = 10,
-                    Type = "Deposit",
-                    Account = "Savings"
-                },
-                 // then withdraws 8 from their savings,
-                new Transaction()
-                {
-                    Amount = 8,
-                    Type = "Withdraw",
-                    Account = "Savings"
-                },
-                  // then deposits 25 to their checking,
-                new Transaction()
-                {
-                    Amount = 25,
-                    Type = "Deposit",
-                    Account = "Checking"
-                }
-            };
+                // Where to read data from
+                var fileReader = new StreamReader("transactions.csv");
+
+                // Read it as CSV
+                var csvReader = new CsvReader(fileReader, CultureInfo.InvariantCulture);
+
+                // REPLACE our transactions by reading from the CSV
+                transactions = csvReader.GetRecords<Transaction>().ToList();
+
+                fileReader.Close();
+            }
 
             var mainMenuInUse = true;
 
@@ -128,6 +133,7 @@ namespace FirstBankOfSuncoast
                                 };
 
                                 transactions.Add(newTransaction);
+                                SaveTransactions(transactions);
                             }
                         }
 
@@ -160,16 +166,7 @@ namespace FirstBankOfSuncoast
                         break;
                 }
 
-                // the stream for writing the data to a file named transactions.csv
-                var fileWriter = new StreamWriter("transactions.csv");
 
-                // the stream that converts our transactions into CSV and gives them
-                // to the filewrite to put into the file
-                var csvWriter = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
-
-                csvWriter.WriteRecords(transactions);
-
-                fileWriter.Close();
             }
         }
     }
