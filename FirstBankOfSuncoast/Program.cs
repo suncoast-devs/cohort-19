@@ -99,6 +99,35 @@ namespace FirstBankOfSuncoast
                         break;
 
                     case "WS":
+                        Console.Write("How much do you want to withdraw: ");
+                        // var withdrawSavingsString = Console.ReadLine();
+                        // var withdrawSavingsAmount = intParse(withdrawSavingsString);
+                        var withdrawSavingsAmount = int.Parse(Console.ReadLine());
+                        if (withdrawSavingsAmount < 0)
+                        {
+                            Console.WriteLine("Sorry, you must supply a positive number");
+                        }
+                        else
+                        {
+                            // If we are withdrawing more than what is in our savings, also an error
+                            var balanceInSavings = Balance(transactions, "Savings");
+                            if (withdrawSavingsAmount > balanceInSavings)
+                            {
+                                Console.WriteLine("Insufficient funds");
+                            }
+                            else
+                            {
+                                var newTransaction = new Transaction()
+                                {
+                                    Type = "Withdraw",
+                                    Account = "Savings",
+                                    Amount = withdrawSavingsAmount
+                                };
+
+                                transactions.Add(newTransaction);
+                            }
+                        }
+
                         break;
 
                     case "WC":
