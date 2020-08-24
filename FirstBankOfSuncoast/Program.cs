@@ -1,12 +1,45 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FirstBankOfSuncoast
 {
+    class Transaction
+    {
+        public string Account { get; set; } // Checking or Savings
+        public string Type { get; set; } // Deposit or Withdraw
+        public int Amount { get; set; }  // Dollar amount of the transaction
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
-            bool mainMenuInUse = true;
+            var transactions = new List<Transaction>()
+            {
+                // if a user deposits 10 to their savings,
+                new Transaction()
+                {
+                    Amount = 10,
+                    Type = "Deposit",
+                    Account = "Savings"
+                },
+                 // then withdraws 8 from their savings,
+                new Transaction()
+                {
+                    Amount = 8,
+                    Type = "Withdraw",
+                    Account = "Savings"
+                },
+                  // then deposits 25 to their checking,
+                new Transaction()
+                {
+                    Amount = 25,
+                    Type = "Deposit",
+                    Account = "Checking"
+                }
+            };
+
+            var mainMenuInUse = true;
 
             while (mainMenuInUse)
             {
