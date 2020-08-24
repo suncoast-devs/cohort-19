@@ -13,6 +13,24 @@ namespace FirstBankOfSuncoast
 
     class Program
     {
+        // Make a method that can go through a list of transactions and just print the ones for
+        // a specific account
+
+        // name       DisplayTransactions
+        // input      transactions and the specific account ("Checking" or "Savings")
+        // work       loop from below
+        // output     nothing
+        static void DisplayTransactions(List<Transaction> transactions, string accountType)
+        {
+            var specificTransactions = transactions.Where(transaction => transaction.Account == accountType);
+
+            // Go through all the transactions
+            foreach (var transaction in specificTransactions)
+            {
+                Console.WriteLine($"A {transaction.Type} of {transaction.Amount}");
+            }
+        }
+
         static void Main(string[] args)
         {
             var transactions = new List<Transaction>()
@@ -78,26 +96,11 @@ namespace FirstBankOfSuncoast
                         break;
 
                     case "HS":
-                        // PEDAC
-                        //
-                        // Algorithm
-                        // Get a list of JUST the savings transactions
-                        // Go through that new list
-                        // {
-                        //    show it
-                        // }
-
-                        // Get a list of JUST the savings transactions
-                        var savingsTransactions = transactions.Where(transaction => transaction.Account == "Savings");
-
-                        // Go through all the transactions
-                        foreach (var transaction in savingsTransactions)
-                        {
-                            Console.WriteLine($"A {transaction.Type} of {transaction.Amount}");
-                        }
+                        DisplayTransactions(transactions, "Savings");
                         break;
 
                     case "HC":
+                        DisplayTransactions(transactions, "Checking");
                         break;
 
                     case "S":
