@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FirstBankOfSuncoast
 {
@@ -80,19 +81,19 @@ namespace FirstBankOfSuncoast
                         // PEDAC
                         //
                         // Algorithm
-                        // Go through all the transactions
+                        // Get a list of JUST the savings transactions
+                        // Go through that new list
                         // {
-                        //    if the transaction is a savings transaction, show it, otherwise nothing
+                        //    show it
                         // }
 
+                        // Get a list of JUST the savings transactions
+                        var savingsTransactions = transactions.Where(transaction => transaction.Account == "Savings");
+
                         // Go through all the transactions
-                        foreach (var transaction in transactions)
+                        foreach (var transaction in savingsTransactions)
                         {
-                            //    if the transaction is a savings transaction, show it
-                            if (transaction.Account == "Savings")
-                            {
-                                Console.WriteLine($"A {transaction.Type} of {transaction.Amount}");
-                            }
+                            Console.WriteLine($"A {transaction.Type} of {transaction.Amount}");
                         }
                         break;
 
