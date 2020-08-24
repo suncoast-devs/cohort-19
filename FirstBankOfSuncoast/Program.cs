@@ -104,6 +104,28 @@ namespace FirstBankOfSuncoast
                         break;
 
                     case "S":
+                        // PEDAC
+                        //
+                        // Problem: Get and show the total balance for savings
+                        //          Get and show the total balance for checking
+
+                        // Algorithm
+                        //
+                        // start the total balance for checking at 0
+                        var totalBalanceChecking = 0;
+                        // Go through each transaction
+                        foreach (var transaction in transactions)
+                        {
+                            //    if the transaction is checking
+                            if (transaction.Account == "Checking")
+                            {
+                                //      add this transaction's amount to th the total
+                                totalBalanceChecking = totalBalanceChecking + transaction.Amount;
+                            }
+                        }
+                        // Show the checking balance
+                        Console.WriteLine($"The balance in your checking is {totalBalanceChecking}");
+                        //
                         break;
 
                     default:
