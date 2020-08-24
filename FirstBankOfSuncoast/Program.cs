@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using CsvHelper;
 
 namespace FirstBankOfSuncoast
 {
@@ -156,6 +159,17 @@ namespace FirstBankOfSuncoast
                         Console.WriteLine($"{choice} - is not a valid option");
                         break;
                 }
+
+                // the stream for writing the data to a file named transactions.csv
+                var fileWriter = new StreamWriter("transactions.csv");
+
+                // the stream that converts our transactions into CSV and gives them
+                // to the filewrite to put into the file
+                var csvWriter = new CsvWriter(fileWriter, CultureInfo.InvariantCulture);
+
+                csvWriter.WriteRecords(transactions);
+
+                fileWriter.Close();
             }
         }
     }
