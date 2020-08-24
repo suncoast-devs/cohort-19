@@ -77,6 +77,23 @@ namespace FirstBankOfSuncoast
                         break;
 
                     case "HS":
+                        // PEDAC
+                        //
+                        // Algorithm
+                        // Go through all the transactions
+                        // {
+                        //    if the transaction is a savings transaction, show it, otherwise nothing
+                        // }
+
+                        // Go through all the transactions
+                        foreach (var transaction in transactions)
+                        {
+                            //    if the transaction is a savings transaction, show it
+                            if (transaction.Account == "Savings")
+                            {
+                                Console.WriteLine($"A {transaction.Type} of {transaction.Amount}");
+                            }
+                        }
                         break;
 
                     case "HC":
