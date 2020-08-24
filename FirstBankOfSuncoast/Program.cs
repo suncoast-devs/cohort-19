@@ -109,23 +109,24 @@ namespace FirstBankOfSuncoast
                         // Problem: Get and show the total balance for savings
                         //          Get and show the total balance for checking
 
+
                         // Algorithm
-                        //
-                        // start the total balance for checking at 0
-                        var totalBalanceChecking = 0;
-                        // Go through each transaction
-                        foreach (var transaction in transactions)
-                        {
-                            //    if the transaction is checking
-                            if (transaction.Account == "Checking")
-                            {
-                                //      add this transaction's amount to th the total
-                                totalBalanceChecking = totalBalanceChecking + transaction.Amount;
-                            }
-                        }
-                        // Show the checking balance
-                        Console.WriteLine($"The balance in your checking is {totalBalanceChecking}");
-                        //
+                        // First make a new list of all the checking transactions
+                        var checkingWithdrawTransactions = transactions.Where(transaction => transaction.Account == "Checking" && transaction.Type == "Withdraw");
+                        var checkingDepositTransactions = transactions.Where(transaction => transaction.Account == "Checking" && transaction.Type == "Deposit");
+
+                        // Sum the amounts of those transactions
+                        var sumOfCheckingWithdrawAmounts = checkingWithdrawTransactions.Sum(transaction => transaction.Amount);
+                        var sumOfCheckingDepositAmounts = checkingDepositTransactions.Sum(transaction => transaction.Amount);
+                        Console.WriteLine($"The balance in your checking is {sumOfCheckingDepositAmounts - sumOfCheckingWithdrawAmounts}");
+
+                        var savingsWithdrawTransactions = transactions.Where(transaction => transaction.Account == "Savings" && transaction.Type == "Withdraw");
+                        var savingsDepositTransactions = transactions.Where(transaction => transaction.Account == "Savings" && transaction.Type == "Deposit");
+
+                        var sumOfSavingsWithdrawAmounts = savingsWithdrawTransactions.Sum(transaction => transaction.Amount);
+                        var sumOfSavingsDepositAmounts = savingsDepositTransactions.Sum(transaction => transaction.Amount);
+                        Console.WriteLine($"The balance in your savings is {sumOfSavingsDepositAmounts - sumOfSavingsWithdrawAmounts}");
+
                         break;
 
                     default:
