@@ -149,6 +149,48 @@ namespace SuncoastMovies
                 }
             }
 
+            var newMovie = new Movie
+            {
+                Title = "SpaceBalls",
+                PrimaryDirector = "Mel Brooks",
+                Genre = "Comedy",
+                YearReleased = 1987,
+                RatingId = 2
+            };
+
+            // Tell the context we have a new movie in memory
+            // zoo.Add(newDino)
+            // transactions.Add(newTransaction)
+            context.Movies.Add(newMovie);
+
+            // Hey database, actually commit the work
+            context.SaveChanges();
+
+            // Search for a movie by name. FirstOrDefault takes a function to use to compare the movies and returns the first record that matches, or if nothing matches, returns null.
+            // This is the same as we used with LINQ against a List, but this time it is searching the database.
+            var existingMovie = context.Movies.FirstOrDefault(movie => movie.Title == "SpaceBalls");
+
+            // If we found an existing movie.
+            if (existingMovie != null)
+            {
+                // Change the title of this movie.
+                existingMovie.Title = "SpaceBalls - the best movie ever";
+
+                // Ask the context to save changes.
+                context.SaveChanges();
+            }
+
+            var existingMovieToDelete = context.Movies.FirstOrDefault(movie => movie.Title == "Cujo");
+
+            // If we found an existing movie.
+            if (existingMovieToDelete != null)
+            {
+                // Remove the existing movie from the collection
+                context.Movies.Remove(existingMovieToDelete);
+
+                // Ask the context to save changes, in this case deleting the record.
+                context.SaveChanges();
+            }
         }
     }
 }
