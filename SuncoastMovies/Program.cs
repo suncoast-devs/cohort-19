@@ -14,6 +14,12 @@ namespace SuncoastMovies
         public string Genre { get; set; }
     }
 
+    class Rating
+    {
+        public int Id { get; set; }
+        public string Description { get; set; }
+    }
+
     // Define a database context for our Suncoast Movies database.
     // It derives from (has a parent of) DbContext so we get all the
     // abilities of a database context from EF Core.
@@ -21,6 +27,10 @@ namespace SuncoastMovies
     {
         // Define a movies property that is a DbSet.
         public DbSet<Movie> Movies { get; set; }
+
+        // Define a Ratings property that is a DbSet.
+        // Relates the Rating *class* to the *Ratings* table
+        public DbSet<Rating> Ratings { get; set; }
 
         // Define a method required by EF that will configure our connection
         // to the database.
