@@ -12,6 +12,16 @@ namespace SuncoastMovies
         public string PrimaryDirector { get; set; }
         public int YearReleased { get; set; }
         public string Genre { get; set; }
+
+        // Define a property for our foreign key column named RatingId
+        public int RatingId { get; set; }
+
+        //
+        //     Name of the class
+        //     |
+        //     |      Name of the property
+        //     |      |
+        public Rating Rating { get; set; }
     }
 
     class Rating
