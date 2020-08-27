@@ -67,7 +67,13 @@ namespace SuncoastMovies
             // Get a reference to our collection of movies.
             // NOTE: this doesn't yet access any of them, just gives
             //       us a variable that knows how.
-            var movies = context.Movies;
+            //
+            //                          While getting movies, also include...
+            //                          |
+            //                          |       for every movie
+            //                          |       |
+            //                          |       |        I want that movie's rating object
+            var movies = context.Movies.Include(movie => movie.Rating);
 
             Console.WriteLine("About to use our ORM to count up the movies!");
             var movieCount = movies.Count();
@@ -75,7 +81,19 @@ namespace SuncoastMovies
 
             foreach (var movie in movies)
             {
-                Console.WriteLine($"There is a movie named {movie.Title}");
+                // If when we look at this movie, there is *NO* related Rating
+                if (movie.Rating == null)
+                {
+                    // Print out a special message
+                    Console.WriteLine($"There is a movie named {movie.Title} and has not been rated yet");
+                }
+                else
+                {
+                    // There is a related Rating, hooray!
+                    var theMoviesRating = movie.Rating;
+
+                    Console.WriteLine($"There is a movie named {movie.Title} and a rating of {theMoviesRating.Description}");
+                }
             }
         }
     }
