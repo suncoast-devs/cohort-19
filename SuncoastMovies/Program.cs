@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -22,12 +23,47 @@ namespace SuncoastMovies
         //     |      Name of the property
         //     |      |
         public Rating Rating { get; set; }
+
+        // "Movie has many roles"
+        public List<Role> Roles { get; set; }
     }
 
     class Rating
     {
         public int Id { get; set; }
         public string Description { get; set; }
+
+        // "Rating has many movies"
+        public List<Movie> Movies { get; set; }
+    }
+
+    class Role
+    {
+        public int Id { get; set; }
+        public string CharacterName { get; set; }
+
+        // This is the column in the database
+        public int MovieId { get; set; }
+
+        // This is the related object we can use from our code (if properly used with Include)
+        public Movie Movie { get; set; }
+
+        // This is the column in the database
+        public int ActorId { get; set; }
+
+        // This is the related object we can use from our code (if properly used with Include)
+        public Actor Actor { get; set; }
+    }
+
+    class Actor
+    {
+        public int Id { get; set; }
+        public string FullName { get; set; }
+        public DateTime Birthday { get; set; }
+
+        // This is the related list of roles we an use (if properly used with Include)
+        // "Actor HAS MANY roles"
+        public List<Role> Roles { get; set; }
     }
 
     // Define a database context for our Suncoast Movies database.
@@ -41,6 +77,10 @@ namespace SuncoastMovies
         // Define a Ratings property that is a DbSet.
         // Relates the Rating *class* to the *Ratings* table
         public DbSet<Rating> Ratings { get; set; }
+
+        public DbSet<Actor> Actors { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
 
         // Define a method required by EF that will configure our connection
         // to the database.
@@ -73,7 +113,15 @@ namespace SuncoastMovies
             //                          |       for every movie
             //                          |       |
             //                          |       |        I want that movie's rating object
-            var movies = context.Movies.Include(movie => movie.Rating);
+            //                          |       |        |             
+            //                          |       |        |             And include
+            //                          |       |        |             |       for every movie
+            //                          |       |        |             |       |
+            //                          |       |        |             |       |        all the roles for that movie
+            //                          |       |        |             |       |
+            //                          |       |        |             |       |                     And from the Roles...
+            //                          |       |        |             |       |                     |           bring in that role's actor
+            var movies = context.Movies.Include(movie => movie.Rating).Include(movie => movie.Roles).ThenInclude(role => role.Actor);
 
             Console.WriteLine("About to use our ORM to count up the movies!");
             var movieCount = movies.Count();
@@ -94,7 +142,13 @@ namespace SuncoastMovies
 
                     Console.WriteLine($"There is a movie named {movie.Title} and a rating of {theMoviesRating.Description}");
                 }
+
+                foreach (var role in movie.Roles)
+                {
+                    Console.WriteLine($" - Has a character named {role.CharacterName} played by {role.Actor.FullName}");
+                }
             }
+
         }
     }
 }
