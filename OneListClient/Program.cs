@@ -53,6 +53,30 @@ namespace OneListClient
 
     class Program
     {
+        static async System.Threading.Tasks.Task ShowAllItems(string url)
+        {
+            var client = new HttpClient();
+
+            // Getting the response of the API as a stream of data
+            var responseAsStream = await client.GetStreamAsync(url);
+
+            // Supply that *stream of data* to a Deserialize that will interpret it as a List of Item objects.
+            List<Item> items = await JsonSerializer.DeserializeAsync<List<Item>>(responseAsStream);
+
+
+            // Make a new fancy user interface table
+            var table = new ConsoleTable("Description", "Created At", "Completed");
+
+            // For each item in our deserialized List of Item
+            foreach (var item in items)
+            {
+                // Add a row to that fancy table
+                table.AddRow(item.Text, item.CreatedAt, item.CompletedStatus);
+            }
+
+            table.Write();
+        }
+
         static async System.Threading.Tasks.Task Main(string[] args)
         {
             // The token to use for the api is in the first element of the args array
@@ -70,25 +94,31 @@ namespace OneListClient
 
             var url = $"https://one-list-api.herokuapp.com/items?access_token={token}";
 
-            var client = new HttpClient();
 
-            // Getting the response of the API as a stream of data
-            var responseAsStream = await client.GetStreamAsync(url);
 
-            // Supply that *stream of data* to a Deserialize that will interpret it as a List of Item objects.
-            List<Item> items = await JsonSerializer.DeserializeAsync<List<Item>>(responseAsStream);
-
-            // Make a new fancy user interface table
-            var table = new ConsoleTable("Description", "Created At", "Completed");
-
-            // For each item in our deserialized List of Item
-            foreach (var item in items)
+            var keepGoing = true;
+            while (keepGoing)
             {
-                // Add a row to that fancy table
-                table.AddRow(item.Text, item.CreatedAt, item.CompletedStatus);
+                Console.Clear();
+                Console.Write("Get (A)ll todo, or (Q)uit: ");
+                var choice = Console.ReadLine().ToUpper();
+
+                switch (choice)
+                {
+                    case "A":
+                        await ShowAllItems(url);
+
+                        Console.WriteLine("Press ENTER to continue");
+                        Console.ReadLine();
+                        break;
+
+                    case "Q":
+                        keepGoing = false;
+                        break;
+                }
             }
 
-            table.Write();
+
         }
     }
 }
