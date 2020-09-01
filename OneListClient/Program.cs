@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using ConsoleTables;
 
 namespace OneListClient
@@ -66,13 +67,13 @@ namespace OneListClient
 
 
             // Make a new fancy user interface table
-            var table = new ConsoleTable("Description", "Created At", "Completed");
+            var table = new ConsoleTable("Id", "Description", "Created At", "Completed");
 
             // For each item in our deserialized List of Item
             foreach (var item in items)
             {
                 // Add a row to that fancy table
-                table.AddRow(item.Text, item.CreatedAt, item.CompletedStatus);
+                table.AddRow(item.Id, item.Text, item.CreatedAt, item.CompletedStatus);
             }
 
             table.Write();
@@ -95,6 +96,40 @@ namespace OneListClient
 
             // Get the response as a stream.
             var responseJson = await response.Content.ReadAsStreamAsync();
+
+            // Supply that *stream of data* to a Deserialize that will interpret it as a *SINGLE* `Item`
+            var item = await JsonSerializer.DeserializeAsync<Item>(responseJson);
+
+            // Make a table to output our new item.
+            var table = new ConsoleTable("ID", "Description", "Created At", "Updated At", "Completed");
+
+            // Add one row to our table
+            table.AddRow(item.Id, item.Text, item.CreatedAt, item.UpdatedAt, item.CompletedStatus);
+
+            // Write the table
+            table.Write(Format.Minimal);
+        }
+
+        static async Task UpdateOneItem(string url, int id, Item updatedItem)
+        {
+            var client = new HttpClient();
+
+            // Take the `newItem` and serialize it into JSON
+            var jsonBody = JsonSerializer.Serialize(updatedItem);
+
+            // We turn this into a StringContent object and indicate we are using JSON
+            // by ensuring there is a media type header of `application/json`
+            var jsonBodyAsContent = new StringContent(jsonBody);
+            jsonBodyAsContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            // Send the POST request to the URL and supply the JSON body
+            var response = await client.PutAsync(url, jsonBodyAsContent);
+
+            // Get the response as a stream.
+            var responseJson = await response.Content.ReadAsStreamAsync();
+
+            Console.WriteLine(url);
+            Console.WriteLine(response.StatusCode);
 
             // Supply that *stream of data* to a Deserialize that will interpret it as a *SINGLE* `Item`
             var item = await JsonSerializer.DeserializeAsync<Item>(responseJson);
@@ -132,11 +167,36 @@ namespace OneListClient
             while (keepGoing)
             {
                 Console.Clear();
-                Console.Write("Get (A)ll todo, (C)reate an item, or (Q)uit: ");
+                Console.Write("Get (A)ll todo, (C)reate an item, (U)pdate an item, or (Q)uit: ");
                 var choice = Console.ReadLine().ToUpper();
 
                 switch (choice)
                 {
+                    case "U":
+                        Console.Write("Enter the ID of the item to update: ");
+                        var existingId = int.Parse(Console.ReadLine());
+
+                        Console.Write("Enter the new description: ");
+                        var newText = Console.ReadLine();
+
+                        Console.Write("Enter yes or no to indicate if the item is complete: ");
+                        var newComplete = Console.ReadLine().ToLower() == "yes";
+
+                        var updatedItem = new Item
+                        {
+                            Text = newText,
+                            Complete = newComplete
+                        };
+
+                        var updateUrl = $"https://one-list-api.herokuapp.com/items/{existingId}?access_token={token}";
+
+                        await UpdateOneItem(updateUrl, existingId, updatedItem);
+
+                        Console.WriteLine("Press ENTER to continue");
+                        Console.ReadLine();
+
+                        break;
+
                     case "C":
                         Console.Write("Enter the description of your new todo: ");
                         var text = Console.ReadLine();
