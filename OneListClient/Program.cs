@@ -18,14 +18,22 @@ namespace OneListClient
             // Build a custom GET to access this data
             get
             {
-                if (complete == true)
-                {
-                    return "completed";
-                }
-                else
-                {
-                    return "not completed";
-                }
+                // Ternary
+                // condition ? VALUE WHEN TRUE : VALUE WHEN FALSE
+
+                var thingToReturn = complete ? "completed" : "not completed";
+
+                return thingToReturn;
+
+                // The above is a shortcut for this:
+                // if (complete)
+                // {
+                //     return "completed";
+                // }
+                // else
+                // {
+                //     return "not completed";
+                // }
             }
         }
     }
