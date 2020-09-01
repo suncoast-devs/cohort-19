@@ -56,7 +56,18 @@ namespace OneListClient
         static async System.Threading.Tasks.Task Main(string[] args)
         {
             // The token to use for the api is in the first element of the args array
-            var token = args[0];
+            var token = "";
+
+            if (args.Length == 0)
+            {
+                Console.Write("What list?: ");
+                token = Console.ReadLine();
+            }
+            else
+            {
+                token = args[0];
+            }
+
             var url = $"https://one-list-api.herokuapp.com/items?access_token={token}";
 
             var client = new HttpClient();
