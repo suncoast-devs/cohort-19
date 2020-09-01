@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using ConsoleTables;
 
 namespace OneListClient
 {
@@ -62,12 +63,17 @@ namespace OneListClient
             // Supply that *stream of data* to a Deserialize that will interpret it as a List of Item objects.
             List<Item> items = await JsonSerializer.DeserializeAsync<List<Item>>(responseAsStream);
 
+            // Make a new fancy user interface table
+            var table = new ConsoleTable("Description", "Created At", "Completed");
+
             // For each item in our deserialized List of Item
             foreach (var item in items)
             {
-                // Output some details on that item
-                Console.WriteLine($"The task {item.Text} was created on {item.CreatedAt} and has a completion of: {item.CompletedStatus}");
+                // Add a row to that fancy table
+                table.AddRow(item.Text, item.CreatedAt, item.CompletedStatus);
             }
+
+            table.Write();
         }
     }
 }
