@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BasicAPI.Controllers
 {
+    //[Route("api/HelloWorld")]
     [Route("api/[controller]")]
     [ApiController]
     public class HelloWorldController : ControllerBase
     {
+        // This is where we code!
     }
 }
