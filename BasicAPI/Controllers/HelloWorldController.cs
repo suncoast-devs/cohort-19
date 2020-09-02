@@ -13,5 +13,10 @@ namespace BasicAPI.Controllers
     public class HelloWorldController : ControllerBase
     {
         // This is where we code!
+        [HttpGet]
+        public string SayHello()
+        {
+            return "Hello, World. This is our first API!";
+        }
     }
 }
