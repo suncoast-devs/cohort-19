@@ -14,9 +14,25 @@ namespace BasicAPI.Controllers
     {
         // This is where we code!
         [HttpGet]
-        public string SayHello()
+        //                     query parameter named 'who'
+        public string SayHello(string who)
         {
-            return "Hello, World. This is our first API!";
+            // string whoOrWorld;
+
+            // if (who == null)
+            // {
+            //     whoOrWorld = "World";
+            // }
+            // else
+            // {
+            //     whoOrWorld = who;
+            // }
+
+            // This one line is the same as the 9 above!
+            var whoOrWorld = (who == null ? "World" : who);
+
+            var currentTime = DateTime.Now;
+            return $"Hello, {whoOrWorld}. It is currently {currentTime}";
         }
     }
 }
