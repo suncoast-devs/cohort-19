@@ -20,7 +20,7 @@ namespace BasicAPI.Controllers
         // {sides} to say take whatever the user provides after the
         // last / and parse it as an `int` and place it in the variable sides
         [HttpGet("{sides}")]
-        public List<int> Roll(int sides, int count)
+        public List<int> Roll(int sides, int count = 1)
         {
             // Make a new list to store our integer rolls
             var rolls = new List<int>();
