@@ -20,17 +20,26 @@ namespace BasicAPI.Controllers
         // {sides} to say take whatever the user provides after the
         // last / and parse it as an `int` and place it in the variable sides
         [HttpGet("{sides}")]
-        public int Roll(int sides)
+        public List<int> Roll(int sides, int count)
         {
+            // Make a new list to store our integer rolls
+            var rolls = new List<int>();
+
             // Make a random number generator
             var randomNumberGenerator = new Random();
 
-            // Next(sides) would make a number between 0 and just less than sides
-            // so return that number plus one. Making the range from 1 to a number
-            // INCLUDING the value of sides.
-            var roll = randomNumberGenerator.Next(sides) + 1;
+            // Loop _count_ times
+            for (var rollNumber = 0; rollNumber < count; rollNumber++)
+            {
+                // Grab a random roll between 1 and sides
+                var roll = randomNumberGenerator.Next(sides) + 1;
 
-            return roll;
+                // Add that roll to the list
+                rolls.Add(roll);
+            }
+
+            // Return the list
+            return rolls;
         }
     }
 }
