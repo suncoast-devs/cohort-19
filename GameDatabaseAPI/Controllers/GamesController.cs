@@ -81,6 +81,12 @@ namespace GameDatabaseAPI.Controllers
                 return BadRequest();
             }
 
+            // Add a check to make sure we have enough players.
+            if (game.MinimumPlayers < 2)
+            {
+                return BadRequest(new { Message = "You need at least 2 players!" });
+            }
+
             // Tell the database to consider everything in game to be _updated_ values. When
             // the save happens the database will _replace_ the values in the database with the ones from game
             _context.Entry(game).State = EntityState.Modified;
@@ -128,6 +134,12 @@ namespace GameDatabaseAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Game>> PostGame(Game game)
         {
+            // Add a check to make sure we have enough players.
+            if (game.MinimumPlayers < 2)
+            {
+                return BadRequest(new { Message = "You need at least 2 players!" });
+            }
+
             // Indicate to the database context we want to add this new record
             _context.Games.Add(game);
             await _context.SaveChangesAsync();
@@ -152,6 +164,11 @@ namespace GameDatabaseAPI.Controllers
             {
                 // There wasn't a game with that id so return a `404` not found
                 return NotFound();
+            }
+
+            if (game.When < DateTime.Now)
+            {
+                return BadRequest();
             }
 
             // Tell the database we want to remove this record
