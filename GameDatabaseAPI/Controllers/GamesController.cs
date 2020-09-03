@@ -185,6 +185,58 @@ namespace GameDatabaseAPI.Controllers
             return NoContent();
         }
 
+        //
+        // Adding Players to a game
+        //
+        // POST /api/Games/5/Players
+        [HttpPost("{id}/Players")]
+        public async Task<ActionResult<Player>> CreatePlayerForGame(int id, Player player)
+        //                                       |       |
+        //                                       |       Player deserialized from JSON from the body
+        //                                       |
+        //                                       Game ID comes from the URL
+        {
+            // I have what I need
+            //
+            // I know which Game
+            //
+            // I know the new player details  
+
+            // P: Given a game ID and a player, create a new player FOR THAT GAME
+            // E: Game ID 1, Player name "Gavin"
+            // E: Game ID 2, Player name "Jason"
+            // D: id for Game (comes from the URL), and a Player object (comes from the body)
+            // A:
+            //     First, lets find the game (by using the ID)
+            var game = await _context.Games.FindAsync(id);
+
+            //     If the game doesn't exist: return a 404 Not found.
+            if (game == null)
+            {
+                // Return a `404` response to the client indicating we could not find a game with this id
+                return NotFound();
+            }
+
+            //     Associate the player to the given game.
+            player.GameId = game.Id;
+
+            // If the game already has the maximum number of 
+            // players, don't allow any more.
+            //
+            // Leave as an exercise to the student.
+            // Or maybe for review time....
+
+            //     Add the player to the database
+            _context.Players.Add(player);
+            await _context.SaveChangesAsync();
+
+            //     Return the new player to the response of the API
+            return Ok(player);
+        }
+
+
+
+
         // Private helper method that looks up an existing game by the supplied id
         private bool GameExists(int id)
         {
