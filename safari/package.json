@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "name": "safari",
+  "scripts": {
+    "start": "browser-sync start --server public --files public",
+    "deploy": "echo 'To setup deployment run: npm run setup-deploy'",
+    "setup-deploy": "app-app --deploy && npm run deploy"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "useTabs": false,
+    "arrowParens": "avoid"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.12",
+    "eslint-config-prettier": "^6.11.0",
+    "prettier": "^2.1.1",
+    "stylelint": "^13.7.0",
+    "stylelint-config-standard": "^20.0.0"
+  }
+}
