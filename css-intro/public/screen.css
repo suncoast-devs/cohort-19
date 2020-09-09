@@ -1,0 +1,63 @@
+:root {
+  font: 16px / 1 sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+p {
+  margin: 2.8rem;
+
+  border: 1rem solid blue;
+
+  /* top=8 right=1 bottom=3 left=4 */
+  padding: 8rem 1rem 3rem 4rem;
+
+  /* TOP=8  SIDES=1  BOTTOM=3 */
+  /* padding: 8rem 1rem 3rem; */
+
+  /* TOP=8rem SIDES=1rem */
+  /* padding: 8rem 1rem; */
+
+  /* 2rem all the way around */
+  /* padding: 2rem; */
+
+  /* padding-top: 8rem;
+  padding-right: 3rem;
+  padding-bottom: 1rem;
+  padding-left: 3rem; */
+}
+
+div .chocolate-lovers {
+  color: red;
+}
+
+.question {
+  color: blue !important;
+}
+
+li:first-child {
+  padding: 0.5rem;
+  font-size: 2rem;
+}
+
+li + li {
+  text-transform: uppercase;
+}
+
+img + p {
+  text-decoration: underline;
+}
+
+/* Apples to all hovered LI *and* all hovered chocolate-lover classes */
+li:hover,
+.chocolate-lovers:hover {
+  color: green;
+  cursor: pointer;
+}
