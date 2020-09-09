@@ -18,7 +18,8 @@ body {
   color: #2b303a;
 }
 
-header {
+header,
+footer {
   background-color: #2b303a;
   color: #eee5e9;
   padding: 0.5rem;
@@ -75,4 +76,58 @@ article h3 {
 article p {
   font-size: 0.75rem;
   margin: 0.5rem 0 0 0;
+}
+
+label {
+  display: block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.75rem;
+  letter-spacing: 0.05rem;
+  color: #7c7c7c;
+}
+
+input {
+  color: #2b303a;
+  width: 100%;
+  border-radius: 0.25rem;
+  border: none;
+  padding: 0.5rem;
+}
+
+input[type='submit'] {
+  width: auto;
+}
+
+input[type='submit'],
+button {
+  font-family: 'Calistoga', serif;
+  background-color: #d64933;
+  color: #eee5e9;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.hearts {
+  color: #d64933;
+  text-shadow: 0 0 0.5rem #d64933;
+  font-size: 1.2rem;
+}
+
+figure {
+  margin: 0;
+}
+
+.feature figure {
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+
+  background-color: #fffffd;
+  border-radius: 0.25rem;
+  box-shadow: 2px 2px 0.5rem #7c7c7c;
+}
+
+figure img {
+  width: 100%;
 }
