@@ -146,3 +146,13 @@ header li + li {
 header h1 {
   text-align: center;
 }
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.gallery img {
+  width: 100%;
+}
