@@ -149,10 +149,64 @@ header h1 {
 
 .gallery {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
 }
 
 .gallery img {
   width: 100%;
+}
+
+@media (min-width: 720px) {
+  header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  footer {
+    margin-top: 2rem;
+  }
+
+  .call-to-action {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .call-to-action .join {
+    margin-right: 1rem;
+    min-width: 18rem;
+  }
+
+  .call-to-action .donate {
+    margin-left: 3rem;
+  }
+
+  footer > p {
+    text-align: center;
+  }
+
+  header nav,
+  main {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 0.5rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  header nav,
+  main {
+    max-width: 70rem;
+  }
 }
