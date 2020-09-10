@@ -131,3 +131,18 @@ figure {
 figure img {
   width: 100%;
 }
+
+header ul {
+  display: flex;
+  justify-content: center;
+  letter-spacing: 0.02rem;
+}
+
+/* header li:not(:first-child) { */
+header li + li {
+  margin-left: 1rem;
+}
+
+header h1 {
+  text-align: center;
+}
