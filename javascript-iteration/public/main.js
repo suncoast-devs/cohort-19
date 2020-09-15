@@ -52,19 +52,15 @@ console.log(total / numbers.length)
 */
 
 const otherColors = ['red', 'green', 'blue']
-const lengthOfColors = otherColors.map(function (color) {
-  return color.length
-})
+const lengthOfColors = otherColors.map(color => color.length)
 console.log(lengthOfColors)
 
-const upperCaseColors = otherColors.map(function (color) {
-  return color.toUpperCase()
-})
+const upperCaseColors = otherColors.map(color => color.toUpperCase())
 
 /*
 C# Example
 
-var upperCaseColors = otherColors.Select(color => )
+var upperCaseColors = otherColors.Select(color => color.ToUpper() )
 */
 
 console.log(upperCaseColors)
