@@ -60,3 +60,11 @@ otherColors.forEach(function (color) {
   lengthOfColors.push(lengthOfColor)
 })
 console.log(lengthOfColors)
+
+const upperCaseColors = []
+otherColors.forEach(function (color) {
+  const upperCase = color.toUpperCase()
+
+  upperCaseColors.push(upperCase)
+})
+console.log(upperCaseColors)
