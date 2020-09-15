@@ -7,14 +7,14 @@ function square(tacoTuesday) {
   return tacoTuesday * tacoTuesday
 }
 
-const favoriteNumber = 42
+const squaredAgain = function (number) {
+  return number * number
+}
 
-const squaredFavorite = square(favoriteNumber)
+const favoriteNumber = 42
+const squaredFavorite = squaredAgain(favoriteNumber)
 
 console.log(squaredFavorite)
 
-const anotherSquare = square(100)
+const anotherSquare = squaredAgain(100)
 console.log(anotherSquare)
-
-const oopsies = square('Gavin')
-console.log(oopsies)
