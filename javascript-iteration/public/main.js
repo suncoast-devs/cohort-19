@@ -54,11 +54,9 @@ console.log(total / numbers.length)
 const otherColors = ['red', 'green', 'blue']
 const lengthOfColors = []
 
-const callbackFunction = function (color) {
+otherColors.forEach(function (color) {
   const lengthOfColor = color.length
 
   lengthOfColors.push(lengthOfColor)
-}
-
-otherColors.forEach(callbackFunction)
+})
 console.log(lengthOfColors)
