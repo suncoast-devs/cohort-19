@@ -68,3 +68,15 @@ var upperCaseColors = otherColors.Select(color => )
 */
 
 console.log(upperCaseColors)
+
+const double = function (number) {
+  return number * 2
+}
+
+// one liner version of double
+const doubleOneLiner = number => {
+  return number * 2
+}
+
+// One liner without the braces and the return
+const doubleOneLinerLessSyntax = number => number * 2
