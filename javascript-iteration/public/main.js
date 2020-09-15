@@ -76,3 +76,6 @@ const doubleOneLiner = number => {
 
 // One liner without the braces and the return
 const doubleOneLinerLessSyntax = number => number * 2
+
+const longColors = colors.filter(color => color.length > 2)
+console.log(longColors)
