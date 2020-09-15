@@ -52,19 +52,19 @@ console.log(total / numbers.length)
 */
 
 const otherColors = ['red', 'green', 'blue']
-const lengthOfColors = []
-
-otherColors.forEach(function (color) {
-  const lengthOfColor = color.length
-
-  lengthOfColors.push(lengthOfColor)
+const lengthOfColors = otherColors.map(function (color) {
+  return color.length
 })
 console.log(lengthOfColors)
 
-const upperCaseColors = []
-otherColors.forEach(function (color) {
-  const upperCase = color.toUpperCase()
-
-  upperCaseColors.push(upperCase)
+const upperCaseColors = otherColors.map(function (color) {
+  return color.toUpperCase()
 })
+
+/*
+C# Example
+
+var upperCaseColors = otherColors.Select(color => )
+*/
+
 console.log(upperCaseColors)
