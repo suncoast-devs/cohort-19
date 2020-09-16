@@ -150,7 +150,13 @@ function bestMoviesOfTheYear(movies, yearToConsider) {
  *
  */
 
-// ...
+function everyoneIsOdd(numbers) {
+  // [3,5,7,9] => true
+  // [3,5,6,7,9] => false
+  const isItTrue = numbers.every(number => number % 2 === 1)
+
+  return isItTrue
+}
 
 /*
  * 8) Define a function findTheNeedle that accepts an array of
