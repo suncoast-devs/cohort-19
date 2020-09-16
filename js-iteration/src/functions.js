@@ -89,7 +89,13 @@ function onlyTheEvenSurvive(numbers) {
  *
  */
 
-// ...
+function onlyTheEvenIndexedSurvive(numbers) {
+  const onlyTheElementsAtIndexesThatAreEven = numbers.filter(
+    (number, index) => index % 2 === 0
+  )
+
+  return onlyTheElementsAtIndexesThatAreEven
+}
 
 /*
  * 6)  Define a function bestMoviesOfTheYear that accepts an array of
