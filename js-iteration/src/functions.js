@@ -242,9 +242,18 @@ function someoneToLove(strings) {
  *
  */
 
-// function objectKeys(objectOfHobbies) {
-//   // Your code here
-// }
+function objectKeys(objectOfHobbies) {
+  // ['pandas', 'miniatures']
+  const hobbyKeys = Object.keys(objectOfHobbies)
+
+  // Take that array of just the keys and turn it into something new
+  const answer = hobbyKeys.map(
+    // Take that key, add a ' - ' then use that key to go fetch the VALUE and take just the title
+    hobbyKey => `${hobbyKey} - ${objectOfHobbies[hobbyKey].title}`
+  )
+
+  return answer
+}
 
 // ...
 
