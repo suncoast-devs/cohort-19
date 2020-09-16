@@ -87,3 +87,7 @@ ul li.taken {
 ul li.small {
   font-size: 4rem;
 }
+
+ul li.not-allowed-click {
+  background-color: red;
+}
