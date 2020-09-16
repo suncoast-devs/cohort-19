@@ -167,7 +167,13 @@ function everyoneIsOdd(numbers) {
  *
  */
 
-// ...
+function findTheNeedle(strings) {
+  const theStringThatContainsTheWordNeedleInside = strings.find(string =>
+    string.includes('needle')
+  )
+
+  return theStringThatContainsTheWordNeedleInside
+}
 
 /*
  * 9) Define a function findTheNeedleIndex that accepts an array of
