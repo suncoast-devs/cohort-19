@@ -83,3 +83,7 @@ ul li {
 ul li.taken {
   cursor: not-allowed;
 }
+
+ul li.small {
+  font-size: 4rem;
+}
