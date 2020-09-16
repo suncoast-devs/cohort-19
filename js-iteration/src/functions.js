@@ -23,8 +23,13 @@
  *
  */
 
-const yelling = words => {
+function yelling(words) {
+  //
+  // Data: input array  --- output is an array
   // Your code here
+  const newWords = words.map(word => word.toUpperCase())
+
+  return newWords
 }
 
 /**
@@ -37,7 +42,11 @@ const yelling = words => {
  *
  */
 
-// ...
+function doubleTrouble(numbers) {
+  const newNumbers = numbers.map(number => number * 2)
+
+  return newNumbers
+}
 
 /*
  * 3) Define a function stringyIndexes() that takes an array of
