@@ -7,6 +7,7 @@
 // document.addEventListener('DOMContentLoaded', main)
 
 let theTextWeWillPutInTheSquareWhenClicked = 'X'
+let moveCounter = 0
 
 function handleClickSquare(event) {
   // Figure out what was clicked on
@@ -24,6 +25,12 @@ function handleClickSquare(event) {
     // Change the text content!
     thingClickedOn.textContent = theTextWeWillPutInTheSquareWhenClicked
     thingClickedOn.classList.add('taken')
+
+    // Increment the move counter
+    moveCounter++
+
+    const header = document.querySelector('h1')
+    header.innerText = `Tic Tac Toe - Moves: ${moveCounter}`
 
     // Let's change the player to the opposite to give them a turn
 
