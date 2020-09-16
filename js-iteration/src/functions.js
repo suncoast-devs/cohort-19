@@ -255,6 +255,24 @@ function objectKeys(objectOfHobbies) {
   return answer
 }
 
+// Uses Object.entries
+function objectKeys(objectOfHobbies) {
+  const answer = Object.entries(objectOfHobbies).map(
+    array => `${array[0]} - ${array[1].title}`
+  )
+
+  return answer
+}
+
+// Same as Object.entries but uses *destructuring*
+function objectKeys(objectOfHobbies) {
+  const answer = Object.entries(objectOfHobbies).map(
+    ([key, value]) => `${key} - ${value.title}`
+  )
+
+  return answer
+}
+
 // ...
 
 /**
