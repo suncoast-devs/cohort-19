@@ -201,7 +201,13 @@ function findTheNeedleIndex(strings) {
  *
  */
 
-// ...
+function someoneToLove(strings) {
+  const isAtLeastOneStringExactlyFourCharactersLong = strings.some(
+    string => string.length === 4
+  )
+
+  return isAtLeastOneStringExactlyFourCharactersLong
+}
 
 /*
  * 11)  Define a function objectKeys that accepts an object of
