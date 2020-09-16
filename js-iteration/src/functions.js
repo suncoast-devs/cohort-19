@@ -114,7 +114,32 @@ function onlyTheEvenIndexedSurvive(numbers) {
  *
  */
 
-// ...
+function bestMoviesOfTheYear(movies, yearToConsider) {
+  // return NAMES of movies that are from that year AND have score more than 90
+  const onlyMoviesFromTheYearAndScoreMoreThan90 = movies.filter(
+    movie => movie.score > 90 && movie.year === yearToConsider
+  )
+
+  const movieNames = onlyMoviesFromTheYearAndScoreMoreThan90.map(
+    movie => movie.name
+  )
+
+  return movieNames
+}
+
+function bestMoviesOfTheYear(movies, yearToConsider) {
+  const movieNames = movies
+    .filter(movie => movie.score > 90 && movie.year === yearToConsider)
+    .map(movie => movie.name)
+
+  return movieNames
+}
+
+function bestMoviesOfTheYear(movies, yearToConsider) {
+  return movies
+    .filter(movie => movie.score > 90 && movie.year === yearToConsider)
+    .map(movie => movie.name)
+}
 
 /*
  * 7) Define a function everyoneIsOdd that accepts an array of
