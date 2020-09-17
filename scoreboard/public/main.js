@@ -10,8 +10,12 @@ function main() {
   // The function to call when the user types in
   // the input field for team one
   function handleChangeTeamOneName(event) {
-    // Get the value of the input and put that in a variable
+    // Get, from the event object the actual ELEMENT that caused this
+    // function to be called. This is the INPUT that CHANGED.
     const elementThatChanged = event.target
+
+    // Let's ask that changed input, WHAT IS YOUR *CURRENT* value.
+    // In other words, what text is INSIDE the input itself
     const inputFieldValue = elementThatChanged.value
 
     // Set that element's textContent to the variable
