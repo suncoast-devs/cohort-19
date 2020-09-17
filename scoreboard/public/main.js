@@ -1,4 +1,7 @@
 function main() {
+  // Define the initial score for Team One to be 0
+  let teamOneScore = 0
+
   // Get the element for the team name
   const teamNameElement = document.querySelector('.team1 h2')
 
@@ -25,6 +28,11 @@ function main() {
 
   function incrementTheScoreForTeamOne() {
     console.log('I clicked the button')
+    //  ✅ increment the Score
+    teamOneScore = teamOneScore + 1
+    console.log(teamOneScore)
+
+    // - Pass the numeric score to the display
   }
 
   // - Make the + button clickable
@@ -32,12 +40,10 @@ function main() {
   const teamOneAddButton = document.querySelector('.team1 .add')
   console.log(teamOneAddButton)
 
-  //   - make the button clickable
+  //   ✅ - make the button clickable
   teamOneAddButton.addEventListener('click', incrementTheScoreForTeamOne)
 
-  // - Define where the score will be changed
-  // - If the button is pressed increment the Score
-  // - Pass the numeric score to the display
+  // - ✅ Define where the score will be changed
 }
 
 document.addEventListener('DOMContentLoaded', main)
