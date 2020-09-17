@@ -22,6 +22,17 @@ function main() {
 
   const teamOneInput = document.querySelector('.team1 input')
   teamOneInput.addEventListener('input', handleChangeTeamOneName)
+
+  // - Make the + button clickable
+  //   ✅ Find the + button
+  const teamOneAddButton = document.querySelector('.team1 .add')
+  console.log(teamOneAddButton)
+
+  //   - make the button clickable
+
+  // - Define where the score will be changed
+  // - If the button is pressed increment the Score
+  // - Pass the numeric score to the display
 }
 
 document.addEventListener('DOMContentLoaded', main)
