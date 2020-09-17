@@ -33,6 +33,10 @@ function main() {
     console.log(teamOneScore)
 
     // - Pass the numeric score to the display
+    //   ✅  Find the element where we want to display the score
+    const teamOneScoreElement = document.querySelector('.team1 h3')
+    console.log(teamOneScoreElement)
+    //   - Replace the content of that element with the new score
   }
 
   // - Make the + button clickable
