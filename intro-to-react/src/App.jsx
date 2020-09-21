@@ -5,7 +5,12 @@ import React, { Component } from 'react'
    in our application */
 class Greeting extends Component {
   render() {
-    return <p>Hello!!!! Gavin!</p>
+    console.log(this.props)
+    return (
+      <p>
+        Hello!!!! {this.props.thePersonToGreet}, you are a {this.props.role}!
+      </p>
+    )
   }
 }
 
@@ -14,10 +19,12 @@ class App extends Component {
     // return "<div>Hello, React</div>
     return (
       <div>
-        <Greeting />
-        <Greeting />
-        <Greeting />
-        <Greeting />
+        <Greeting thePersonToGreet="Gavin" role="Teacher" />
+        <Greeting thePersonToGreet="Jason" role="CEO" />
+        <Greeting thePersonToGreet="Katherine" role="Campus Director" />
+        <Greeting thePersonToGreet="Josh" role="Student" />
+        <Greeting thePersonToGreet="Daniel" role="Student" />
+        <Greeting thePersonToGreet="Naima" role="Student" />
       </div>
     )
   }
