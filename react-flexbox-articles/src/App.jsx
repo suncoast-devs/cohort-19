@@ -1,17 +1,41 @@
 import React, { Component } from 'react'
 
+class PageHeader extends Component {
+  render() {
+    return (
+      <header>
+        <h1>responsive flexbox article listing</h1>
+        <p>
+          Flexbox is an amazingly powerful layout tool. In this example I have
+          created a responsive grid of articles that increased the amount of
+          visible articles on the page at larger resolutions.
+        </p>
+      </header>
+    )
+  }
+}
+
+class PageFooter extends Component {
+  render() {
+    return (
+      <footer>
+        <p>
+          Made with
+          <svg viewBox="0 0 32 29.6">
+            <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" />
+          </svg>
+          in St Petersburg, Florida.
+        </p>
+      </footer>
+    )
+  }
+}
+
 class App extends Component {
   render() {
     return (
       <>
-        <header>
-          <h1>responsive flexbox article listing</h1>
-          <p>
-            Flexbox is an amazingly powerful layout tool. In this example I have
-            created a responsive grid of articles that increased the amount of
-            visible articles on the page at larger resolutions.
-          </p>
-        </header>
+        <PageHeader />
         <main>
           <article>
             <h2>Article Title Here</h2>
@@ -162,15 +186,7 @@ class App extends Component {
             <a href="#">read more</a>
           </article>
         </main>
-        <footer>
-          <p>
-            Made with
-            <svg viewBox="0 0 32 29.6">
-              <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2 c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z" />
-            </svg>
-            in St Petersburg, Florida.
-          </p>
-        </footer>
+        <PageFooter />
       </>
     )
   }
