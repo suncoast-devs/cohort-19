@@ -5,7 +5,7 @@ import React, { Component } from 'react'
    in our application */
 class Greeting extends Component {
   render() {
-    return <p>Hello, Gavin!</p> /* JSX, HTML looking thing */
+    return <p>Hello!!!! Gavin!</p>
   }
 }
 
@@ -14,13 +14,10 @@ class App extends Component {
     // return "<div>Hello, React</div>
     return (
       <div>
-        <Greeting></Greeting>
-        <Greeting></Greeting>
-        <Greeting></Greeting>
-        <Greeting></Greeting>
-        <Greeting></Greeting>
-        <Greeting></Greeting>
-        <Greeting></Greeting>
+        <Greeting />
+        <Greeting />
+        <Greeting />
+        <Greeting />
       </div>
     )
   }
