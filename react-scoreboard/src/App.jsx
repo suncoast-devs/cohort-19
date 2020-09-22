@@ -6,7 +6,7 @@ class Team extends Component {
   // The keys can be anything we desire, we name those.
   state = {
     score: 0,
-    name: 'Team 1',
+    name: this.props.initialName,
   }
 
   handleClickOnAddButton = event => {
@@ -28,13 +28,23 @@ class Team extends Component {
     this.setState({ score: this.state.score - 1 })
   }
 
+  handleChangeNameInput = event => {
+    const textInputFieldValue = event.target.value
+
+    this.setState({ name: textInputFieldValue })
+  }
   render() {
     return (
       <section className="team1">
         <h2>{this.state.name}</h2>
         <h3>{this.state.score}</h3>
         <fieldset>
-          <input type="text" placeholder="Name" />
+          <input
+            type="text"
+            placeholder="Name"
+            value={this.state.name}
+            onChange={this.handleChangeNameInput}
+          />
         </fieldset>
 
         <fieldset>
@@ -60,8 +70,8 @@ class App extends Component {
           <h1>My Score Board</h1>
         </header>
         <main>
-          <Team />
-          <Team />
+          <Team initialName="Team 1" />
+          <Team initialName="Team 2" />
         </main>
       </>
     )
