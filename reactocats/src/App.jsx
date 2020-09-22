@@ -18,9 +18,7 @@ class App extends Component {
         link={octocat.link}
         image={octocat.image}
         number={octocat.number}
-        authorLink={octocat.authorLink}
-        authorImage={octocat.authorImage}
-        authorName={octocat.authorName}
+        authors={octocat.authors}
       />
     ))
 

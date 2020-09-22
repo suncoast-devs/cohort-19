@@ -21,16 +21,13 @@ export class Octocat extends Component {
               <strong>{this.props.name}</strong>
             </a>
           </li>
-          <li>
-            <a href={this.props.authorLink}>
-              <img
-                src={this.props.authorImage}
-                width="24"
-                height="24"
-                alt={this.props.authorName}
-              />
-            </a>
-          </li>
+          {this.props.authors.map(author => (
+            <li>
+              <a href={author.link}>
+                <img src={author.image} width="24" height="24" alt="" />
+              </a>
+            </li>
+          ))}
         </ul>
       </article>
     )
