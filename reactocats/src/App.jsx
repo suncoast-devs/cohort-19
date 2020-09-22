@@ -2,6 +2,43 @@ import React, { Component } from 'react'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 
+class Octocat extends Component {
+  render() {
+    return (
+      <article>
+        <figure>
+          <a href="https://octodex.github.com//terracottocat/">
+            <img
+              src="https://octodex.github.com//images/Terracottocat_Single.png"
+              width="400"
+              height="400"
+              alt="Terracottocat"
+            />
+          </a>
+        </figure>
+        <ul>
+          <li>
+            #149:
+            <a href="https://octodex.github.com//terracottocat/">
+              <strong>Terracottocat</strong>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/chubbmo">
+              <img
+                src="https://github.com/chubbmo.png"
+                width="24"
+                height="24"
+                alt="chubbmo"
+              />
+            </a>
+          </li>
+        </ul>
+      </article>
+    )
+  }
+}
+
 class App extends Component {
   render() {
     return (
@@ -9,36 +46,7 @@ class App extends Component {
         <Header />
 
         <main>
-          <article>
-            <figure>
-              <a href="https://octodex.github.com//terracottocat/">
-                <img
-                  src="https://octodex.github.com//images/Terracottocat_Single.png"
-                  width="400"
-                  height="400"
-                  alt="Terracottocat"
-                />
-              </a>
-            </figure>
-            <ul>
-              <li>
-                #149:
-                <a href="https://octodex.github.com//terracottocat/">
-                  <strong>Terracottocat</strong>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/chubbmo">
-                  <img
-                    src="https://github.com/chubbmo.png"
-                    width="24"
-                    height="24"
-                    alt="chubbmo"
-                  />
-                </a>
-              </li>
-            </ul>
-          </article>
+          <Octocat />
 
           <article>
             <figure>
