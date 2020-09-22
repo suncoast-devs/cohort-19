@@ -61,19 +61,7 @@ class App extends Component {
         </header>
         <main>
           <Team />
-
-          <section className="team2">
-            <h2>Team 2</h2>
-            <h3>0</h3>
-            <fieldset>
-              <input type="text" placeholder="Name" />
-            </fieldset>
-
-            <fieldset>
-              <i className="add fas fa-2x fa-plus-circle"></i>
-              <i className="subtract fas fa-2x fa-minus-circle"></i>
-            </fieldset>
-          </section>
+          <Team />
         </main>
       </>
     )
