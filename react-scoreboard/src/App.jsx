@@ -21,10 +21,18 @@ class Team extends Component {
     // the function this.setState -- We give
     // it an object with new key and value
     // we want to change
+    if (this.state.score >= 21) {
+      return
+    }
+
     this.setState({ score: this.state.score + 1 })
   }
 
   handleClickOnSubtractButton = event => {
+    if (this.state.score === 0) {
+      return
+    }
+
     this.setState({ score: this.state.score - 1 })
   }
 
