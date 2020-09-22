@@ -9,27 +9,27 @@ class Octocat extends Component {
         <figure>
           <a href={this.props.link}>
             <img
-              src="https://octodex.github.com//images/Terracottocat_Single.png"
+              src={this.props.image}
               width="400"
               height="400"
-              alt="Terracottocat"
+              alt={this.props.name}
             />
           </a>
         </figure>
         <ul>
           <li>
-            #149:
+            #{this.props.number}:
             <a href={this.props.link}>
               <strong>{this.props.name}</strong>
             </a>
           </li>
           <li>
-            <a href="https://github.com/chubbmo">
+            <a href={this.props.authorLink}>
               <img
-                src="https://github.com/chubbmo.png"
+                src={this.props.authorImage}
                 width="24"
                 height="24"
-                alt="chubbmo"
+                alt={this.props.authorName}
               />
             </a>
           </li>
@@ -49,6 +49,11 @@ class App extends Component {
           <Octocat
             name="Terracottocat"
             link="https://octodex.github.com//terracottocat/"
+            image="https://octodex.github.com//images/Terracottocat_Single.png"
+            number="149"
+            authorLink="https://github.com/chubbmo"
+            authorImage="https://github.com/chubbmo.png"
+            authorName="chubbmo"
           />
 
           <article>
