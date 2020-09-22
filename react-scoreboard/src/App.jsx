@@ -14,11 +14,6 @@ class Team extends Component {
     // when we used addEventListener. EXCEPT, we
     // define them as arrow function style.
 
-    const theCurrentScore = this.state.score
-    console.log(`CLICKED ON THE BUTTON and the score was ${theCurrentScore}`)
-
-    const increasedScore = theCurrentScore + 1
-
     // This is an illegal line of code
     // this.state.score = increasedScore
 
@@ -26,7 +21,11 @@ class Team extends Component {
     // the function this.setState -- We give
     // it an object with new key and value
     // we want to change
-    this.setState({ score: increasedScore })
+    this.setState({ score: this.state.score + 1 })
+  }
+
+  handleClickOnSubtractButton = event => {
+    this.setState({ score: this.state.score - 1 })
   }
 
   render() {
@@ -43,7 +42,10 @@ class Team extends Component {
             className="add fas fa-2x fa-plus-circle"
             onClick={this.handleClickOnAddButton}
           ></i>
-          <i className="subtract fas fa-2x fa-minus-circle"></i>
+          <i
+            className="subtract fas fa-2x fa-minus-circle"
+            onClick={this.handleClickOnSubtractButton}
+          ></i>
         </fieldset>
       </section>
     )
