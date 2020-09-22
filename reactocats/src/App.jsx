@@ -7,7 +7,7 @@ class Octocat extends Component {
     return (
       <article>
         <figure>
-          <a href="https://octodex.github.com//terracottocat/">
+          <a href={this.props.link}>
             <img
               src="https://octodex.github.com//images/Terracottocat_Single.png"
               width="400"
@@ -19,8 +19,8 @@ class Octocat extends Component {
         <ul>
           <li>
             #149:
-            <a href="https://octodex.github.com//terracottocat/">
-              <strong>Terracottocat</strong>
+            <a href={this.props.link}>
+              <strong>{this.props.name}</strong>
             </a>
           </li>
           <li>
@@ -46,7 +46,10 @@ class App extends Component {
         <Header />
 
         <main>
-          <Octocat />
+          <Octocat
+            name="Terracottocat"
+            link="https://octodex.github.com//terracottocat/"
+          />
 
           <article>
             <figure>
