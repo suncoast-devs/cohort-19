@@ -10,3 +10,91 @@ body {
   margin: 0;
   min-height: 100%;
 }
+
+main {
+  padding: 1rem;
+  margin: auto;
+  max-width: 960px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+
+  border-bottom: 1px solid lightgrey;
+}
+
+header img {
+  width: 2rem;
+}
+
+header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+header li {
+  margin-right: 1rem;
+}
+
+header a:link,
+header a:visited {
+  text-decoration: none;
+  color: black;
+  font-size: 0.8rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+article figure {
+  margin: 0;
+}
+
+article figure img {
+  border: 1px solid lightgray;
+  border-radius: 2%;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+article ul {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+article ul img {
+  border-radius: 50%;
+}
+
+article a:link,
+article a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: white;
+  opacity: 0.9;
+}
+
+footer {
+  border-top: 1px solid lightgrey;
+  margin: 2rem;
+}
