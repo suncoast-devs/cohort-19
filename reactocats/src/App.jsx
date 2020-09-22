@@ -43,6 +43,18 @@ class Header extends Component {
   }
 }
 
+class Footer extends Component {
+  render() {
+    return (
+      <footer>
+        <div>
+          <p>© 2013 – 2020 GitHub, Inc. All rights reserved.</p>
+        </div>
+      </footer>
+    )
+  }
+}
+
 class App extends Component {
   render() {
     return (
@@ -306,11 +318,7 @@ class App extends Component {
             </ul>
           </article>
         </main>
-        <footer>
-          <div>
-            <p>© 2013 – 2020 GitHub, Inc. All rights reserved.</p>
-          </div>
-        </footer>
+        <Footer />
       </>
     )
   }
