@@ -8,7 +8,7 @@ class App extends Component {
           <h1>My Score Board</h1>
         </header>
         <main>
-          <section class="team1">
+          <section className="team1">
             <h2>Team 1</h2>
             <h3>0</h3>
             <fieldset>
@@ -16,12 +16,12 @@ class App extends Component {
             </fieldset>
 
             <fieldset>
-              <i class="add fas fa-2x fa-plus-circle"></i>
-              <i class="subtract fas fa-2x fa-minus-circle"></i>
+              <i className="add fas fa-2x fa-plus-circle"></i>
+              <i className="subtract fas fa-2x fa-minus-circle"></i>
             </fieldset>
           </section>
 
-          <section class="team2">
+          <section className="team2">
             <h2>Team 2</h2>
             <h3>0</h3>
             <fieldset>
@@ -29,8 +29,8 @@ class App extends Component {
             </fieldset>
 
             <fieldset>
-              <i class="add fas fa-2x fa-plus-circle"></i>
-              <i class="subtract fas fa-2x fa-minus-circle"></i>
+              <i className="add fas fa-2x fa-plus-circle"></i>
+              <i className="subtract fas fa-2x fa-minus-circle"></i>
             </fieldset>
           </section>
         </main>
