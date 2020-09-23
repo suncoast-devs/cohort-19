@@ -1,16 +1,21 @@
 import React, { Component } from 'react'
+import spaceData from './space.json'
 
 class App extends Component {
+  state = spaceData
+
   render() {
+    console.log(this.state)
+
     return (
       <div>
-        <p>There are 5 people in space right now!</p>
+        <p>There are {this.state.number} people in space right now!</p>
         <ul>
-          <li>Bob</li>
-          <li>Sally</li>
-          <li>Jane</li>
-          <li>Barbara</li>
-          <li>Tim</li>
+          {this.state.people
+            .filter(person => person.craft === 'ISS')
+            .map(person => (
+              <li key={person.name}>{person.name}</li>
+            ))}
         </ul>
       </div>
     )
