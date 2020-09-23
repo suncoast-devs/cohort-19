@@ -8,26 +8,7 @@ class App extends Component {
   }
 
   handleChangeSlider = event => {
-    // WHICH input changed?
-    const target = event.target
-    const value = target.value
-
-    switch (target.name) {
-      case 'hue':
-        this.setState({ hue: value })
-        break
-
-      case 'saturation':
-        this.setState({ saturation: value })
-        break
-
-      case 'lightness':
-        this.setState({ lightness: value })
-        break
-
-      default:
-        console.log('WTF!?!?')
-    }
+    this.setState({ [event.target.name]: event.target.value })
   }
 
   render() {
