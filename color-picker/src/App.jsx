@@ -1,5 +1,22 @@
 import React, { Component } from 'react'
 
+class Slider extends Component {
+  render() {
+    console.log(`The SLIDER named ${this.props.name} is rendering`)
+
+    return (
+      <input
+        type="range"
+        min={this.props.min}
+        max={this.props.max}
+        name={this.props.name}
+        value={this.props.value}
+        onChange={this.props.functionToCallWhenChanged}
+      />
+    )
+  }
+}
+
 class App extends Component {
   state = {
     hue: '90',
@@ -12,6 +29,8 @@ class App extends Component {
   }
 
   render() {
+    console.log(`The APP IS RENDERING!`)
+
     // HINT: Instead of hard coded values here, use your
     // this.state attributes to dynamically create this color
     const currentColor = `hsl(${this.state.hue},${this.state.saturation}%,${this.state.lightness}%)`
@@ -23,35 +42,32 @@ class App extends Component {
         <section>
           <p>
             Hue:
-            <input
-              type="range"
+            <Slider
+              name="hue"
               min="0"
               max="360"
               value={this.state.hue}
-              name="hue"
-              onChange={this.handleChangeSlider}
+              functionToCallWhenChanged={this.handleChangeSlider}
             />
           </p>
           <p>
             Saturation:
-            <input
-              type="range"
+            <Slider
+              name="saturation"
               min="0"
               max="100"
               value={this.state.saturation}
-              name="saturation"
-              onChange={this.handleChangeSlider}
+              functionToCallWhenChanged={this.handleChangeSlider}
             />
           </p>
           <p>
-            Lightness:
-            <input
-              type="range"
+            Lightness:{' '}
+            <Slider
+              name="lightness"
               min="0"
               max="100"
               value={this.state.lightness}
-              name="lightness"
-              onChange={this.handleChangeSlider}
+              functionToCallWhenChanged={this.handleChangeSlider}
             />
           </p>
         </section>
