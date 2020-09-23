@@ -8,6 +8,16 @@ class App extends Component {
     cats: [],
   }
 
+  async componentDidMount() {
+    // This is a great place in the lifecycle
+    // for us to FETCH the data from the API!
+
+    const response = await fetch('https://sdg-octodex.herokuapp.com/')
+    const apiJSON = await response.json()
+
+    this.setState({ cats: apiJSON.data })
+  }
+
   render() {
     // Data
 
@@ -26,12 +36,18 @@ class App extends Component {
     ))
 
     return (
-      <>
+      <p>
         <Header />
 
-        <main>{octocatComponents}</main>
+        <main>
+          {this.state.cats.length === 0 ? (
+            <h1>Loading...</h1>
+          ) : (
+            octocatComponents
+          )}
+        </main>
         <Footer />
-      </>
+      </p>
     )
   }
 }
