@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { Octocat } from './components/Octocat'
-import octocats from './octocats.json'
 
 class App extends Component {
+  state = {
+    cats: [],
+  }
+
   render() {
     // Data
 
@@ -12,7 +15,7 @@ class App extends Component {
     //
     // and turn that into an array of <Octocat> react
     // components, filling in the <Octocat> properties as we go.
-    const octocatComponents = octocats.data.map(octocat => (
+    const octocatComponents = this.state.cats.map(octocat => (
       <Octocat
         name={octocat.name}
         link={octocat.link}
