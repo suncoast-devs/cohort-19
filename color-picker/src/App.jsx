@@ -7,29 +7,27 @@ class App extends Component {
     lightness: '20',
   }
 
-  handleChangeHue = event => {
-    // Updates the hue!
-
+  handleChangeSlider = event => {
     // WHICH input changed?
     const target = event.target
-
-    // WHAT is the value of that input (slider)
     const value = target.value
 
-    // When you ready react... change `hue` part of
-    // state to the new value from the input slider
-    this.setState({ hue: value })
-  }
+    switch (target.name) {
+      case 'hue':
+        this.setState({ hue: value })
+        break
 
-  handleChangeSaturation = event => {
-    const target = event.target
-    const value = target.value
+      case 'saturation':
+        this.setState({ saturation: value })
+        break
 
-    this.setState({ saturation: value })
-  }
+      case 'lightness':
+        this.setState({ lightness: value })
+        break
 
-  handleChangeLightness = event => {
-    this.setState({ lightness: event.target.value })
+      default:
+        console.log('WTF!?!?')
+    }
   }
 
   render() {
@@ -49,7 +47,8 @@ class App extends Component {
               min="0"
               max="360"
               value={this.state.hue}
-              onChange={this.handleChangeHue}
+              name="hue"
+              onChange={this.handleChangeSlider}
             />
           </p>
           <p>
@@ -59,7 +58,8 @@ class App extends Component {
               min="0"
               max="100"
               value={this.state.saturation}
-              onChange={this.handleChangeSaturation}
+              name="saturation"
+              onChange={this.handleChangeSlider}
             />
           </p>
           <p>
@@ -69,7 +69,8 @@ class App extends Component {
               min="0"
               max="100"
               value={this.state.lightness}
-              onChange={this.handleChangeLightness}
+              name="lightness"
+              onChange={this.handleChangeSlider}
             />
           </p>
         </section>
