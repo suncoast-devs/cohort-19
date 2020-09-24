@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 
 class PassTime extends Component {
   render() {
+    const minutes = Math.floor(this.props.pass.duration / 60)
+    const javaScriptTimeStamp = this.props.pass.risetime * 1000
+    const riseTimeAsDateString = new Date(javaScriptTimeStamp).toLocaleString()
+
     return (
       <li>
-        For {this.props.pass.duration} at {this.props.pass.risetime}
+        For about {minutes} minutes at {riseTimeAsDateString}
       </li>
     )
   }
