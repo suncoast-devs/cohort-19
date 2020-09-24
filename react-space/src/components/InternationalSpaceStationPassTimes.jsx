@@ -22,13 +22,19 @@ export class InternationalSpaceStationPassTimes extends Component {
     response: [],
   }
 
-  async componentDidMount() {
-    const response = await fetch(
-      'https://cors-anywhere.herokuapp.com/http://api.open-notify.org/iss-pass.json?lat=27.770840&lon=-82.660810'
-    )
+  handleGeolocationSuccess = async position => {
+    console.log(position.coords.latitude)
+    console.log(position.coords.longitude)
+
+    const url = `https://cors-anywhere.herokuapp.com/http://api.open-notify.org/iss-pass.json?lat=${position.coords.latitude}&lon=${position.coords.longitude}`
+    const response = await fetch(url)
     const apiData = await response.json()
 
     this.setState(apiData)
+  }
+
+  async componentDidMount() {
+    navigator.geolocation.getCurrentPosition(this.handleGeolocationSuccess)
   }
 
   render() {
