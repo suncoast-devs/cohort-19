@@ -46,9 +46,13 @@ export class InternationalSpaceStationPassTimes extends Component {
         break
 
       case 'la':
+        // Los Angeles: 34.0522° N, 118.2437° W
+        this.loadISSTimes(34.0522, -118.2437)
         break
 
       case 'london':
+        // London: London/Coordinates 51.5074° N, 0.1278° W
+        this.loadISSTimes(51.5074, -0.1278)
         break
 
       default:
