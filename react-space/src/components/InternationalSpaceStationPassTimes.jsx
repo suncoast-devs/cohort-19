@@ -1,5 +1,15 @@
 import React, { Component } from 'react'
 
+class PassTime extends Component {
+  render() {
+    return (
+      <li>
+        For {this.props.pass.duration} at {this.props.pass.risetime}
+      </li>
+    )
+  }
+}
+
 export class InternationalSpaceStationPassTimes extends Component {
   state = {
     request: {
@@ -23,9 +33,7 @@ export class InternationalSpaceStationPassTimes extends Component {
         <p>There are {this.state.request.passes} passes of the space station</p>
         <ul>
           {this.state.response.map(pass => (
-            <li>
-              For {pass.duration} at {pass.risetime}
-            </li>
+            <PassTime pass={pass} />
           ))}
         </ul>
       </div>
