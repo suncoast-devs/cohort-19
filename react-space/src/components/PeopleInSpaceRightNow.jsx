@@ -21,6 +21,7 @@ export class PeopleInSpaceRightNow extends Component {
     } else {
       return (
         <div>
+          <a href="/">Home</a>
           <p>There are {this.state.number} people in space right now!</p>
           <ul>
             {this.state.people

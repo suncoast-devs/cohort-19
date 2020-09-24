@@ -40,6 +40,7 @@ export class InternationalSpaceStationPassTimes extends Component {
   render() {
     return (
       <div>
+        <a href="/">Home</a>
         <p>There are {this.state.request.passes} passes of the space station</p>
         <ul>
           {this.state.response.map(pass => (
