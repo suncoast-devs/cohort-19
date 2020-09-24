@@ -5,21 +5,19 @@ import { LandingPage } from './components/LandingPage'
 
 class App extends Component {
   render() {
-    console.log(window.location.pathname)
+    switch (window.location.pathname) {
+      case '/':
+        return <LandingPage />
 
-    if (window.location.pathname === '/') {
-      return <LandingPage />
+      case '/who':
+        return <PeopleInSpaceRightNow />
+
+      case '/iss':
+        return <InternationalSpaceStationPassTimes />
+
+      default:
+        return <div>404 - WTF?</div>
     }
-
-    if (window.location.pathname === '/who') {
-      return <PeopleInSpaceRightNow />
-    }
-
-    if (window.location.pathname === '/iss') {
-      return <InternationalSpaceStationPassTimes />
-    }
-
-    return <div>404 - WTF?</div>
   }
 }
 
