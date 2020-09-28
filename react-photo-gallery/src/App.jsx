@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route, Switch } from 'react-router-dom'
 import { CategoryList } from './pages/CategoryList'
 
 export class App extends Component {
@@ -18,7 +18,9 @@ export class App extends Component {
         </section>
 
         <section className="section">
-          <CategoryList />
+          <Switch>
+            <Route exact path="/" component={CategoryList} />
+          </Switch>
         </section>
       </main>
     )
