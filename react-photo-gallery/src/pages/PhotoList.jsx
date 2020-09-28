@@ -4,19 +4,19 @@ import photoData from '../photos.json'
 
 class PhotoListCard extends Component {
   render() {
+    const photoLinkTo = `${this.props.category}/${this.props.index}`
+
     return (
       <div className="column is-one-third">
         <div className="card">
           <div className="card-content">
             <div className="card-image">
               <figure className="image">
-                <Link to={`${this.props.category}/${this.props.index}`}>
+                <Link to={photoLinkTo}>
                   <img src={this.props.imageURL} alt={this.props.title} />
                 </Link>
                 <figcaption>
-                  <Link to={`${this.props.category}/${this.props.index}`}>
-                    {this.props.title}
-                  </Link>
+                  <Link to={photoLinkTo}>{this.props.title}</Link>
                 </figcaption>
               </figure>
             </div>
@@ -35,8 +35,6 @@ export class PhotoList extends Component {
     const photoListData = photoData[category]
 
     const photos = photoListData.photos
-
-    console.log(photos)
 
     return (
       <div className="container">
