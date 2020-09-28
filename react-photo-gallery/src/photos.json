@@ -1,6 +1,6 @@
 {
   "pandas": {
-    "title": "Panda Bears",
+    "title": "Panda Bears!!!!!!!!",
     "description": "Pandas are bears native to south-central China, and are objectively the cutest animals on earth.",
     "photos": [
       {
@@ -43,6 +43,17 @@
         "title": "Cormac the Druid, work in progress",
         "imageURL": "https://things-i-like.netlify.com/images/cormac.jpg",
         "sourceURL": "https://www.instagram.com/p/BnW2QrWDaky"
+      }
+    ]
+  },
+  "star-wars": {
+    "title": "Star Wars",
+    "description": "Luke vs Vader",
+    "photos": [
+      {
+        "title": "Obi Wan and Vader",
+        "imageURL": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fawesomewallpaper.files.wordpress.com%2F2011%2F01%2Fstar_wars.jpg&f=1&nofb=1",
+        "sourceURL": "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fawesomewallpaper.files.wordpress.com%2F2011%2F01%2Fstar_wars.jpg&f=1&nofb=1"
       }
     ]
   }
