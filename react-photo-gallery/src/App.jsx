@@ -23,7 +23,11 @@ export class App extends Component {
           <Switch>
             <Route exact path="/" component={CategoryList} />
             <Route exact path="/:category" component={PhotoList} />
-            <Route exact path="/pandas/0" component={PhotoDetail} />
+            <Route
+              exact
+              path="/:category/:photoIndex"
+              component={PhotoDetail}
+            />
           </Switch>
         </section>
       </main>
