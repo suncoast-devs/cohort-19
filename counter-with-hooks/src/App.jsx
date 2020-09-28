@@ -3,10 +3,9 @@ import React, { useState } from 'react'
 function App() {
   // prettier-ignore
   const [counter,  setCounter] = useState(7)
+  const [personName, setPersonName] = useState('Jason')
 
-  console.log(`Something called App! and our counter is ${counter}`)
-
-  // const [valueVariableName, setValueVaribleName] = useState(initialValue)
+  // const [valueVariableName, setValueVariableName] = useState(initialValue)
   //
   // const [score, setScore] = useState(0)
   //
@@ -15,14 +14,19 @@ function App() {
   // const [salary, setSalary] = useState(1000000)
   //
 
-  function handleClickButton(event) {
-    setCounter(counter + 1)
-  }
-
   return (
     <div>
-      <p>The counter is {counter}</p>
-      <button onClick={handleClickButton}>Count!</button>
+      <p>
+        Hello, {personName}, your counter is {counter}
+      </p>
+      <p>
+        <input
+          type="text"
+          value={personName}
+          onChange={(event) => setPersonName(event.target.value)}
+        />
+      </p>
+      <button onClick={() => setCounter(counter + 1)}>Count!</button>
     </div>
   )
 }
