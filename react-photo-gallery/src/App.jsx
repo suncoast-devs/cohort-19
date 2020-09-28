@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link, Route, Switch } from 'react-router-dom'
 import { CategoryList } from './pages/CategoryList'
+import { PhotoList } from './pages/PhotoList'
+import { PhotoDetail } from './pages/PhotoDetail'
 
 export class App extends Component {
   render() {
@@ -20,6 +22,9 @@ export class App extends Component {
         <section className="section">
           <Switch>
             <Route exact path="/" component={CategoryList} />
+            <Route exact path="/pandas" component={PhotoList} />
+            <Route exact path="/miniatures" component={PhotoList} />
+            <Route exact path="/pandas/0" component={PhotoDetail} />
           </Switch>
         </section>
       </main>
