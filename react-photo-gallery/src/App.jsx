@@ -22,8 +22,7 @@ export class App extends Component {
         <section className="section">
           <Switch>
             <Route exact path="/" component={CategoryList} />
-            <Route exact path="/pandas" component={PhotoList} />
-            <Route exact path="/miniatures" component={PhotoList} />
+            <Route exact path="/:category" component={PhotoList} />
             <Route exact path="/pandas/0" component={PhotoDetail} />
           </Switch>
         </section>

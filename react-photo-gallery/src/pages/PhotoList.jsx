@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import photoData from '../photos.json'
 
 export class PhotoList extends Component {
   render() {
+    const category = this.props.match.params.category
+
+    const photoListData = photoData[category]
+
+    console.log(photoListData)
+
     return (
       <div className="container">
         <nav className="breadcrumb" aria-label="breadcrumbs">
