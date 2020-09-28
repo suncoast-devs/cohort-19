@@ -2,21 +2,26 @@ import React, { useState } from 'react'
 
 function App() {
   // prettier-ignore
-  const counterValueAndSetMethod /* this is an array (tuple) */ = useState( 7 /* initial state */)
+  const [counter,  setCounter] = useState(7)
 
-  const theCurrentValueOfTheCounter = counterValueAndSetMethod[0]
-  const functionThatChangesTheCurrentValueOfTheCounter =
-    counterValueAndSetMethod[1]
+  console.log(`Something called App! and our counter is ${counter}`)
+
+  // const [valueVariableName, setValueVaribleName] = useState(initialValue)
+  //
+  // const [score, setScore] = useState(0)
+  //
+  // const [temperature, setTemperature] = useState(72)
+  //
+  // const [salary, setSalary] = useState(1000000)
+  //
 
   function handleClickButton(event) {
-    functionThatChangesTheCurrentValueOfTheCounter(
-      theCurrentValueOfTheCounter + 1
-    )
+    setCounter(counter + 1)
   }
 
   return (
     <div>
-      <p>The counter is {theCurrentValueOfTheCounter}</p>
+      <p>The counter is {counter}</p>
       <button onClick={handleClickButton}>Count!</button>
     </div>
   )
