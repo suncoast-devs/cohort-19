@@ -8,6 +8,14 @@ import snowman_5 from './images/snowman/step_5.png'
 import snowman_6 from './images/snowman/step_6.png'
 import snowman_7 from './images/snowman/step_7.png'
 
+function AlphabetLetter(props) {
+  if (props.used) {
+    return <li className="used">{props.letter}</li>
+  } else {
+    return <li>{props.letter}</li>
+  }
+}
+
 function App() {
   const snowmen = [
     snowman_0,
@@ -20,10 +28,39 @@ function App() {
     snowman_7,
   ]
 
+  const allTheLetters = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
+  ]
+
   return (
     <section>
       <h1>Snowman</h1>
-      <img alt="snowman" src={snowman_7} />
+      <img alt="snowman" src={snowman_0} />
       <ul>
         <li>_</li>
         <li>_</li>
@@ -34,32 +71,13 @@ function App() {
         <li>_</li>
       </ul>
       <ul className="alphabet">
-        <li>A</li>
-        <li>B</li>
-        <li>C</li>
-        <li>D</li>
-        <li>E</li>
-        <li>F</li>
-        <li>G</li>
-        <li>H</li>
-        <li>I</li>
-        <li>J</li>
-        <li>K</li>
-        <li>L</li>
-        <li>M</li>
-        <li>N</li>
-        <li>O</li>
-        <li>P</li>
-        <li>Q</li>
-        <li>R</li>
-        <li>S</li>
-        <li>T</li>
-        <li>U</li>
-        <li>V</li>
-        <li>W</li>
-        <li>X</li>
-        <li>Y</li>
-        <li>Z</li>
+        {allTheLetters.map((individualLetter) => (
+          <AlphabetLetter
+            key={individualLetter}
+            used={false}
+            letter={individualLetter}
+          />
+        ))}
       </ul>
     </section>
   )
