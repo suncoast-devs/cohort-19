@@ -27,6 +27,15 @@ function App() {
   // Create a state to hold the list of used letters
   const [usedLetters, setUsedLetters] = useState([])
 
+  // Create a state to hold the secret word itself
+  const [secretWord, setSecretWord] = useState('whiskey')
+
+  // Create ANOTHER state to hold how many correct letters we have guessed
+  const [
+    numberOfCorrectlyGuessedLetters,
+    setNumberOfCorrectlyGuessedLetters,
+  ] = useState(0)
+
   function addLetterToUsedLetters(letter) {
     // Update the state to include this new letter
 
@@ -36,6 +45,12 @@ function App() {
 
     // use our Hook function setUsedLetters to update the state
     setUsedLetters(newUsedLetters)
+
+    // if this letter appears in our secret word,
+    // increment the number of correctly guessed letters!
+    if (secretWord.includes(letter.toLowerCase())) {
+      setNumberOfCorrectlyGuessedLetters(numberOfCorrectlyGuessedLetters + 1)
+    }
   }
 
   const snowmen = [
@@ -81,7 +96,7 @@ function App() {
   return (
     <section>
       <h1>Snowman</h1>
-      <img alt="snowman" src={snowman_0} />
+      <img alt="snowman" src={snowmen[numberOfCorrectlyGuessedLetters]} />
       <ul>
         <li>_</li>
         <li>_</li>
