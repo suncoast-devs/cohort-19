@@ -98,6 +98,13 @@ function App() {
     }
   }
 
+  function pickNewRandomWord() {
+    setSecretWord(randomWord())
+    setRevealedLetters(['_', '_', '_', '_', '_', '_', '_'])
+    setNumberOfCorrectlyGuessedLetters(0)
+    setUsedLetters([])
+  }
+
   const snowmen = [
     snowman_0,
     snowman_1,
@@ -141,7 +148,11 @@ function App() {
   return (
     <section>
       <h1>Snowman</h1>
-      <img alt="snowman" src={snowmen[numberOfCorrectlyGuessedLetters]} />
+      <img
+        onClick={pickNewRandomWord}
+        alt="snowman"
+        src={snowmen[numberOfCorrectlyGuessedLetters]}
+      />
       <ul>
         <li>{revealedLetters[0]}</li>
         <li>{revealedLetters[1]}</li>
