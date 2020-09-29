@@ -34,11 +34,7 @@ function randomWord() {
   // - Data: an array of words, and a random index between 0 and 1023
   // - Algorithm: Get a random number between 0 and 1023, look up that word at that index and then return it
 
-  const randomIndex = getRandomArbitrary(0, 1024)
-
-  const randomWordFromArray = words[randomIndex]
-
-  return randomWordFromArray
+  return words[getRandomArbitrary(0, 1024)]
 }
 
 function App() {
@@ -74,10 +70,8 @@ function App() {
 
     // Use the spread operator to make usedLetters a list of the EXISTING letters
     // and then tack on this new letter
-    const newUsedLetters = [...usedLetters, letter]
-
     // use our Hook function setUsedLetters to update the state
-    setUsedLetters(newUsedLetters)
+    setUsedLetters([...usedLetters, letter])
 
     // if this letter appears in our secret word,
     // increment the number of correctly guessed letters!
@@ -116,34 +110,10 @@ function App() {
     snowman_7,
   ]
 
-  const allTheLetters = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-  ]
+  // Fancy code for generating "A" through "Z" (65 through 90)
+  const allTheLetters = [...Array(26).keys()].map((number) =>
+    String.fromCharCode(65 + number)
+  )
 
   return (
     <section>
@@ -154,13 +124,9 @@ function App() {
         src={snowmen[numberOfCorrectlyGuessedLetters]}
       />
       <ul>
-        <li>{revealedLetters[0]}</li>
-        <li>{revealedLetters[1]}</li>
-        <li>{revealedLetters[2]}</li>
-        <li>{revealedLetters[3]}</li>
-        <li>{revealedLetters[4]}</li>
-        <li>{revealedLetters[5]}</li>
-        <li>{revealedLetters[6]}</li>
+        {revealedLetters.map((letter, index) => (
+          <li key={index}>{letter}</li>
+        ))}
       </ul>
       <ul className="alphabet">
         {allTheLetters.map((individualLetter) => (
