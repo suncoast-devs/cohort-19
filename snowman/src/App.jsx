@@ -36,6 +36,17 @@ function App() {
     setNumberOfCorrectlyGuessedLetters,
   ] = useState(0)
 
+  // Create another state to track the revealed letters
+  const [revealedLetters, setRevealedLetters] = useState([
+    '_',
+    '_',
+    '_',
+    '_',
+    '_',
+    '_',
+    '_',
+  ])
+
   function addLetterToUsedLetters(letter) {
     // Update the state to include this new letter
 
@@ -48,8 +59,20 @@ function App() {
 
     // if this letter appears in our secret word,
     // increment the number of correctly guessed letters!
-    if (secretWord.includes(letter.toLowerCase())) {
+    const positionOfLetterInSecretWord = secretWord.indexOf(
+      letter.toLowerCase()
+    )
+    if (positionOfLetterInSecretWord >= 0) {
       setNumberOfCorrectlyGuessedLetters(numberOfCorrectlyGuessedLetters + 1)
+
+      // Makes a fresh copy of the revealed letters array
+      const newRevealedLetters = [...revealedLetters]
+
+      // Change the copy by setting the letter at the correct index
+      newRevealedLetters[positionOfLetterInSecretWord] = letter
+
+      // Update the state of revealed letters
+      setRevealedLetters(newRevealedLetters)
     }
   }
 
@@ -98,13 +121,13 @@ function App() {
       <h1>Snowman</h1>
       <img alt="snowman" src={snowmen[numberOfCorrectlyGuessedLetters]} />
       <ul>
-        <li>_</li>
-        <li>_</li>
-        <li>_</li>
-        <li>_</li>
-        <li>_</li>
-        <li>_</li>
-        <li>_</li>
+        <li>{revealedLetters[0]}</li>
+        <li>{revealedLetters[1]}</li>
+        <li>{revealedLetters[2]}</li>
+        <li>{revealedLetters[3]}</li>
+        <li>{revealedLetters[4]}</li>
+        <li>{revealedLetters[5]}</li>
+        <li>{revealedLetters[6]}</li>
       </ul>
       <ul className="alphabet">
         {allTheLetters.map((individualLetter) => (
