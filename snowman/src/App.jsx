@@ -7,6 +7,7 @@ import snowman_4 from './images/snowman/step_4.png'
 import snowman_5 from './images/snowman/step_5.png'
 import snowman_6 from './images/snowman/step_6.png'
 import snowman_7 from './images/snowman/step_7.png'
+import words from './data/words'
 
 function AlphabetLetter(props) {
   function onClickedLetter() {
@@ -21,6 +22,25 @@ function AlphabetLetter(props) {
   }
 }
 
+function getRandomArbitrary(min, max) {
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
+function randomWord() {
+  // returns a random word from our list of words!
+  // PEDAC
+  // - Problem have a list of 1024 words we want ONE at random
+  // - Example: 0 is "abdomen", 511 is "marking"
+  // - Data: an array of words, and a random index between 0 and 1023
+  // - Algorithm: Get a random number between 0 and 1023, look up that word at that index and then return it
+
+  const randomIndex = getRandomArbitrary(0, 1024)
+
+  const randomWordFromArray = words[randomIndex]
+
+  return randomWordFromArray
+}
+
 function App() {
   // STATES GO HERE
 
@@ -28,7 +48,9 @@ function App() {
   const [usedLetters, setUsedLetters] = useState([])
 
   // Create a state to hold the secret word itself
-  const [secretWord, setSecretWord] = useState('whiskey')
+  const [secretWord, setSecretWord] = useState(randomWord())
+
+  console.log(secretWord)
 
   // Create ANOTHER state to hold how many correct letters we have guessed
   const [
