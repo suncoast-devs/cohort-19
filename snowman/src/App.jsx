@@ -7,7 +7,7 @@ import snowman_4 from './images/snowman/step_4.png'
 import snowman_5 from './images/snowman/step_5.png'
 import snowman_6 from './images/snowman/step_6.png'
 import snowman_7 from './images/snowman/step_7.png'
-import words from './data/words'
+import words from './data/words.json'
 
 function AlphabetLetter(props) {
   function onClickedLetter() {
