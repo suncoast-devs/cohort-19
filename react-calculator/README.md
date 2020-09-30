@@ -35,7 +35,7 @@ Algorithm
 - Initial state:
   - Display has `0`
   - First operand has null
-  - Second operand has ????
+  - Second operand has null
   - Operator has null
 - User clicks digit
   - Store that digit as the first operand

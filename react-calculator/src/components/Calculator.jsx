@@ -55,6 +55,32 @@ export function Calculator() {
     setOperator(selectedOperator)
   }
 
+  function clickedEquals() {
+    // - Calculate result
+
+    let result
+
+    // ✅ if the operator is a + then the result is firstNumber + secondNumber
+    if (operator === '+') {
+      result = firstNumber + secondNumber
+    }
+    // ✅ if the operator is a - then the result is firstNumber - secondNumber
+    if (operator === '-') {
+      result = firstNumber - secondNumber
+    }
+    // ✅if the operator is a * then the result is firstNumber * secondNumber
+    if (operator === '*') {
+      result = firstNumber * secondNumber
+    }
+    // ✅ if the operator is a / then the result is firstNumber / secondNumber
+    if (operator === '/') {
+      result = firstNumber / secondNumber
+    }
+
+    // - Update display to show the result
+    setDisplay(result)
+  }
+
   return (
     <main>
       <div className="calculator">
@@ -138,7 +164,16 @@ export function Calculator() {
             0
           </button>
           <button className="button">.</button>
-          <button className="button op">&#61;</button>
+          <button
+            className="button op"
+            onClick={function () {
+              clickedEquals()
+            }}
+            // Equalvalent to
+            // onClick={clickedEquals}
+          >
+            &#61;
+          </button>
         </div>
       </div>
     </main>
