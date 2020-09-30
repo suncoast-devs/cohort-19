@@ -5,20 +5,20 @@ export function Calculator() {
 
   // Defines a first number to null to indicate
   // we don't yet have a value for it.
-  const [firstNumber, setFirstNumber] = useState(null)
+  const [firstNumber, setFirstNumber] = useState('')
 
   // Defines a second number to null to indicate
   // we don't yet have a value for it.
-  const [secondNumber, setSecondNumber] = useState(null)
+  const [secondNumber, setSecondNumber] = useState('')
 
   const [operator, setOperator] = useState(null)
 
   function clickClearButton(event) {
     // - User clicks AC
     //   ✅ Clear the first operand
-    setFirstNumber(null)
+    setFirstNumber('')
     //   ✅  Clear the second operand
-    setSecondNumber(null)
+    setSecondNumber('')
     //   ✅  Clear the operator
     setOperator(null)
     //   ✅ Reset the display to 0
@@ -37,14 +37,21 @@ export function Calculator() {
     if (operator === null) {
       // - User clicks digit
       //   ✅ Store that digit as the first operand
-      setFirstNumber(digit)
+      if (firstNumber.includes('.') && digit === '.') {
+        // play a beep noise
+      } else {
+        setFirstNumber(`${firstNumber}${digit}`)
+        setDisplay(`${firstNumber}${digit}`)
+      }
     } else {
-      // ✅ Store that digit as the SECOND operand
-      setSecondNumber(digit)
+      if (secondNumber.includes('.') && digit === '.') {
+        // play a beep noise
+      } else {
+        // ✅ Store that digit as the SECOND operand
+        setSecondNumber(`${secondNumber}${digit}`)
+        setDisplay(`${secondNumber}${digit}`)
+      }
     }
-
-    // ✅- Update the display to show the second digit
-    setDisplay(digit)
   }
 
   function clickedOperator(selectedOperator) {
@@ -62,19 +69,19 @@ export function Calculator() {
 
     // ✅ if the operator is a + then the result is firstNumber + secondNumber
     if (operator === '+') {
-      result = firstNumber + secondNumber
+      result = Number(firstNumber) + Number(secondNumber)
     }
     // ✅ if the operator is a - then the result is firstNumber - secondNumber
     if (operator === '-') {
-      result = firstNumber - secondNumber
+      result = Number(firstNumber) - Number(secondNumber)
     }
     // ✅if the operator is a * then the result is firstNumber * secondNumber
     if (operator === '*') {
-      result = firstNumber * secondNumber
+      result = Number(firstNumber) * Number(secondNumber)
     }
     // ✅ if the operator is a / then the result is firstNumber / secondNumber
     if (operator === '/') {
-      result = firstNumber / secondNumber
+      result = Number(firstNumber) / Number(secondNumber)
     }
 
     // - Update display to show the result
@@ -163,7 +170,14 @@ export function Calculator() {
           <button className="button x2" onClick={() => clickedDigit(0)}>
             0
           </button>
-          <button className="button">.</button>
+          <button
+            className="button"
+            onClick={function () {
+              clickedDigit('.')
+            }}
+          >
+            .
+          </button>
           <button
             className="button op"
             onClick={function () {
