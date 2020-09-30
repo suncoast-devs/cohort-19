@@ -34,9 +34,9 @@ Algorithm
 
 - Initial state:
   - Display has `0`
-  - First operand has ????
+  - First operand has null
   - Second operand has ????
-  - Operator has ????
+  - Operator has null
 - User clicks digit
   - Store that digit as the first operand
   - Update the display to show that digit
