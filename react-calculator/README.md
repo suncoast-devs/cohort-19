@@ -10,38 +10,48 @@ Examples:
 
 Data Structures
 
-```
-const [result, setResult] = useState(0)
-const [firstOperandArray, setFirstOperandArray] = useState([])
-const [secondOperandArray, setSecondOperandArray] = useState([])
-const [enableSecondOperandArray, setEnableSecondOperandArray] = useState(false)
-const [operators, setOperators] = useState([])
-const [display, setDisplay] = useState(0)
-const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-const operatorButtons = [‘/’, ‘*’, ‘-’, ‘+’]
-```
+Two numbers (call these operands)
+Operation (+, - , \*, /)
+Calculation (to do the adding, subtracting, multiplying, and dividing)
+Buttons for numbers
+Buttons for operators
+Buttons for equals (the calculation)
+Button for clear
+
+- Forget the two numbers involved in the calculation
+- Forget the operator involved in the calculation
+- Reset the display to `0`
+  Display area (shows a number)
+
+Possible states:
+
+- First number/operand
+- Second number/operand
+- Operator
+- Current value in the display
 
 Algorithm
 
-- Enter first operand
-- 1 or more of the digit buttons
-- Append each digit to the first operand
-- First operand entry ends when an operator is pressed
-- Append each digit to display as clicked
-- Enter operator
-- stores state in both first operand and operator
-- Enables entry of second operator
-- Clears display
-- Enter second operand
-- 1 or more of the digit buttons
-- Append each digit to the second operand
-- second operand entry ends when an equal button is pressed
-- Append each digit to display as clicked
-- Enter equal button
-- stores state second operand
-- Calculates result
-- Puts result on display
-- AC button
-- At any point of process clears all states
-
-No idea how to handle decimal point yet.
+- Initial state:
+  - Display has `0`
+  - First operand has ????
+  - Second operand has ????
+  - Operator has ????
+- User clicks digit
+  - Store that digit as the first operand
+  - Update the display to show that digit
+- User clicks operator (+, x, /, -)
+  - Do nothing with the first operand, leave it alone
+  - Do nothing with the display, leave it alone
+  - Store the operator
+- User clicks digit
+  - Store that digit as the SECOND operand
+  - Update the display to show the second digit
+- User clicks =
+  - Calculate result
+  - Update display to show the result
+- User clicks AC
+  - Clear the first operand
+  - Clear the second operand
+  - Clear the operator
+  - Reset the display to 0
