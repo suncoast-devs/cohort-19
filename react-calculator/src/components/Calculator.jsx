@@ -44,10 +44,20 @@ export function Calculator() {
           <button className="button fn">&#177;</button>
           <button className="button fn">&#37;</button>
           <button className="button op">&#247;</button>
-          <button className="button" onClick={() => clickedDigit(7)}>
+          <button
+            className="button"
+            onClick={function () {
+              clickedDigit(7)
+            }}
+          >
             7
           </button>
-          <button className="button" onClick={() => clickedDigit(8)}>
+          <button
+            className="button"
+            onClick={function () {
+              clickedDigit(8)
+            }}
+          >
             8
           </button>
           <button className="button" onClick={() => clickedDigit(9)}>
