@@ -1,11 +1,12 @@
-
-import React from 'react'
+import React, { useState } from 'react'
 
 export function Calculator() {
+  const [display, setDisplay] = useState(42)
+
   return (
     <main>
       <div className="calculator">
-        <div className="display">0</div>
+        <div className="display">{display}</div>
         <div className="buttons">
           <button className="button fn">AC</button>
           <button className="button fn">&#177;</button>
