@@ -4,7 +4,6 @@ export function Calculator() {
   const [display, setDisplay] = useState(42)
 
   function clickClearButton(event) {
-    console.log('Hooray, we clicked the clear!')
     // - User clicks AC
     //   - Clear the first operand
     //   - Clear the second operand
@@ -21,6 +20,13 @@ export function Calculator() {
     setDisplay(0)
   }
 
+  function clickedDigit(digit) {
+    // - User clicks digit
+    //   - Store that digit as the first operand
+    //   ✅  Update the display to show that digit
+    setDisplay(digit)
+  }
+
   return (
     <main>
       <div className="calculator">
@@ -32,19 +38,39 @@ export function Calculator() {
           <button className="button fn">&#177;</button>
           <button className="button fn">&#37;</button>
           <button className="button op">&#247;</button>
-          <button className="button">7</button>
-          <button className="button">8</button>
-          <button className="button">9</button>
+          <button className="button" onClick={() => clickedDigit(7)}>
+            7
+          </button>
+          <button className="button" onClick={() => clickedDigit(8)}>
+            8
+          </button>
+          <button className="button" onClick={() => clickedDigit(9)}>
+            9
+          </button>
           <button className="button op">&#215;</button>
-          <button className="button">4</button>
-          <button className="button">5</button>
-          <button className="button">6</button>
+          <button className="button" onClick={() => clickedDigit(4)}>
+            4
+          </button>
+          <button className="button" onClick={() => clickedDigit(5)}>
+            5
+          </button>
+          <button className="button" onClick={() => clickedDigit(6)}>
+            6
+          </button>
           <button className="button op">&#8722;</button>
-          <button className="button">1</button>
-          <button className="button">2</button>
-          <button className="button">3</button>
+          <button className="button" onClick={() => clickedDigit(1)}>
+            1
+          </button>
+          <button className="button" onClick={() => clickedDigit(2)}>
+            2
+          </button>
+          <button className="button" onClick={() => clickedDigit(3)}>
+            3
+          </button>
           <button className="button op">&#43;</button>
-          <button className="button x2">0</button>
+          <button className="button x2" onClick={() => clickedDigit(0)}>
+            0
+          </button>
           <button className="button">.</button>
           <button className="button op">&#61;</button>
         </div>
