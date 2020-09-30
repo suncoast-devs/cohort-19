@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 
 export function Calculator() {
-  const [display, setDisplay] = useState(42)
+  const [display, setDisplay] = useState(0)
+
+  // Defines a first number to null to indicate
+  // we don't yet have a value for it.
+  const [firstNumber, setFirstNumber] = useState(null)
 
   function clickClearButton(event) {
     // - User clicks AC
-    //   - Clear the first operand
+    //   ✅ Clear the first operand
+    setFirstNumber(null)
     //   - Clear the second operand
     //   - Clear the operator
     //   ✅ Reset the display to 0
@@ -22,8 +27,9 @@ export function Calculator() {
 
   function clickedDigit(digit) {
     // - User clicks digit
-    //   - Store that digit as the first operand
-    //   ✅  Update the display to show that digit
+    //   ✅ Store that digit as the first operand
+    setFirstNumber(digit)
+    //   ✅ Update the display to show that digit
     setDisplay(digit)
   }
 
