@@ -39,6 +39,7 @@ export function Calculator() {
       //   ✅ Store that digit as the first operand
       if (firstNumber.includes('.') && digit === '.') {
         // play a beep noise
+        alert('nope')
       } else {
         setFirstNumber(`${firstNumber}${digit}`)
         setDisplay(`${firstNumber}${digit}`)
@@ -46,6 +47,7 @@ export function Calculator() {
     } else {
       if (secondNumber.includes('.') && digit === '.') {
         // play a beep noise
+        alert('nope')
       } else {
         // ✅ Store that digit as the SECOND operand
         setSecondNumber(`${secondNumber}${digit}`)
