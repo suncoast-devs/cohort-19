@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
+import axios from 'axios'
 
 export function AstronomyPhotoOfTheDay() {
   const [photoDetails, setPhotoDetails] = useState({
@@ -22,10 +23,11 @@ export function AstronomyPhotoOfTheDay() {
   async function loadPhotoFromApi() {
     const url = `https://apodapi.herokuapp.com/api?image_thumbnail_size=300&absolute_thumbnail_url=true&thumbs=true&date=${date}`
 
-    const response = await fetch(url)
-    const json = await response.json()
+    // Take variable of what axios returns (an object) and pull
+    // the `data` property off and put it in a variable named data
+    const { data } = await axios({ method: 'get', url: url })
 
-    setPhotoDetails(json)
+    setPhotoDetails(data)
   }
 
   // A useEffect with an empty array is serves the same
