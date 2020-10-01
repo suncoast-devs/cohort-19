@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 function App() {
-  const [feet, setFeet] = useState(4)
+  const [feet, setFeet] = useState(0)
   const [inches, setInches] = useState(0)
 
   useEffect(
@@ -15,6 +15,14 @@ function App() {
       /* of variables to observe for changes */
       feet,
     ]
+  )
+
+  useEffect(
+    function () {
+      setFeet(inches / 12)
+    },
+
+    [inches]
   )
 
   return (
@@ -58,7 +66,27 @@ function App() {
           RESET
         </button>
       </p>
-      <p>Inches: {inches}</p>
+      <p>
+        Inches:{' '}
+        <input
+          type="text"
+          value={inches}
+          onChange={function (event) {
+            setInches(Number(event.target.value))
+          }}
+        />
+      </p>
+      <p>
+        <input
+          type="range"
+          min="0"
+          max="10000"
+          value={inches}
+          onChange={function (event) {
+            setInches(Number(event.target.value))
+          }}
+        />
+      </p>
     </main>
   )
 }
