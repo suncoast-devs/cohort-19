@@ -15,17 +15,25 @@ export function AstronomyPhotoOfTheDay() {
     url: '',
   })
   // In a minute we are going to get this date from somewhere else...
-  const params = useParams()
+  const { date } = useParams()
   const history = useHistory()
 
-  const date = params.date || '2020-10-01'
+  const photoDate = date || '2020-10-01'
+
+  // Makes three new variables and initializes them as if we did this:
+  // const params = useParams()
+  // const id = params.id
+  // const person = params.person
+  // const search = params.search
+  //
+  // const { id, person, search } = useParams()
 
   async function loadPhotoFromApi() {
-    const url = `https://apodapi.herokuapp.com/api?image_thumbnail_size=300&absolute_thumbnail_url=true&thumbs=true&date=${date}`
+    const url = `https://apodapi.herokuapp.com/api?image_thumbnail_size=300&absolute_thumbnail_url=true&thumbs=true&date=${photoDate}`
 
     // Take variable of what axios returns (an object) and pull
     // the `data` property off and put it in a variable named data
-    const { data } = await axios({ method: 'get', url: url })
+    const { data } = await axios({ method: 'get', url })
 
     setPhotoDetails(data)
   }
@@ -40,7 +48,7 @@ export function AstronomyPhotoOfTheDay() {
     },
 
     /* array of elements to watch for changes */
-    [date]
+    [photoDate]
   )
 
   const byLine =
@@ -54,7 +62,7 @@ export function AstronomyPhotoOfTheDay() {
         <p className="lead">
           <input
             type="date"
-            value={date}
+            value={photoDate}
             onChange={function (event) {
               const newDate = event.target.value
 
