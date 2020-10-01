@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
 
 export function AstronomyPhotoOfTheDay() {
   const [photoDetails, setPhotoDetails] = useState({
@@ -12,7 +13,11 @@ export function AstronomyPhotoOfTheDay() {
     title: '',
     url: '',
   })
-  const [date, setDate] = useState('2020-09-14')
+  // In a minute we are going to get this date from somewhere else...
+  const params = useParams()
+  const history = useHistory()
+
+  const date = params.date || '2020-10-01'
 
   async function loadPhotoFromApi() {
     const url = `https://apodapi.herokuapp.com/api?image_thumbnail_size=300&absolute_thumbnail_url=true&thumbs=true&date=${date}`
@@ -49,7 +54,11 @@ export function AstronomyPhotoOfTheDay() {
             type="date"
             value={date}
             onChange={function (event) {
-              setDate(event.target.value)
+              const newDate = event.target.value
+
+              const newApplicationURL = `/${newDate}`
+
+              history.push(newApplicationURL)
             }}
           />
         </p>
