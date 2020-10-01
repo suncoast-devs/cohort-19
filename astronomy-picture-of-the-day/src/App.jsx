@@ -6,8 +6,7 @@ function App() {
   return (
     <div className="container">
       <Switch>
-        <Route exact path="/" component={AstronomyPhotoOfTheDay} />
-        <Route exact path="/:date" component={AstronomyPhotoOfTheDay} />
+        <Route exact path="/:date?" component={AstronomyPhotoOfTheDay} />
       </Switch>
     </div>
   )
