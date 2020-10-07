@@ -6,14 +6,17 @@ import tacoTuesday from '../images/taco-tuesday.svg'
 
 export function Restaurants() {
   const [restaurants, setRestaurants] = useState([])
+  const [filterText, setFilterText] = useState('')
 
   useEffect(
     function () {
       // This pattern of defining a loadXXX function that
       // is async and CALLING it, makes useEffect happy.
       async function loadRestaurants() {
+        const url = `/api/restaurants?filter=${filterText}`
+
         // Using built-in fetch
-        const response = await fetch('/api/restaurants')
+        const response = await fetch(url)
         const json = await response.json()
 
         setRestaurants(json)
@@ -31,7 +34,8 @@ export function Restaurants() {
       loadRestaurants()
     },
     [
-      /* dependencies here -- empty for now */
+      /* dependencies here -- redo the useEffect every time filterText changes */
+      filterText,
     ]
   )
 
@@ -50,7 +54,14 @@ export function Restaurants() {
           <img src={tacoTuesday} alt="Taco Tuesday" />
         </h1>
         <form className="search">
-          <input type="text" placeholder="Search..." />
+          <input
+            type="text"
+            placeholder="Search..."
+            value={filterText}
+            onChange={function (event) {
+              setFilterText(event.target.value)
+            }}
+          />
         </form>
 
         <section className="map">
