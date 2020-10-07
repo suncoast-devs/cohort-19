@@ -1,8 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+
 import avatar from '../images/avatar.png'
 import tacoTuesday from '../images/taco-tuesday.svg'
 
 export function Restaurants() {
+  const [restaurants, setRestaurants] = useState([])
+
+  useEffect(
+    function () {
+      // This pattern of defining a loadXXX function that
+      // is async and CALLING it, makes useEffect happy.
+      async function loadRestaurants() {
+        // Using built-in fetch
+        const response = await fetch('/api/restaurants')
+        const json = await response.json()
+
+        setRestaurants(json)
+
+        // Axios style
+        //
+        // const { data: newRestaurants } = await axios({
+        //   method: 'get',
+        //   url: 'api/restaurants',
+        // })
+
+        // setRestaurants(newRestaurants)
+      }
+
+      loadRestaurants()
+    },
+    [
+      /* dependencies here -- empty for now */
+    ]
+  )
+
   return (
     <>
       <header>
@@ -31,30 +63,20 @@ export function Restaurants() {
         </section>
 
         <ul className="results">
-          <li>
-            <h2>Loli's Mexican Cravings</h2>
-            <p>
-              <span
-                class="stars"
-                style={{ '--rating': 4.7 }}
-                aria-label="Star rating of this location is 4.7 out of 5."
-              ></span>
-              (2,188)
-            </p>
-            <address>8005 Benjamin Rd, Tampa, FL 33634</address>
-          </li>
-          <li>
-            <h2>La Hacienda Mexicana</h2>
-            <p>
-              <span
-                class="stars"
-                style={{ '--rating': 1.0 }}
-                aria-label="Star rating of this location is 2.3 out of 5."
-              ></span>
-              (245)
-            </p>
-            <address>5537 Sheldon Rd, Tampa, FL 33615</address>
-          </li>
+          {restaurants.map((restaurant) => (
+            <li key={restaurant.id}>
+              <h2>{restaurant.name}</h2>
+              <p>
+                <span
+                  className="stars"
+                  style={{ '--rating': 2.7 }}
+                  aria-label="Star rating of this location is 4.7 out of 5."
+                ></span>
+                (2,188)
+              </p>
+              <address>{restaurant.address}</address>
+            </li>
+          ))}
         </ul>
       </main>
       <footer>
