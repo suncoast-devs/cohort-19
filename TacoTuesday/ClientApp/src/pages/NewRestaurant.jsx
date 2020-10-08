@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+
 import avatar from '../images/avatar.png'
 
 export function NewRestaurant() {
@@ -8,6 +10,8 @@ export function NewRestaurant() {
     address: '',
     telephone: '',
   })
+
+  const history = useHistory()
 
   function handleStringFieldChange(event) {
     // Get the value of the input field that has changed
@@ -45,7 +49,9 @@ export function NewRestaurant() {
 
     const json = await response.json()
 
-    console.log(json)
+    // Push onto the user's HISTORY the path "/" (the home page)
+    // This effectively redirects the user BACK to the homepage
+    history.push('/')
   }
 
   return (
