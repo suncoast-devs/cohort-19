@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom'
 import avatar from '../images/avatar.png'
 
 export function NewRestaurant() {
+  const [errorMessage, setErrorMessage] = useState()
+
   const [newRestaurant, setNewRestaurant] = useState({
     name: '',
     description: '',
@@ -31,34 +33,50 @@ export function NewRestaurant() {
   async function handleFormSubmit(event) {
     event.preventDefault()
 
-    //   const response = await fetch(
-    //     // URL
-    //     '/api/Restaurants',
+    const response = await fetch(
+      // URL
+      '/api/Restaurants',
 
-    //     // options
-    //     {
-    //       // Tell fetch what VERB we are using, in this case POST
-    //       method: 'POST',
+      // options
+      {
+        // Tell fetch what VERB we are using, in this case POST
+        method: 'POST',
 
-    //       // Tell fetch headers to set, that tell the server we are sending JSON
-    //       headers: { 'content-type': 'application/json' },
+        // Tell fetch headers to set, that tell the server we are sending JSON
+        headers: { 'content-type': 'application/json' },
 
-    //       // Here is the data itself
-    //       body: JSON.stringify(newRestaurant),
-    //     }
-    //   )
+        // Here is the data itself
+        body: JSON.stringify(newRestaurant),
+      }
+    )
 
-    //   const json = await response.json()
+    const json = await response.json()
 
-    const response = await axios({
-      url: '/api/restaurants',
-      method: 'POST',
-      data: newRestaurant,
-    })
+    // If there is an error
+    if (response.status === 400) {
+      // Get all the errors object values (the descriptions) and join them together
+      const message = Object.values(json.errors).join(' ')
 
-    // Push onto the user's HISTORY the path "/" (the home page)
-    // This effectively redirects the user BACK to the homepage
-    history.push('/')
+      // Update our error message
+      setErrorMessage(message)
+    } else {
+      history.push('/')
+    }
+
+    // try {
+    //   const response = await axios({
+    //     url: '/api/restaurants',
+    //     method: 'POST',
+    //     data: newRestaurant,
+    //   })
+
+    //   // Push onto the user's HISTORY the path "/" (the home page)
+    //   // This effectively redirects the user BACK to the homepage
+    //   // history.push('/')
+    // } catch {
+    //   console.log('Ooops, error')
+    //   // Error
+    // }
   }
 
   return (
@@ -86,6 +104,7 @@ export function NewRestaurant() {
           <h2>Add a Restaurant</h2>
         </nav>
         <form onSubmit={handleFormSubmit}>
+          {errorMessage && <p>{errorMessage}</p>}
           <p className="form-input">
             <label htmlFor="name">Name</label>
             <input
