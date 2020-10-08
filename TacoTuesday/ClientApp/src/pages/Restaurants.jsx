@@ -43,25 +43,25 @@ export function Restaurants() {
     <>
       <header>
         <ul>
-          <li>Welcome back, Steve!</li>
+          <li>
+            <nav>
+              <a href="#">
+                <i className="fa fa-plus"></i> Restaurant
+              </a>
+              <p>Welcome back, Steve!</p>
+            </nav>
+          </li>
           <li className="avatar">
             <img src={avatar} alt="Steve's Avatar" height="64" width="64" />
           </li>
         </ul>
       </header>
-      <main>
+      <main className="home">
         <h1>
           <img src={tacoTuesday} alt="Taco Tuesday" />
         </h1>
         <form className="search">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={filterText}
-            onChange={function (event) {
-              setFilterText(event.target.value)
-            }}
-          />
+          <input type="text" placeholder="Search..." />
         </form>
 
         <section className="map">
@@ -80,7 +80,7 @@ export function Restaurants() {
               <p>
                 <span
                   className="stars"
-                  style={{ '--rating': 2.7 }}
+                  style={{ '--rating': 4.7 }}
                   aria-label="Star rating of this location is 4.7 out of 5."
                 ></span>
                 (2,188)
@@ -91,7 +91,9 @@ export function Restaurants() {
         </ul>
       </main>
       <footer>
-        <p>Built with &hearts; in St Petersburg, Florida.</p>
+        <p>
+          Built with <i className="fa fa-heart"></i> in St Petersburg, Florida.
+        </p>
       </footer>
     </>
   )
