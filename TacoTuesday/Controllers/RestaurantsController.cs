@@ -35,12 +35,14 @@ namespace TacoTuesday.Controllers
         {
             if (filter == null)
             {
-                return await _context.Restaurants.ToListAsync();
+                return await _context.Restaurants.OrderByDescending(restaurant => restaurant.Id).ToListAsync();
             }
             else
             {
                 return await _context.Restaurants.Where(restaurant => restaurant.Name.ToLower().Contains(filter.ToLower()) ||
-                                                                      restaurant.Address.ToLower().Contains(filter.ToLower())).ToListAsync();
+                                                                      restaurant.Address.ToLower().Contains(filter.ToLower())).
+                                                                      OrderByDescending(restaurant => restaurant.Id).
+                                                                      ToListAsync();
             }
         }
 
