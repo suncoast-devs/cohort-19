@@ -61,7 +61,13 @@ export function Restaurants() {
           <img src={tacoTuesday} alt="Taco Tuesday" />
         </h1>
         <form className="search">
-          <input type="text" placeholder="Search..." />
+          <input
+            type="text"
+            placeholder="Search..."
+            onChange={function (event) {
+              setFilterText(event.target.value)
+            }}
+          />
         </form>
 
         <section className="map">
