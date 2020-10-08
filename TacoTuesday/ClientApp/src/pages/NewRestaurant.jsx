@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
@@ -30,24 +31,30 @@ export function NewRestaurant() {
   async function handleFormSubmit(event) {
     event.preventDefault()
 
-    const response = await fetch(
-      // URL
-      '/api/Restaurants',
+    //   const response = await fetch(
+    //     // URL
+    //     '/api/Restaurants',
 
-      // options
-      {
-        // Tell fetch what VERB we are using, in this case POST
-        method: 'POST',
+    //     // options
+    //     {
+    //       // Tell fetch what VERB we are using, in this case POST
+    //       method: 'POST',
 
-        // Tell fetch headers to set, that tell the server we are sending JSON
-        headers: { 'content-type': 'application/json' },
+    //       // Tell fetch headers to set, that tell the server we are sending JSON
+    //       headers: { 'content-type': 'application/json' },
 
-        // Here is the data itself
-        body: JSON.stringify(newRestaurant),
-      }
-    )
+    //       // Here is the data itself
+    //       body: JSON.stringify(newRestaurant),
+    //     }
+    //   )
 
-    const json = await response.json()
+    //   const json = await response.json()
+
+    const response = await axios({
+      url: '/api/restaurants',
+      method: 'POST',
+      data: newRestaurant,
+    })
 
     // Push onto the user's HISTORY the path "/" (the home page)
     // This effectively redirects the user BACK to the homepage
