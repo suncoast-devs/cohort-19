@@ -23,6 +23,31 @@ export function NewRestaurant() {
     setNewRestaurant(updatedRestaurant)
   }
 
+  async function handleFormSubmit(event) {
+    event.preventDefault()
+
+    const response = await fetch(
+      // URL
+      '/api/Restaurants',
+
+      // options
+      {
+        // Tell fetch what VERB we are using, in this case POST
+        method: 'POST',
+
+        // Tell fetch headers to set, that tell the server we are sending JSON
+        headers: { 'content-type': 'application/json' },
+
+        // Here is the data itself
+        body: JSON.stringify(newRestaurant),
+      }
+    )
+
+    const json = await response.json()
+
+    console.log(json)
+  }
+
   return (
     <>
       <header>
@@ -47,7 +72,7 @@ export function NewRestaurant() {
           </a>
           <h2>Add a Restaurant</h2>
         </nav>
-        <form action="#">
+        <form onSubmit={handleFormSubmit}>
           <p className="form-input">
             <label htmlFor="name">Name</label>
             <input
