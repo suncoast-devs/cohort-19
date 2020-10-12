@@ -13,10 +13,10 @@ export function Restaurant() {
 
   const [restaurant, setRestaurant] = useState({
     id: 0,
-    name: '',
-    description: '',
-    address: '',
-    telephone: '',
+    name: 'Fake Name',
+    description: 'Fake Description',
+    address: 'Fake Address',
+    telephone: 'Fake Phone',
   })
 
   return (
@@ -41,8 +41,9 @@ export function Restaurant() {
           <a href="/">
             <i className="fa fa-home"></i>
           </a>
-          <h2>Loli's Mexican Cravings</h2>
+          <h2>{restaurant.name}</h2>
         </nav>
+        <p>{restaurant.description}</p>
         <p>
           <span
             className="stars"
@@ -51,9 +52,10 @@ export function Restaurant() {
           ></span>
           (2,188)
         </p>
-        <address>8005 Benjamin Rd, Tampa, FL 33634</address>
+        <address>{restaurant.address}</address>
+        <p>{restaurant.telephone}</p>
         <hr />
-        <h3>Reviews for Loli's Mexican Cravings</h3>
+        <h3>Reviews for {restaurant.name}</h3>
         <ul className="reviews">
           <li>
             <div className="author">
