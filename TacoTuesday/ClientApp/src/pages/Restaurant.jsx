@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import avatar from '../images/avatar.png'
 
@@ -13,11 +13,22 @@ export function Restaurant() {
 
   const [restaurant, setRestaurant] = useState({
     id: 0,
-    name: 'Fake Name',
-    description: 'Fake Description',
-    address: 'Fake Address',
-    telephone: 'Fake Phone',
+    name: '',
+    description: '',
+    address: '',
+    telephone: '',
   })
+
+  useEffect(() => {
+    async function fetchRestaurant() {
+      const response = await fetch(`/api/Restaurants/${id}`)
+      const apiData = await response.json()
+
+      setRestaurant(apiData)
+    }
+
+    fetchRestaurant()
+  }, [id])
 
   return (
     <>

@@ -160,6 +160,16 @@ hr {
   line-height: 1.2rem;
 }
 
+.results {
+  a:link,
+  a:visited,
+  a:focus,
+  a:hover,
+  a:active {
+    color: white;
+  }
+}
+
 .stars {
   --rating: 0;
   --percent: calc(var(--rating) / 5 * 100%);

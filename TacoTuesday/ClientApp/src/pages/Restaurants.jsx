@@ -83,7 +83,11 @@ export function Restaurants() {
         <ul className="results">
           {restaurants.map((restaurant) => (
             <li key={restaurant.id}>
-              <h2>{restaurant.name}</h2>
+              <h2>
+                <Link to={`/restaurants/${restaurant.id}`}>
+                  {restaurant.name}
+                </Link>
+              </h2>
               <p>
                 <span
                   className="stars"
