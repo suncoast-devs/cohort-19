@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import avatar from '../images/avatar.png'
 
 export function Restaurant() {
+  // params is now an object that has
+  // attributes that show us the route
+  // parameters
+  const params = useParams()
+  const id = params.id
+  // This one line is the same as the two above
+  // const { id } = useParams()
+
+  const [restaurant, setRestaurant] = useState({
+    id: 0,
+    name: '',
+    description: '',
+    address: '',
+    telephone: '',
+  })
+
   return (
     <>
       <header>
