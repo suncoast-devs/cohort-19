@@ -90,7 +90,7 @@ export function Restaurant() {
             <label htmlFor="review">Review</label>
             <textarea type="text" name="review"></textarea>
           </p>
-          <p className=rating">
+          <p className="rating">
             <input
               id="star-rating-1"
               type="radio"
@@ -127,7 +127,7 @@ export function Restaurant() {
             />
             <label for="star-rating-5">5 stars</label>
 
-            <div className=star-rating">
+            <div className="star-rating">
               <label
                 for="star-rating-1"
                 aria-label="1 star"
