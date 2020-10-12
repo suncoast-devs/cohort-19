@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace TacoTuesday.Models
@@ -15,5 +16,9 @@ namespace TacoTuesday.Models
         public string Address { get; set; }
 
         public string Telephone { get; set; }
+
+
+        // A restaurant *HAS MANY* reviews
+        public List<Review> Reviews { get; set; }
     }
 }
