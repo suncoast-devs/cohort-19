@@ -17,6 +17,7 @@ export function Restaurant() {
     description: '',
     address: '',
     telephone: '',
+    reviews: [],
   })
 
   useEffect(() => {
@@ -61,50 +62,35 @@ export function Restaurant() {
             style={{ '--rating': 4.7 }}
             aria-label="Star rating of this location is 4.7 out of 5."
           ></span>
-          (2,188)
+          ({restaurant.reviews.length})
         </p>
         <address>{restaurant.address}</address>
         <p>{restaurant.telephone}</p>
         <hr />
-        <h3>Reviews for {restaurant.name}</h3>
+
+        {restaurant.reviews.length > 0 && (
+          <h3>Reviews for {restaurant.name}</h3>
+        )}
+
         <ul className="reviews">
-          <li>
-            <div className="author">
-              Gavin said: <em>Really good.</em>
-            </div>
-            <div className="body">
-              <p>Yummy!</p>
-            </div>
-            <div className="meta">
-              <span
-                className="stars"
-                style={{ '--rating': 3.2 }}
-                aria-label="Star rating of this location is 4.7 out of 5."
-              ></span>
-              <time>Tuesday, July 7th, 2020 at 3:10 AM</time>
-            </div>
-          </li>
-          <li>
-            <div className="author">
-              Jason said: <em>The tameles are to die for!</em>
-            </div>
-            <div className="body">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Pariatur, a? Voluptatibus quibusdam ratione ex minima corporis
-                fugiat accusamus, atque, magni laboriosam voluptate molestiae
-                expedita, reprehenderit perferendis! Fuga aspernatur aut minus.
-              </p>
-            </div>
-            <div className="meta">
-              <span
-                className="stars"
-                style={{ '--rating': 4.7 }}
-                aria-label="Star rating of this location is 4.7 out of 5."
-              ></span>
-              <time>Tuesday, July 7th, 2020 at 3:10 AM</time>
-            </div>
-          </li>
+          {restaurant.reviews.map((review) => (
+            <li key={review.id}>
+              <div className="author">
+                Gavin said: <em>{review.summary}</em>
+              </div>
+              <div className="body">
+                <p>{review.body}</p>
+              </div>
+              <div className="meta">
+                <span
+                  className="stars"
+                  style={{ '--rating': review.stars }}
+                  aria-label={`Star rating of this location is ${review.stars} out of 5.`}
+                ></span>
+                <time>{review.createdAt}</time>
+              </div>
+            </li>
+          ))}
         </ul>
         <h3>Enter your own review</h3>
         <form action="#">
