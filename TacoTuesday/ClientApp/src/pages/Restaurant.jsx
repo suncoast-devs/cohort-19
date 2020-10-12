@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import format from 'date-fns/format'
+
 import avatar from '../images/avatar.png'
+
+const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 
 export function Restaurant() {
   // params is now an object that has
@@ -87,7 +91,7 @@ export function Restaurant() {
                   style={{ '--rating': review.stars }}
                   aria-label={`Star rating of this location is ${review.stars} out of 5.`}
                 ></span>
-                <time>{review.createdAt}</time>
+                <time>{format(new Date(review.createdAt), dateFormat)}</time>
               </div>
             </li>
           ))}
