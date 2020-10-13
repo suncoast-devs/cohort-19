@@ -7,6 +7,7 @@ import { NewRestaurant } from './pages/NewRestaurant'
 import { Restaurant } from './pages/Restaurant'
 
 import avatar from './images/avatar.png'
+import { SignUp } from './pages/SignUp'
 
 export function App() {
   return (
@@ -18,6 +19,7 @@ export function App() {
               <Link to="/new">
                 <i className="fa fa-plus"></i> Restaurant
               </Link>
+              <Link to="/signup">Sign Up</Link>
               <p>Welcome back, Steve!</p>
             </nav>
           </li>
@@ -35,6 +37,9 @@ export function App() {
         </Route>
         <Route exact path="/restaurants/:id">
           <Restaurant />
+        </Route>
+        <Route exact path="/signup">
+          <SignUp />
         </Route>
       </Switch>
       <footer>
