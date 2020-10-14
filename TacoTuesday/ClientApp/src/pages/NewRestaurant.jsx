@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
+import { authHeader } from '../auth'
+
 import avatar from '../images/avatar.png'
 
 export function NewRestaurant() {
@@ -43,40 +45,44 @@ export function NewRestaurant() {
         method: 'POST',
 
         // Tell fetch headers to set, that tell the server we are sending JSON
-        headers: { 'content-type': 'application/json' },
+        headers: { 'content-type': 'application/json', ...authHeader() },
 
         // Here is the data itself
         body: JSON.stringify(newRestaurant),
       }
     )
 
-    const json = await response.json()
-
-    // If there is an error
-    if (response.status === 400) {
-      // Get all the errors object values (the descriptions) and join them together
-      const message = Object.values(json.errors).join(' ')
-
-      // Update our error message
-      setErrorMessage(message)
+    if (response.status === 401) {
+      setErrorMessage('Not Authorized')
     } else {
-      history.push('/')
+      const json = await response.json()
+
+      // If there is an error
+      if (response.status === 400) {
+        // Get all the errors object values (the descriptions) and join them together
+        const message = Object.values(json.errors).join(' ')
+
+        // Update our error message
+        setErrorMessage(message)
+      } else {
+        history.push('/')
+      }
+
+      // try {
+      //   const response = await axios({
+      //     url: '/api/restaurants',
+      //     method: 'POST',
+      //     data: newRestaurant,
+      //   })
+
+      //   // Push onto the user's HISTORY the path "/" (the home page)
+      //   // This effectively redirects the user BACK to the homepage
+      //   // history.push('/')
+      // } catch {
+      //   console.log('Ooops, error')
+      //   // Error
+      // }
     }
-
-    // try {
-    //   const response = await axios({
-    //     url: '/api/restaurants',
-    //     method: 'POST',
-    //     data: newRestaurant,
-    //   })
-
-    //   // Push onto the user's HISTORY the path "/" (the home page)
-    //   // This effectively redirects the user BACK to the homepage
-    //   // history.push('/')
-    // } catch {
-    //   console.log('Ooops, error')
-    //   // Error
-    // }
   }
 
   return (

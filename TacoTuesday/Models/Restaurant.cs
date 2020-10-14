@@ -17,6 +17,7 @@ namespace TacoTuesday.Models
 
         public string Telephone { get; set; }
 
+        public int UserId { get; set; }
 
         // A restaurant *HAS MANY* reviews
         public List<Review> Reviews { get; set; }
