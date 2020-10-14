@@ -4,6 +4,7 @@ import format from 'date-fns/format'
 
 import avatar from '../images/avatar.png'
 import { authHeader, isLoggedIn } from '../auth'
+import { Stars } from '../components/Stars'
 
 const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 
@@ -95,12 +96,7 @@ export function Restaurant() {
       </nav>
       <p>{restaurant.description}</p>
       <p>
-        <span
-          className="stars"
-          style={{ '--rating': 4.7 }}
-          aria-label="Star rating of this location is 4.7 out of 5."
-        ></span>
-        ({restaurant.reviews.length})
+        <Stars restaurant={restaurant} />({restaurant.reviews.length})
       </p>
       <address>{restaurant.address}</address>
       <p>{restaurant.telephone}</p>

@@ -4,6 +4,24 @@ import axios from 'axios'
 import avatar from '../images/avatar.png'
 import tacoTuesday from '../images/taco-tuesday.svg'
 import { Link } from 'react-router-dom'
+import { Stars } from '../components/Stars'
+
+function SingleRestaurant(props) {
+  return (
+    <li>
+      <h2>
+        <Link to={`/restaurants/${props.restaurant.id}`}>
+          {props.restaurant.name}
+        </Link>
+      </h2>
+      <p>
+        <Stars restaurant={props.restaurant} />(
+        {props.restaurant.reviews.length})
+      </p>
+      <address>{props.restaurant.address}</address>
+    </li>
+  )
+}
 
 export function Restaurants() {
   const [restaurants, setRestaurants] = useState([])
@@ -66,22 +84,7 @@ export function Restaurants() {
 
       <ul className="results">
         {restaurants.map((restaurant) => (
-          <li key={restaurant.id}>
-            <h2>
-              <Link to={`/restaurants/${restaurant.id}`}>
-                {restaurant.name}
-              </Link>
-            </h2>
-            <p>
-              <span
-                className="stars"
-                style={{ '--rating': 4.7 }}
-                aria-label="Star rating of this location is 4.7 out of 5."
-              ></span>
-              ({restaurant.reviews.length})
-            </p>
-            <address>{restaurant.address}</address>
-          </li>
+          <SingleRestaurant key={restaurant.id} restaurant={restaurant} />
         ))}
       </ul>
     </main>
