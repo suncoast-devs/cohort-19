@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import format from 'date-fns/format'
 
 import avatar from '../images/avatar.png'
-import { isLoggedIn } from '../auth'
+import { authHeader, isLoggedIn } from '../auth'
 
 const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 
@@ -15,6 +15,8 @@ export function Restaurant() {
   const id = Number(params.id)
   // This one line is the same as the two above
   // const { id } = useParams()
+
+  const [errorMessage, setErrorMessage] = useState()
 
   const [restaurant, setRestaurant] = useState({
     id: 0,
@@ -59,18 +61,28 @@ export function Restaurant() {
 
     const response = await fetch(`/api/Reviews`, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', ...authHeader() },
       body: JSON.stringify(newReview),
     })
 
-    setNewReview({
-      ...newReview,
-      body: '',
-      summary: '',
-      stars: 0,
-    })
+    if (response.status === 401) {
+      setErrorMessage('Not Authorized')
+    } else {
+      const json = await response.json()
 
-    fetchRestaurant()
+      if (response.status === 400) {
+        setErrorMessage(Object.values(json.errors).join(' '))
+      } else {
+        setNewReview({
+          ...newReview,
+          body: '',
+          summary: '',
+          stars: 0,
+        })
+
+        fetchRestaurant()
+      }
+    }
   }
 
   return (
@@ -121,6 +133,7 @@ export function Restaurant() {
         <>
           <h3>Enter your own review</h3>
           <form onSubmit={handleNewReviewSubmit}>
+            {errorMessage && <p>{errorMessage}</p>}
             <p className="form-input">
               <label htmlFor="summary">Summary</label>
               <input
