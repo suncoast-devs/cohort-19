@@ -1,0 +1,81 @@
+:root {
+  font: 16px / 1 sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 1rem;
+  list-style: none;
+}
+
+li {
+  margin: 1rem 0;
+  cursor: pointer;
+}
+
+li:hover p {
+  color: red;
+}
+
+img {
+  border: thin solid black;
+  margin: 1rem;
+}
+
+.displayedCat {
+  display: block;
+}
+
+.hiddenCat {
+  display: none;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ccc;
+}
+
+a {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.5rem;
+  background-color: lightblue;
+  padding: 1rem;
+  color: black;
+}
+
+a:link,
+a:visited,
+a:focus,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+a.active {
+  text-decoration: underline;
+}
+
+nav li {
+  transition: 0.5s ease-in-out;
+}
+
+nav li:hover {
+  transform: scale(1.2);
+}
+
+blockquote {
+  margin: 3rem;
+  padding: 0;
+  text-align: center;
+  font-size: 2rem;
+}
