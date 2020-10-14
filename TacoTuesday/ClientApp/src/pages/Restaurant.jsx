@@ -12,7 +12,7 @@ export function Restaurant() {
   // attributes that show us the route
   // parameters
   const params = useParams()
-  const id = params.id
+  const id = Number(params.id)
   // This one line is the same as the two above
   // const { id } = useParams()
 
@@ -25,16 +25,53 @@ export function Restaurant() {
     reviews: [],
   })
 
+  const [newReview, setNewReview] = useState({
+    body: '',
+    summary: '',
+    stars: 0,
+    restaurantId: id,
+  })
+
+  async function fetchRestaurant() {
+    const response = await fetch(`/api/Restaurants/${id}`)
+    const apiData = await response.json()
+
+    setRestaurant(apiData)
+  }
+
   useEffect(() => {
-    async function fetchRestaurant() {
-      const response = await fetch(`/api/Restaurants/${id}`)
-      const apiData = await response.json()
-
-      setRestaurant(apiData)
-    }
-
     fetchRestaurant()
   }, [id])
+
+  function handleNewReviewTextFieldChange(event) {
+    const name = event.target.name
+    const value = event.target.value
+
+    setNewReview({ ...newReview, [name]: value })
+  }
+
+  function handleStarRadioButton(newStars) {
+    setNewReview({ ...newReview, stars: newStars })
+  }
+
+  async function handleNewReviewSubmit(event) {
+    event.preventDefault()
+
+    const response = await fetch(`/api/Reviews`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newReview),
+    })
+
+    setNewReview({
+      ...newReview,
+      body: '',
+      summary: '',
+      stars: 0,
+    })
+
+    fetchRestaurant()
+  }
 
   return (
     <main className="page">
@@ -83,53 +120,68 @@ export function Restaurant() {
       {isLoggedIn() && (
         <>
           <h3>Enter your own review</h3>
-          <form action="#">
+          <form onSubmit={handleNewReviewSubmit}>
             <p className="form-input">
               <label htmlFor="summary">Summary</label>
-              <input type="text" name="summary" />
+              <input
+                type="text"
+                name="summary"
+                value={newReview.summary}
+                onChange={handleNewReviewTextFieldChange}
+              />
               <span className="note">
                 Enter a brief summary of your review. Example:{' '}
                 <strong>Great food, good prices.</strong>
               </span>
             </p>
             <p className="form-input">
-              <label htmlFor="review">Review</label>
-              <textarea type="text" name="review"></textarea>
+              <label htmlFor="body">Review</label>
+              <textarea
+                type="text"
+                name="body"
+                value={newReview.body}
+                onChange={handleNewReviewTextFieldChange}
+              ></textarea>
             </p>
             <p className="rating">
               <input
                 id="star-rating-1"
                 type="radio"
                 name="star-rating"
-                value="1"
+                checked={newReview.stars === 1}
+                onChange={() => handleStarRadioButton(1)}
               />
               <label for="star-rating-1">1 star</label>
               <input
                 id="star-rating-2"
                 type="radio"
                 name="star-rating"
-                value="2"
+                checked={newReview.stars === 2}
+                onChange={() => handleStarRadioButton(2)}
               />
               <label for="star-rating-2">2 stars</label>
               <input
                 id="star-rating-3"
                 type="radio"
                 name="star-rating"
-                value="3"
+                checked={newReview.stars === 3}
+                onChange={() => handleStarRadioButton(3)}
               />
               <label for="star-rating-3">3 stars</label>
               <input
                 id="star-rating-4"
                 type="radio"
                 name="star-rating"
-                value="4"
+                checked={newReview.stars === 4}
+                onChange={() => handleStarRadioButton(4)}
               />
               <label for="star-rating-4">4 stars</label>
               <input
                 id="star-rating-5"
                 type="radio"
                 name="star-rating"
-                value="5"
+                checked={newReview.stars === 5}
+                onChange={() => handleStarRadioButton(5)}
               />
               <label for="star-rating-5">5 stars</label>
 
