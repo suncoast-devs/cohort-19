@@ -80,12 +80,14 @@ header nav > * {
   margin: 0 1rem;
 }
 
-header nav a {
+header nav a,
+header nav .link {
   background: var(--purple-0);
   color: white;
   border: none;
   padding: 0.5rem;
   text-decoration: none;
+  cursor: pointer;
 }
 
 main.home > h1 {

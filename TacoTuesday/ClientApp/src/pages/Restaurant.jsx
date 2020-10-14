@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import format from 'date-fns/format'
 
 import avatar from '../images/avatar.png'
+import { isLoggedIn } from '../auth'
 
 const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 
@@ -78,64 +79,94 @@ export function Restaurant() {
           </li>
         ))}
       </ul>
-      <h3>Enter your own review</h3>
-      <form action="#">
-        <p className="form-input">
-          <label htmlFor="summary">Summary</label>
-          <input type="text" name="summary" />
-          <span className="note">
-            Enter a brief summary of your review. Example:{' '}
-            <strong>Great food, good prices.</strong>
-          </span>
-        </p>
-        <p className="form-input">
-          <label htmlFor="review">Review</label>
-          <textarea type="text" name="review"></textarea>
-        </p>
-        <p className="rating">
-          <input id="star-rating-1" type="radio" name="star-rating" value="1" />
-          <label for="star-rating-1">1 star</label>
-          <input id="star-rating-2" type="radio" name="star-rating" value="2" />
-          <label for="star-rating-2">2 stars</label>
-          <input id="star-rating-3" type="radio" name="star-rating" value="3" />
-          <label for="star-rating-3">3 stars</label>
-          <input id="star-rating-4" type="radio" name="star-rating" value="4" />
-          <label for="star-rating-4">4 stars</label>
-          <input id="star-rating-5" type="radio" name="star-rating" value="5" />
-          <label for="star-rating-5">5 stars</label>
 
-          <div className="star-rating">
-            <label
-              for="star-rating-1"
-              aria-label="1 star"
-              title="1 star"
-            ></label>
-            <label
-              for="star-rating-2"
-              aria-label="2 stars"
-              title="2 stars"
-            ></label>
-            <label
-              for="star-rating-3"
-              aria-label="3 stars"
-              title="3 stars"
-            ></label>
-            <label
-              for="star-rating-4"
-              aria-label="4 stars"
-              title="4 stars"
-            ></label>
-            <label
-              for="star-rating-5"
-              aria-label="5 stars"
-              title="5 stars"
-            ></label>
-          </div>
-        </p>
-        <p>
-          <input type="submit" value="Submit" />
-        </p>
-      </form>
+      {isLoggedIn() && (
+        <>
+          <h3>Enter your own review</h3>
+          <form action="#">
+            <p className="form-input">
+              <label htmlFor="summary">Summary</label>
+              <input type="text" name="summary" />
+              <span className="note">
+                Enter a brief summary of your review. Example:{' '}
+                <strong>Great food, good prices.</strong>
+              </span>
+            </p>
+            <p className="form-input">
+              <label htmlFor="review">Review</label>
+              <textarea type="text" name="review"></textarea>
+            </p>
+            <p className="rating">
+              <input
+                id="star-rating-1"
+                type="radio"
+                name="star-rating"
+                value="1"
+              />
+              <label for="star-rating-1">1 star</label>
+              <input
+                id="star-rating-2"
+                type="radio"
+                name="star-rating"
+                value="2"
+              />
+              <label for="star-rating-2">2 stars</label>
+              <input
+                id="star-rating-3"
+                type="radio"
+                name="star-rating"
+                value="3"
+              />
+              <label for="star-rating-3">3 stars</label>
+              <input
+                id="star-rating-4"
+                type="radio"
+                name="star-rating"
+                value="4"
+              />
+              <label for="star-rating-4">4 stars</label>
+              <input
+                id="star-rating-5"
+                type="radio"
+                name="star-rating"
+                value="5"
+              />
+              <label for="star-rating-5">5 stars</label>
+
+              <div className="star-rating">
+                <label
+                  for="star-rating-1"
+                  aria-label="1 star"
+                  title="1 star"
+                ></label>
+                <label
+                  for="star-rating-2"
+                  aria-label="2 stars"
+                  title="2 stars"
+                ></label>
+                <label
+                  for="star-rating-3"
+                  aria-label="3 stars"
+                  title="3 stars"
+                ></label>
+                <label
+                  for="star-rating-4"
+                  aria-label="4 stars"
+                  title="4 stars"
+                ></label>
+                <label
+                  for="star-rating-5"
+                  aria-label="5 stars"
+                  title="5 stars"
+                ></label>
+              </div>
+            </p>
+            <p>
+              <input type="submit" value="Submit" />
+            </p>
+          </form>
+        </>
+      )}
     </main>
   )
 }
