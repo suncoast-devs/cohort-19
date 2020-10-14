@@ -55,7 +55,12 @@ namespace TacoTuesday.Controllers
         public async Task<ActionResult<Restaurant>> GetRestaurant(int id)
         {
             // Find the restaurant in the database using Include to ensure we have the associated reviews
-            var restaurant = await _context.Restaurants.Include(restaurant => restaurant.Reviews).Where(restaurant => restaurant.Id == id).FirstOrDefaultAsync();
+            var restaurant = await _context.
+                               Restaurants.
+                               Include(restaurant => restaurant.Reviews).
+                               ThenInclude(review => review.User).
+                               Where(restaurant => restaurant.Id == id).
+                               FirstOrDefaultAsync();
 
             // If we didn't find anything, we receive a `null` in return
             if (restaurant == null)

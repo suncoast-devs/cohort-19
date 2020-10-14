@@ -112,7 +112,7 @@ export function Restaurant() {
         {restaurant.reviews.map((review) => (
           <li key={review.id}>
             <div className="author">
-              Gavin said: <em>{review.summary}</em>
+              {review.user.fullName} said: <em>{review.summary}</em>
             </div>
             <div className="body">
               <p>{review.body}</p>

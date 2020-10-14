@@ -11,5 +11,7 @@ namespace TacoTuesday.Models
         public DateTime CreatedAt { get; private set; } = DateTime.Now;
         public int UserId { get; set; }
         public int RestaurantId { get; set; }
+
+        public User User { get; set; }
     }
 }
