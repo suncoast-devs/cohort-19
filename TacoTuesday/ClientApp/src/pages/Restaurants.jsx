@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import ReactMapGL, { NavigationControl } from 'react-map-gl'
 import axios from 'axios'
 
 import avatar from '../images/avatar.png'
@@ -26,6 +27,14 @@ function SingleRestaurant(props) {
 export function Restaurants() {
   const [restaurants, setRestaurants] = useState([])
   const [filterText, setFilterText] = useState('')
+
+  const [viewport, setViewport] = useState({
+    width: 327,
+    height: 264,
+    latitude: 27.77101804911986,
+    longitude: -82.66090611749074,
+    zoom: 9.8,
+  })
 
   useEffect(
     function () {
@@ -74,12 +83,16 @@ export function Restaurants() {
       </form>
 
       <section className="map">
-        <iframe
-          title="Taco Map"
-          src="https://www.google.com/maps/embed"
-          frameBorder="0"
-          aria-hidden="false"
-        ></iframe>
+        <ReactMapGL
+          style={{ position: 'absolute' }}
+          {...viewport}
+          onViewportChange={setViewport}
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        >
+          <div style={{ position: 'absolute', right: 0 }}>
+            <NavigationControl />
+          </div>
+        </ReactMapGL>
       </section>
 
       <ul className="results">
