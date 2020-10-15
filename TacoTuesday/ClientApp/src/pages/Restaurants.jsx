@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ReactMapGL, { NavigationControl } from 'react-map-gl'
+import ReactMapGL, { Marker, NavigationControl } from 'react-map-gl'
 import axios from 'axios'
 
 import avatar from '../images/avatar.png'
@@ -89,6 +89,18 @@ export function Restaurants() {
           onViewportChange={setViewport}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         >
+          {restaurants.map((restaurant) => (
+            <Marker
+              key={restaurant.id}
+              latitude={restaurant.latitude}
+              longitude={restaurant.longitude}
+            >
+              <span role="img" aria-label={restaurant.name}>
+                🌮
+              </span>
+            </Marker>
+          ))}
+
           <div style={{ position: 'absolute', right: 0 }}>
             <NavigationControl />
           </div>
