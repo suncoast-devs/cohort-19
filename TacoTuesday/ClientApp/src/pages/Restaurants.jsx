@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import ReactMapGL, { Marker, NavigationControl } from 'react-map-gl'
+import ReactMapGL, { Marker, NavigationControl, Popup } from 'react-map-gl'
 import axios from 'axios'
 
 import avatar from '../images/avatar.png'
@@ -9,7 +9,7 @@ import { Stars } from '../components/Stars'
 
 function SingleRestaurant(props) {
   return (
-    <li>
+    <li className={props.thisRestaurantIsSelectedInTheMap ? 'selected' : ''}>
       <h2>
         <Link to={`/restaurants/${props.restaurant.id}`}>
           {props.restaurant.name}
@@ -27,6 +27,8 @@ function SingleRestaurant(props) {
 export function Restaurants() {
   const [restaurants, setRestaurants] = useState([])
   const [filterText, setFilterText] = useState('')
+
+  const [selectedMapRestaurant, setSelectedMapRestaurant] = useState(null)
 
   const [viewport, setViewport] = useState({
     width: 327,
@@ -89,13 +91,32 @@ export function Restaurants() {
           onViewportChange={setViewport}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         >
+          {/* {selectedMapRestaurant && (
+            <Popup
+              latitude={selectedMapRestaurant.latitude}
+              longitude={selectedMapRestaurant.longitude}
+              closeButton={true}
+              closeOnClick={false}
+              onClose={() => setSelectedMapRestaurant(null)}
+              offsetTop={-5}
+            >
+              <div>
+                <p>{selectedMapRestaurant.name}</p>
+                <p>{selectedMapRestaurant.description}</p>
+              </div>
+            </Popup>
+          )} */}
           {restaurants.map((restaurant) => (
             <Marker
               key={restaurant.id}
               latitude={restaurant.latitude}
               longitude={restaurant.longitude}
             >
-              <span role="img" aria-label={restaurant.name}>
+              <span
+                role="img"
+                aria-label={restaurant.name}
+                onClick={() => setSelectedMapRestaurant(restaurant)}
+              >
                 🌮
               </span>
             </Marker>
@@ -109,7 +130,14 @@ export function Restaurants() {
 
       <ul className="results">
         {restaurants.map((restaurant) => (
-          <SingleRestaurant key={restaurant.id} restaurant={restaurant} />
+          <SingleRestaurant
+            key={restaurant.id}
+            thisRestaurantIsSelectedInTheMap={
+              selectedMapRestaurant &&
+              restaurant.id === selectedMapRestaurant.id
+            }
+            restaurant={restaurant}
+          />
         ))}
       </ul>
     </main>
