@@ -100,6 +100,9 @@ export function Restaurant() {
       </p>
       <address>{restaurant.address}</address>
       <p>{restaurant.telephone}</p>
+      {restaurant.photoURL && (
+        <img alt="Restaurant Photo" width={200} src={restaurant.photoURL} />
+      )}
       <hr />
 
       {restaurant.reviews.length > 0 && <h3>Reviews for {restaurant.name}</h3>}

@@ -23,6 +23,8 @@ namespace TacoTuesday.Models
 
         public double Longitude { get; set; }
 
+        public string PhotoURL { get; set; }
+
         // A restaurant *HAS MANY* reviews
         public List<Review> Reviews { get; set; }
     }
