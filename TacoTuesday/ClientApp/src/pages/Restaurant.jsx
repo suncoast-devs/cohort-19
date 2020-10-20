@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import format from 'date-fns/format'
 
 import avatar from '../images/avatar.png'
-import { authHeader, isLoggedIn } from '../auth'
+import { authHeader, getUser, isLoggedIn } from '../auth'
 import { Stars } from '../components/Stars'
 
 const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 
 export function Restaurant() {
+  const history = useHistory()
+
+  const user = getUser()
+
   // params is now an object that has
   // attributes that show us the route
   // parameters
@@ -86,6 +90,19 @@ export function Restaurant() {
     }
   }
 
+  async function handleDelete(event) {
+    event.preventDefault()
+
+    const response = await fetch(`/api/Restaurants/${id}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json', ...authHeader() },
+    })
+
+    if (response.status === 200 || response.status === 204) {
+      history.push('/')
+    }
+  }
+
   return (
     <main className="page">
       <nav>
@@ -103,6 +120,11 @@ export function Restaurant() {
       {restaurant.photoURL && (
         <img alt="Restaurant Photo" width={200} src={restaurant.photoURL} />
       )}
+
+      {isLoggedIn() && restaurant.userId === user.id && (
+        <button onClick={handleDelete}>Delete</button>
+      )}
+
       <hr />
 
       {restaurant.reviews.length > 0 && <h3>Reviews for {restaurant.name}</h3>}
