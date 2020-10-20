@@ -60,6 +60,16 @@ export const getUser = () => {
   return auth.user
 }
 
+export const updateUserAuth = (updatedUser) => {
+  const auth = authFromStorage()
+
+  auth.user.email = updatedUser.email
+  auth.user.fullName = updatedUser.fullName
+  auth.user.photoURL = updatedUser.photoURL
+
+  recordAuthentication(auth)
+}
+
 // Removes the authentication data, effectively "forgetting" the
 // session information and logging the user out.
 export const logout = () => {
