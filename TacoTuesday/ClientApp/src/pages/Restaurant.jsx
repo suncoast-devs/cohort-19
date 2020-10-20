@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 import format from 'date-fns/format'
 
 import avatar from '../images/avatar.png'
@@ -136,6 +136,13 @@ export function Restaurant() {
         <button onClick={handleDelete}>Delete</button>
       )}
 
+      {isLoggedIn() && restaurant.userId === user.id && (
+        <p>
+          <Link className="button" to={`/restaurants/${id}/edit`}>
+            Edit
+          </Link>
+        </p>
+      )}
       <hr />
 
       {restaurant.reviews.length > 0 && <h3>Reviews for {restaurant.name}</h3>}

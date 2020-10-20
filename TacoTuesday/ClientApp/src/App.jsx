@@ -5,6 +5,7 @@ import './custom.scss'
 import { Restaurants } from './pages/Restaurants'
 import { NewRestaurant } from './pages/NewRestaurant'
 import { Restaurant } from './pages/Restaurant'
+import { EditRestaurant } from './pages/EditRestaurant'
 
 import avatar from './images/avatar.png'
 import { SignUp } from './pages/SignUp'
@@ -65,6 +66,9 @@ export function App() {
         </Route>
         <Route exact path="/restaurants/:id">
           <Restaurant />
+        </Route>
+        <Route exact path="/restaurants/:id/edit">
+          <EditRestaurant />
         </Route>
         <Route exact path="/signup">
           <SignUp />
