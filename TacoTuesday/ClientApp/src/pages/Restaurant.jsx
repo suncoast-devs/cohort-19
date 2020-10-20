@@ -103,6 +103,17 @@ export function Restaurant() {
     }
   }
 
+  async function handleDeleteReview(event, reviewId) {
+    event.preventDefault()
+
+    await fetch(`/api/Reviews/${reviewId}`, {
+      method: 'DELETE',
+      headers: { 'content-type': 'application/json', ...authHeader() },
+    })
+
+    fetchRestaurant()
+  }
+
   return (
     <main className="page">
       <nav>
@@ -146,6 +157,16 @@ export function Restaurant() {
               ></span>
               <time>{format(new Date(review.createdAt), dateFormat)}</time>
             </div>
+            {isLoggedIn() && review.user.id === user.id && (
+              <div>
+                <button
+                  className="small"
+                  onClick={(event) => handleDeleteReview(event, review.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </li>
         ))}
       </ul>

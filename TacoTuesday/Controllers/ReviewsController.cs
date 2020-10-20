@@ -53,6 +53,51 @@ namespace TacoTuesday.Controllers
             return CreatedAtAction("GetReview", new { id = review.Id }, review);
         }
 
+        // DELETE: api/Reviews/5
+        //
+        // Deletes an individual Review with the requested id. The id is specified in the URL
+        // In the sample URL above it is the `5`. The "{id} in the [HttpDelete("{id}")] is what tells dotnet
+        // to grab the id from the URL. It is then made available to us as the `id` argument to the method.
+        //
+        [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> DeleteReview(int id)
+        {
+            // Find this review by looking for the specific id
+            var review = await _context.Reviews.FindAsync(id);
+            if (review == null)
+            {
+                // There wasn't a review with that id so return a `404` not found
+                return NotFound();
+            }
+
+            if (review.UserId != GetCurrentUserId())
+            {
+                // Make a custom error response
+                var response = new
+                {
+                    status = 401,
+                    errors = new List<string>() { "Not Authorized" }
+                };
+
+                // Return our error with the custom response
+                return Unauthorized(response);
+            }
+
+            // Tell the database we want to remove this record
+            _context.Reviews.Remove(review);
+
+            // Tell the database to perform the deletion
+            await _context.SaveChangesAsync();
+
+            // return NoContent to indicate the update was done. Alternatively you can use the
+            // following to send back a copy of the deleted data.
+            //
+            // return Ok(review)
+            //
+            return NoContent();
+        }
+
         // Private helper method to get the JWT claim related to the user ID
         private int GetCurrentUserId()
         {
