@@ -11,6 +11,12 @@ class BowlingGame {
   }
 }
 
+function rollMultiple(bowlingGame, numberOfPins, count) {
+  for (let rollIndex = 0; rollIndex < count; rollIndex++) {
+    bowlingGame.roll(numberOfPins)
+  }
+}
+
 it('The score of a game of bowling with all gutter balls is 0', () => {
   // Setup
   // Execute
@@ -20,9 +26,7 @@ it('The score of a game of bowling with all gutter balls is 0', () => {
   const bowlingGame = new BowlingGame()
 
   // Setup
-  for (let rollIndex = 0; rollIndex < 20; rollIndex++) {
-    bowlingGame.roll(0)
-  }
+  rollMultiple(bowlingGame, 0, 20)
 
   // Execute
   const totalScore = bowlingGame.score()
@@ -35,9 +39,7 @@ it('The score of a game with all single pin rolls is 20', () => {
   // Setup
   const bowlingGame = new BowlingGame()
 
-  for (let rollIndex = 0; rollIndex < 20; rollIndex++) {
-    bowlingGame.roll(1)
-  }
+  rollMultiple(bowlingGame, 1, 20)
 
   const totalScore = bowlingGame.score()
 
