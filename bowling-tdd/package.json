@@ -7,5 +7,8 @@
     "test": "jest --watchAll"
   },
   "author": "Gavin Stark",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^26.6.3"
+  }
 }
