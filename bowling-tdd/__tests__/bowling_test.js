@@ -12,15 +12,23 @@ class BowlingGame {
     for (let frameIndex = 0; frameIndex < 10; frameIndex++) {
       const frameTotal = this.allPins[pinIndex] + this.allPins[pinIndex + 1]
 
-      total = total + frameTotal
-      if (frameTotal == 10) {
-        total = total + this.allPins[pinIndex + 2]
+      total += frameTotal
+      if (this.isSpare(frameTotal)) {
+        total += this.valueOfFirstPinFromNextFrame(pinIndex)
       }
 
       pinIndex += 2
     }
 
     return total
+  }
+
+  valueOfFirstPinFromNextFrame(pinIndex) {
+    return this.allPins[pinIndex + 2]
+  }
+
+  isSpare(frameTotal) {
+    return frameTotal == 10
   }
 }
 
