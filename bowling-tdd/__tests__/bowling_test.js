@@ -64,3 +64,17 @@ it('The score of a non-strike non-spare game is computed', () => {
 
   expect(totalScore).toBe(16)
 })
+
+it('Scoring a spare is counted as ten PLUS the next roll', () => {
+  const bowlingGame = new BowlingGame()
+
+  bowlingGame.roll(3)
+  bowlingGame.roll(7)
+  bowlingGame.roll(2)
+
+  rollMultiple(bowlingGame, 0, 17)
+
+  const totalScore = bowlingGame.score()
+
+  expect(totalScore).toBe(14)
+})
