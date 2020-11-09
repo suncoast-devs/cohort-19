@@ -1,0 +1,11 @@
+{
+  "name": "bowling-tdd",
+  "version": "1.0.0",
+  "description": "Bowling Score Example",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "author": "Gavin Stark",
+  "license": "MIT"
+}
