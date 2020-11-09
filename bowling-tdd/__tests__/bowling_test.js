@@ -45,3 +45,22 @@ it('The score of a game with all single pin rolls is 20', () => {
 
   expect(totalScore).toBe(20)
 })
+
+it('The score of a non-strike non-spare game is computed', () => {
+  const bowlingGame = new BowlingGame()
+
+  // Frame 1
+  bowlingGame.roll(2)
+  bowlingGame.roll(7)
+
+  // Frame 2
+  bowlingGame.roll(3)
+  bowlingGame.roll(4)
+
+  // ...
+  // ...
+
+  const totalScore = bowlingGame.score()
+
+  expect(totalScore).toBe(16)
+})
