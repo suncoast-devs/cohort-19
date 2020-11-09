@@ -7,9 +7,17 @@ class BowlingGame {
 
   score() {
     let total = 0
+    let pinIndex = 0
 
-    for (let rollIndex = 0; rollIndex < this.allPins.length; rollIndex++) {
-      total = total + this.allPins[rollIndex]
+    for (let frameIndex = 0; frameIndex < 10; frameIndex++) {
+      const frameTotal = this.allPins[pinIndex] + this.allPins[pinIndex + 1]
+
+      total = total + frameTotal
+      if (frameTotal == 10) {
+        total = total + this.allPins[pinIndex + 2]
+      }
+
+      pinIndex += 2
     }
 
     return total
@@ -62,8 +70,8 @@ it('The score of a non-strike non-spare game is computed', () => {
   bowlingGame.roll(3)
   bowlingGame.roll(4)
 
-  // ...
-  // ...
+  // Roll the rest of the game
+  rollMultiple(bowlingGame, 0, 16)
 
   const totalScore = bowlingGame.score()
 
@@ -81,5 +89,5 @@ it('Scoring a spare is counted as ten PLUS the next roll', () => {
 
   const totalScore = bowlingGame.score()
 
-  // expect(totalScore).toBe(14)
+  expect(totalScore).toBe(14)
 })
